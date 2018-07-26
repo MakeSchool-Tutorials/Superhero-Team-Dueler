@@ -1,3 +1,4 @@
+import random
 # Super Hero Fight Book
 class Team:
     def __init__(self, name):
@@ -85,6 +86,8 @@ class Hero:
         return self.name
 
     def add_ability(self, ability):
+        if  str(ability).find("Ability:") < 0:
+            raise Exception("Not an Ability")
         self._abilities.append(ability)
 
     def view_abilities(self):
@@ -93,7 +96,7 @@ class Hero:
 
     def find_ability(self, ability):
         for ability in self._abilities:
-            if ability.name == ability:
+            if ability.get_name() == ability:
                 return ability
         return False          
 
@@ -164,6 +167,7 @@ class Hero:
 
 
 class Ability:
+
     def __init__(self, name, attack_strength, defend_strength):
         self._name = name
         self._attack_strength = attack_strength
@@ -174,31 +178,23 @@ class Ability:
                                              self._attack_strength, self._defend_strength)
 
     def __str__(self):
-        return '{} ({}/{})'.format(self._name, self._attack_strength, self._defend_strength)
+        return 'Ability: {} ({}/{})'.format(self._name, self._attack_strength, self._defend_strength)
 
     def get_name(self):
         return self._name
 
     def attack(self):
-        print(
-            self._name + " deals "
-            + str(self._attack_strength)
-            + " damage."
-        )
+        return random.randint(0,self._attack_strength)
 
     def defend(self):
-        print(
-            self._name + " absorbs "
-            + str(self._defend_strength)
-            + " damage."
-        )
+        return random.randint(0,self._defend_strength)
     
     def update(self, attack, defense):
         self._attack_strength = attack
         self._defend_strength = defense
 
     def stats(self):
-        print(self._name + " deals " + self._attack_strength + " and defends against " + self._defend_strength + " damage.")
+        return self.__str__()
 
 
 class Relic(Ability):

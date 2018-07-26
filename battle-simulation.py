@@ -13,7 +13,7 @@ class Team:
             if hero.get_name() == name:
                 self._heroes.pop(index)
             index += 1
- 
+
     def find_hero(self, name):
         for hero in self._heroes:
             if hero.get_name() == name:
@@ -74,7 +74,8 @@ class Hero:
         powers = ''
         if self._abilities:
             abilites = ', '.join(str(ability) for ability in self._abilities)
-            powers += '\n  {} abilities: {}'.format(len(self._abilities), abilites)
+            powers += '\n  {} abilities: {}'.format(
+                len(self._abilities), abilites)
         if self._weapons:
             weapons = ', '.join(str(weapon) for weapon in self._weapons)
             powers += '\n  {} weapons: {}'.format(len(self._weapons), weapons)
@@ -97,14 +98,14 @@ class Hero:
         for ability in self._abilities:
             if ability.name == ability:
                 return ability
-        return False          
+        return False
 
     def update_ability(self, name, attack, defense):
         ability = self.find_ability(name)
         if ability:
             ability.update(attack, defense)
         else:
-            print("Ability not found!")     
+            print("Ability not found!")
 
     def remove_ability(self, name):
         index = 0
@@ -172,11 +173,15 @@ class Ability:
         self._defend_strength = defend_strength
 
     def __repr__(self):
-        return '{}({!r}, {!r}, {!r})'.format(self.__class__.__name__, self._name,
-                                             self._attack_strength, self._defend_strength)
+        return '{}({!r}, {!r}, {!r})'.format(
+            self.__class__.__name__,
+            self._name,
+            self._attack_strength,
+            self._defend_strength)
 
     def __str__(self):
-        return '{} ({}/{})'.format(self._name, self._attack_strength, self._defend_strength)
+        return '{} ({}/{})'.format(self._name,
+                                   self._attack_strength, self._defend_strength)
 
     def get_name(self):
         return self._name
@@ -194,13 +199,19 @@ class Ability:
             + str(self._defend_strength)
             + " damage."
         )
-    
+
     def update(self, attack, defense):
         self._attack_strength = attack
         self._defend_strength = defense
 
     def stats(self):
-        print(self._name + " deals " + self._attack_strength + " and defends against " + self._defend_strength + " damage.")
+        print(
+            self._name +
+            " deals " +
+            self._attack_strength +
+            " and defends against " +
+            self._defend_strength +
+            " damage.")
 
 
 class Relic(Ability):
@@ -223,7 +234,11 @@ class Weapon(Ability):
         Ability.__init__(self, name, attack_strength, 0)
 
     def attack(self):
-        print(self._name + " attacks for " + self._attack_strength + " damage.")
+        print(
+            self._name +
+            " attacks for " +
+            self._attack_strength +
+            " damage.")
 
 
 def get_user_input(prompt):
