@@ -12,7 +12,7 @@ Procedural programming has its uses but can be limiting in certain ways. **Objec
 ## Classes vs Objects
 We've seen and used objects in Python already. Objects are created according the the specifications described in a **class**. You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications.
 
-A class will describe which **methods**, or blocks of code that exist within an object along with any data that it needs to keep.
+A class will describe which **methods** (blocks of code) should exist within an object along with any data that it needs to keep.
 
 Data is stored as **properties** within the object that may be accessed either directly or through functions that can abstract away any complexities that may arise when setting a value.
 
@@ -27,7 +27,7 @@ class SampleClass:
 ```
 Here's an example of how you can define a simple class. We have here a method called `hello` and a property named `greeting`. The syntax is similar to the syntax that we've already seen when building functions but there are some key differences.
 
-We cant just call SampleClass.hello() and expect something to happen though. We must first create the object in memory before we can use it. The process of creating an object in memory from the class definition is called **instantiation**.
+We can't just call `SampleClass.hello()` and expect something to happen though. We must first create the object in memory before we can use it. The process of creating an object in memory from the class definition is called **instantiation**. This is because we are creating an instance of the class that we made. Different instances may have different data as we will see.
 
 ```python
 MyObject = SampleClass()
@@ -42,6 +42,7 @@ class SampleClass:
     def hello(self):
         print(self.greeting)
 
+
 MyObject = SampleClass()
 MyObject.hello()
 ```
@@ -53,6 +54,34 @@ Hello World
 ```
 
 ### Constructors
+Many times you'll want to specify the data that should exist in your object when its instantiated. This is done with the use of a **constructor**. All a constructor does is setup your object with certain values when it's created.
+
+We can add a constructor to our sample class as easily as this.
+
+```python
+class SampleClass:
+    def __init__(self, greeting):
+        self.greeting = greeting
+
+    def hello(self):
+        print(self.greeting)
+```
+
+We can then instantiate this class with its own default greeting this way.
+
+```python
+MyObject = SampleClass("Hello Make School")
+MyObject.hello()
+```
+
+This will output
+
+```
+Hello Make School
+```
+in the terminal.
+
+When we define the function `__init__` Python will run it automatically when it creates a new object.
 
 ### Instance Variables
 
