@@ -1,0 +1,19 @@
+Start with basic hero class
+get people baking as soon as possible 
+
+start with simple examples and build complexity
+
+tests should be for example only not for full test coverage of code.
+
+User add health to hero class as exercise
+
+Add break to battle (if all dead do something...)
+
+add format strings instead of + operator
+
+describe default values, why they are nice and how to deal with None's
+
+polymorphism - Write method, then call it and ponder "isn't that weird" 
+Why does it work?
+
+split "tests" into separate file all classes in own file
