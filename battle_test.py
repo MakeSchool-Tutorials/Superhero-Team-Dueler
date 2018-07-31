@@ -2,14 +2,14 @@ import pytest
 import team
 
 def test_ability():
-    #Test Correct Instantiation without error
+    # Test Correct Instantiation without error
     big_strength = team.Ability("Overwhelming Strength", 300, 300)
     assert big_strength
 
-    #Test for Correct Name
+    # Test for Correct Name
     assert big_strength.get_name() == "Overwhelming Strength"
 
-    #Test for correct update
+    # Test for correct update
     big_strength.update(400, 400)
     assert big_strength.stats().find("Overwhelming Strength (400/400)") > 0
     attack = big_strength.attack()
@@ -17,6 +17,7 @@ def test_ability():
     defend = big_strength.defend()
     assert defend <= 400 and defend >= 0
 
+    # Test Find functionality
     big_wallet = team.Ability("Vast Sums of Money", 1200, 0)
     assert big_wallet.stats().find("Overwhelming Strength (1200/0)")
 
@@ -37,6 +38,12 @@ def test_ability():
 
 
 def test_relic():
+    # Test that Relic instantiates without error
+    moon_stone = team.Relic("Moonstone", 52)
+    assert moon_stone
+
+    #Test Inheritance
+    assert moon_stone.get_name() == "Moonstone"
 
 
 def test_hero():

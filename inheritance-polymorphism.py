@@ -12,7 +12,6 @@ class Ability:
         print('{} absorbs {} damage'.format(self._name, self._defend_strength))
 
 
-
 class Relic(Ability):
     def __init__(self, name, attack_strength, defend_strength):
         Ability.__init__(self, name, attack_strength, defend_strength)

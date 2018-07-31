@@ -198,27 +198,24 @@ class Ability:
 
 
 class Relic(Ability):
-    def __init__(self, name, attack_strength, defend_strength):
-        Ability.__init__(self, name, attack_strength, defend_strength)
+    def __init__(self, name, defend_strength):
+        super().__init__(name, 0, defend_strength)
 
     def get_name(self):
         return self._name
 
-    def defend(self):
-        print(
-            self._name + " deflects "
-            + str(self._defend_strength)
-            + " damage."
-        )
+    def attack(self):
+        print("{} relic can't attack!".format(self._name))
+        return 0
 
 
 class Weapon(Ability):
     def __init__(self, name, attack_strength):
-        Ability.__init__(self, name, attack_strength, 0)
+        super().__init__(name, attack_strength, 0)
 
-    def attack(self):
-        print(self._name + " attacks for " + self._attack_strength + " damage.")
-
+    def defend(self):
+        print("You can't defend with {}".format(self._name))
+        return 0
 
 def get_user_input(prompt):
     user_input = input(prompt)
@@ -275,7 +272,7 @@ def create_elektra():
 
 def create_spiderman():
     spiderman = Hero("Spiderman")
-    spider_shield = Relic("Spiderweb Shield", 0, 25)
+    spider_shield = Relic("Spiderweb Shield", 0)
     spider_whip = Weapon("Spiderweb Whip", 15)
     spider_sense = Ability("Spider Sense", 10, 50)
     spiderman.add_ability(spider_sense)
@@ -300,7 +297,7 @@ def create_superman():
 
 def create_wonder_woman():
     wonderwoman = Hero("Wonder Woman")
-    bracelet = Relic("Indestructible Bracelet", 0, 30)
+    bracelet = Relic("Indestructible Bracelet", 30)
     tiara = Weapon("Projectile Tiara", 50)
     flight = Ability("Divine Flight", 20, 80)
     wonderwoman.add_relic(bracelet)
