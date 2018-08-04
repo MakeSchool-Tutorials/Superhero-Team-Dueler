@@ -384,10 +384,6 @@ Wonder Woman attacks with 1100 damage
 
 ### Scope and Encapsulation
 
-### Build Sample class_instance.py
-
-### Build Ability class
-
 ## Inheritance 
 
 ## Build relic and weapons classes in inheritance-polymorphism.py
@@ -402,6 +398,8 @@ Previously we've used user stories to visualize what our finished application sh
 ## Create your first test
 
 ## Pass your first test
+
+## Run additional Tests
 
 ## Add fight functionality
 
