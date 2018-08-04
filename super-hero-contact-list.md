@@ -373,6 +373,12 @@ if __name__ == "__main__":
 ```
 **Note:** Don't replace your code with this block, it should only serve as a guide. 
 
+You should get the following output when running the file in the terminal:
+```
+Wonder Woman attacks with 0 damage
+Wonder Woman attacks with 300 damage
+Wonder Woman attacks with 1100 damage
+```
 
 ### The `self` Argument
 
