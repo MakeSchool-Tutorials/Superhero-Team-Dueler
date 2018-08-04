@@ -120,7 +120,7 @@ my_other_dog = Dog("Annie")
 print(my_other_dog.name)
 ```
 
-If we run this we'll see
+If you run this you'll see the following.
 
 ```
 Annie
@@ -166,7 +166,8 @@ Here our dogs' names are instance variables: they are unique to the instance the
 
 Most of the time however we'll find instance variables to be more useful than class variables. While instance variables and methods allow for some interesting advanced behavior, it's unlikely that such complexity will be required for most of what you'll need to do.
 
-Instance variables are usually managed by **getters** and **setters**. This can allow complicated actions to be simplified to a simple function call. This simplification of functionality is called **abstraction** and is one of the strengths of OOP. By abstracting complicated functionality behind a simple interface such as a function call we are able to keep our code modular and understandable. 
+### Getters and Setters
+Instance variables are usually managed by **getters** and **setters**. This can allow complicated actions to be simplified to a simple function call. This simplification of functionality is called **abstraction** and is one of the strengths of OOP. By abstracting complicated functionality behind a simple interface such as a method call we are able to keep our code modular and understandable. 
 
 Let's add a getter and setter to `greeting`.
 
@@ -188,21 +189,21 @@ class Dog:
         self._greeting = new_greeting
 ```
 
-By setting our greeting in the constructor we're making sure it's an instance variable and not a class variable.
+By setting `_greeting` in the constructor we're making sure it's an instance variable and not a class variable.
 
 Call your new `Dog` class with the following lines:
 
 ```python 
-my_first_dog = Dog("Annie")
-my_second_dog = Dog("Wyatt")
+first_dog = Dog("Annie")
+second_dog = Dog("Wyatt")
 
-print(my_first_dog.name)
-print(my_second_dog.name)
+print(first_dog.name)
+print(second_dog.name)
 
-my_second_dog.set_greeting("Yap! Yap!")
+second_dog.set_greeting("Yap! Yap!")
 
-my_first_dog.bark()
-my_second_dog.bark()
+first_dog.bark()
+second_dog.bark()
 ```
 
 You should see the output:
@@ -212,9 +213,11 @@ Wyatt
 Yap! Yap!
 Woof!
 ```
-You'll notice that `greeting` has been refactored to `_greeting`. Many languages allow you to specify **private properties** which cannot be changed from outside its instance. This is handy for being certain that values are controlled by the methods that are in charge of their management. 
+You'll notice that `greeting` has been refactored to `_greeting`. 
 
-Python doesn't give us this feature so its common practice to prefix properties that should be considered private with an underscore.
+Many languages allow you to specify **private properties** which cannot be accessed by anything outside of its object. This is handy for making sure that their values are controlled by the methods that are in charge of their management and not directly by some outside force. 
+
+Python doesn't give us this feature so its common practice to prefix properties that should be considered private with an underscore. This is why `greeting` was refactored to `_greeting`.
 
 Lets try working on our first classes: `Hero` and `Ability`.
 
@@ -225,30 +228,150 @@ It should look like this.
 ```python
 class Hero:
     def __init__(self, name):
-        self._abilities = []
-        self._name = name
+        # Initialize starting values
 
     def add_ability(self, ability):
-        self._abilities.append(ability)
-    
+        # Add ability to abilities list
+
     def attack(self):
-        attack_damage = 0
-        for ability in self._abilities:
-            attacks += ability.attack()
-        print("{} attacks with {} damage".format(self._name, attack_damage))
+        # Run attack() on every ability hero has
+
 
 class Ability:
-    def __init__(self, name, attack, defense):
-        self._name = name
-        self._attack = attack
-        self._defense = defense
-    
-    def attack(self):
-        return self._attack
-    
-    def defend(self):
+    def __init__(self, name, attack_strength):
+        # Initialize starting values
 
+    def attack(self):
+        # Return attack value
+
+    def update_attack(self, attack_strength):
+        # Update attack value
+
+
+if __name__ == "__main__":
+    # Any code here gets run if your file is run in the terminal. 
+    # It won't run if your code is imported into another project.
 ```
+Here we define what we want our hero to look like. Our hero should have a name and should be able to have various different abilities. We'll store each of our hero's abilities as an element in a Python list. Each ability will be its own object that will keep track of its own properties.
+
+Let's start with the constructor for `Hero`. 
+
+We'll need to save our hero's name when our object is first created. Along with our hero's name, we'll also need to create an empty Python list that will be able to hold our abilities when we add them later. 
+
+The constructor for `Hero` should look like this:
+```python
+def __init__(self, name):
+    self._abilities = []
+    self._name = name
+```
+
+We also need to be able to add an ability to our abilities list. Since `self._abilities` is a Python list, we can use the `append` method that comes with it.
+
+Your `add_ability` method should look like this:
+```python
+def add_ability(self, ability):
+    self._abilities.append(ability)
+```
+
+
+Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list. 
+
+**Proofreader's Note**: This example may be giving out too much code. Advise if student should build method to specification instead.
+```python
+def attack(self):
+    attack_damage = 0
+    for ability in self._abilities:
+        attack_damage += ability.attack()
+    print("{} attacks with {} damage".format(self._name, attack_damage))
+    return attack_damage
+```
+This method iterates over our entire list and adds up the returned values from every run of `attack()`. It then returns the total of all attacks.
+
+### Ability Class
+Let's give our `Ability` class three simple methods at first.
+
+```python
+
+class Ability:
+    def __init__(self, name, attack_strength):
+        # Initialize starting values
+
+    def attack(self):
+        # Return attack value
+
+    def update_attack(self, attack_strength):
+        # Update attack value
+```
+
+The constructor should set the name and attack strength for our `Ability`.
+
+Use the `Hero` class above as an example for how to set the ability name and attack strength in our `Ability` constructor.
+
+```python
+def __init__(self, name, attack_strength):
+    # Instantiate Ability name
+    # Instantiate attack strength
+```
+Our next important function is the `attack` method. All this will need to do right now is return our maximum attack value. Later on we can tweak this for additional fun so we don't always get the same value back.
+```python
+def attack(self):
+    return self._attack
+```
+Get this method to work with your instantiated variables from the constructor you just made.
+
+Finally we should be able to update our attack value if we need to.
+
+**TODO:**
+Write your own implementation of the `update_attack` method. It should update the value of the current attack strength with the new value passed in as a parameter.
+
+## Test it out
+Make sure that you're able to create heroes with abilities that work with the following lines:
+```python
+    hero = Hero("Wonder Woman")
+    hero.attack()
+    ability = Ability("Divine Speed", 300)
+    hero.add_ability(ability)
+    hero.attack()
+    new_ability = Ability("Super Human Strength", 800)
+    hero.add_ability(new_ability)
+    hero.attack()
+```
+These lines should be added after checking `__name__` this way:
+
+```python
+class Hero:
+    def __init__(self, name):
+        # Initialize starting values
+
+    def add_ability(self, ability):
+        # Add ability to abilities list
+
+    def attack(self):
+        # Run attack() on every ability hero has
+
+
+class Ability:
+    def __init__(self, name, attack):
+        # Initialize starting values
+
+    def attack(self):
+        # Return attack value
+
+    def update_attack(self, attack):
+        # Update attack value
+
+
+if __name__ == "__main__":
+    hero = Hero("Wonder Woman")
+    hero.attack()
+    ability = Ability("Divine Speed", 300)
+    hero.add_ability(ability)
+    hero.attack()
+    new_ability = Ability("Super Human Strength", 800)
+    hero.add_ability(new_ability)
+    hero.attack()
+```
+**Note:** Don't replace your code with this block, it should only serve as a guide. 
 
 
 ### The `self` Argument
