@@ -5,7 +5,7 @@ There are times in this world when the powers of good and evil come together in 
 Our task is to create a super hero team dueling application so we can be sure we're up to snuff.
 
 ## Procedural vs Object Oriented Programming
-So far we've learned how to use functions to create code that is re-usable and maintainable. We've been able to leverage some of the power of objects but haven't yet jumped into creating them. 
+We've learned how to use functions to create code that is re-usable and maintainable. We can benefit from some of the power that objects give us but haven't yet jumped into creating them. 
 
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world. 
 
@@ -63,7 +63,7 @@ Woof!
 
 We first must define what an object should include with the class definition. Then we create an instance of it as an object in memory. The object is what we refer to when we want to run any code associated with it.
 
-So far we can instantiate a Dog object which can bark, but our dog is missing a key component -- a name. Our dog exists at a memory addess that we've labeled `my_dog` but that is not our dog's name. Our anonymous dog may need to own certain unique values or **properties** that should be accessible by that object. Our dog object has no idea what we've decided to name the memory address where it lives so we can't count on the variable name to save this information. 
+We've seen how to instantiate a Dog object which can bark, but our dog is missing a key component -- a name. Our dog exists at a memory addess that we've labeled `my_dog` but that is not our dog's name. Our anonymous dog may need to own certain unique values or **properties** that should be accessible by that object. Our dog object has no idea what we've decided to name the memory address where it lives so we can't count on the variable name to save this information. 
 
 *Can we just set the name in the class definition like this?*
 
@@ -80,9 +80,11 @@ This will work if all dogs were named Spot, but this obviously isn't the case. I
 We'll need another tool to accomplish this task.
 
 ### Constructors
-Many times you'll want your object to include data associated with it. We've seen how to create a variable that all instantiated objects will share. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. Fortunately we have other options available to us. 
+Many languages give you the ability to specify your own method for instantiating a class as an object in memory. This special method is called a **constructor** because it constructs your object in memory. Specifying a constructor allows us to initialize our object with unique values at creation.
 
-We can use a **constructor** to set any initial values at the time your object is created in memory. All this does is allow you to specify any initial setup steps involved when Python creates your object.
+So far, we've seen how to create a variable that all instantiated objects will share. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. Fortunately we have other options available to us. 
+
+We can use the python method `__init__` to set any initial values at the time your object is created in memory.  All this does is allow you to specify any initial setup steps involved when Python creates your object.
 
 This is how to add a constructor to your class.
 
@@ -166,61 +168,6 @@ Here our dogs' names are instance variables: they are unique to the instance the
 
 Most of the time however we'll find instance variables to be more useful than class variables. While instance variables and methods allow for some interesting advanced behavior, it's unlikely that such complexity will be required for most of what you'll need to do.
 
-### Getters and Setters
-Instance variables are usually managed by **getters** and **setters**. This can allow complicated actions to be simplified to a simple function call. This simplification of functionality is called **abstraction** and is one of the strengths of OOP. By abstracting complicated functionality behind a simple interface such as a method call we are able to keep our code modular and understandable. 
-
-Let's add a getter and setter to `greeting`.
-
-We don't want `greeting` to be tied to our class definition though so we'll give it a default value when it's instantiated by updating our `Dog` class this way.
-
-```python
-class Dog:
-    def __init__(self, name):
-        self.name = name
-        self._greeting = "Woof!"
-
-    def bark(self):
-        print(self._greeting)
-
-    def get_greeting(self):
-        return self._greeting
-    
-    def set_greeting(self, new_greeting):
-        self._greeting = new_greeting
-```
-
-By setting `_greeting` in the constructor we're making sure it's an instance variable and not a class variable.
-
-Call your new `Dog` class with the following lines:
-
-```python 
-first_dog = Dog("Annie")
-second_dog = Dog("Wyatt")
-
-print(first_dog.name)
-print(second_dog.name)
-
-second_dog.set_greeting("Yap! Yap!")
-
-first_dog.bark()
-second_dog.bark()
-```
-
-You should see the output:
-```
-Annie
-Wyatt
-Yap! Yap!
-Woof!
-```
-You'll notice that `greeting` has been refactored to `_greeting`. 
-
-Many languages allow you to specify **private properties** which cannot be accessed by anything outside of its object. This is handy for making sure that their values are controlled by the methods that are in charge of their management and not directly by some outside force. 
-
-Python doesn't give us this feature so its common practice to prefix properties that should be considered private with an underscore. This is why `greeting` was refactored to `_greeting`.
-
-Lets try working on our first classes: `Hero` and `Ability`.
-
 ## Build Hero and Ability classes
 Lets build our project in a new file named `super-heroes.py`.
 
@@ -249,8 +196,7 @@ class Ability:
 
 
 if __name__ == "__main__":
-    # Any code here gets run if your file is run in the terminal. 
-    # It won't run if your code is imported into another project.
+    # If you run this from the terminal this block is executed. 
 ```
 Here we define what we want our hero to look like. Our hero should have a name and should be able to have various different abilities. We'll store each of our hero's abilities as an element in a Python list. Each ability will be its own object that will keep track of its own properties.
 
@@ -277,6 +223,9 @@ def add_ability(self, ability):
 Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list. 
 
 **Proofreader's Note**: This example may be giving out too much code. Advise if student should build method to specification instead.
+
+**make sure all ingredients are known and have student put it together**
+
 ```python
 def attack(self):
     attack_damage = 0
@@ -379,12 +328,73 @@ Wonder Woman attacks with 0 damage
 Wonder Woman attacks with 300 damage
 Wonder Woman attacks with 1100 damage
 ```
+## A Note on Scope and Encapsulation
+**Note**: Encapsulation - collecting values together
+
+Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
+
+In Python this functionality is not present. Since Python is not compiled and distributed in a form that is incomprehinsible by anyone other than a computer, trying to protect areas of memory from modification becomes an exercise in futility. Since Python is interpreted instead of compiled, anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth. 
+
+The idea of encapsulation 
+
+
+### Getters and Setters
+**Note** update getters and setters, describe why it's not useful in python.
+
+Instance variables are usually managed by **getters** and **setters**. This can allow complicated actions to be simplified to a simple function call. This simplification of functionality is called **abstraction** and is one of the strengths of OOP. By abstracting complicated functionality behind a simple interface such as a method call we are able to keep our code modular and understandable. 
 
 ### The `self` Argument
+You may be seeing `self` places in our code and wonder why on earth is it necessary? You may be able to deduce that `self` allows us access to things outside of a particular method. We can get some clue about what's going on if we leave it out and see what happens.
 
-### Scope and Encapsulation
+```python
+class Dog:
+    def bark():
+        print("Woof")
+
+mydog = Dog()
+mydog.bark()
+```
+You'll see an error when the bark method is run.
+```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: bark() takes 0 positional arguments but 1 was given
+```
+
+What is this error saying?
+
+Here is the clue.
+```
+bark() takes 0 positional arguments but 1 was given
+```
+
+When we run a method, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. Here our `bark` method doesn't accept any parameters so it fails with the error we saw. 
+
+Many languages take care of passing the reference to the object for you invisibly using a reserved keyword `this`. According to Tim Peters in The Zen of Python, "explicit is better than implicit" and this philosophy is commonly cited as one of the reasons for this particuluar feature.
+
+The use of `self` however is just a convention and not enforced by the Python interpreter.
+
+```python
+class Dog:
+    def bark(object):
+        print("Woof")
+
+my_dog = Dog()
+my_dog.bark()
+```
+As you can see instead of `self` this block of code uses the word `object`. If you run this you'll see that the output will be:
+
+```
+Woof
+```
+In order for our code to remain clear the best practise is to follow the PEP8 style guide which simply states:
+
+>Always use `self` for the first argument to instance methods.
+
+So even though it's not enforced by the language itself it's best to be consistent in your use of `self` across all of your Python applications. 
 
 ## Inheritance 
+
 
 ## Build relic and weapons classes in inheritance-polymorphism.py
 
