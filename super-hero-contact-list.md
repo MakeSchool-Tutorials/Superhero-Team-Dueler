@@ -368,11 +368,13 @@ Here is the clue.
 bark() takes 0 positional arguments but 1 was given
 ```
 
-When we run a method, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. Here our `bark` method doesn't accept any parameters so it fails with the error we saw. 
+When we run a method, `bark()` in this case, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. This allows us to access anything else inside our object. 
 
-Many languages take care of passing the reference to the object for you invisibly using a reserved keyword `this`. According to Tim Peters in The Zen of Python, "explicit is better than implicit" and this philosophy is commonly cited as one of the reasons for this particuluar feature.
+Here our `bark` method doesn't accept any parameters so it fails when Python tries to pass in the instantiated object. 
 
-The use of `self` however is just a convention and not enforced by the Python interpreter.
+Many languages take care of passing a reference to the parent invisibly by using a reserved keyword such as `this`. The Python philosophy of "explicit is better than implicit" is one of the reasons that `self` is not handled automatically behind the scenes. By explicitly passing a reference to the instantiated object, Python bypasses the issue of what `this` refers to.
+
+In Python the word `self` is not **reserved** like the word `this` is in other languages. Not only will Python allow you to use self anywhere you like, but it doesn't even require the first parameter to be named `self`.  
 
 ```python
 class Dog:
@@ -387,18 +389,144 @@ As you can see instead of `self` this block of code uses the word `object`. If y
 ```
 Woof
 ```
-In order for our code to remain clear the best practise is to follow the PEP8 style guide which simply states:
+In order to maintain code clarity and to comply with industry best practises we follow the PEP8 style guide. In this case our style guide is clear:
 
 >Always use `self` for the first argument to instance methods.
 
-So even though it's not enforced by the language itself it's best to be consistent in your use of `self` across all of your Python applications. 
+So even though it's not enforced by the language it's still important to be consistent and always use `self` the way the style guide suggests. This will allow your code to be clear and consistent across multiple projects and will match the work done by other Python developers as well.
 
 ## Inheritance 
+One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in useful because it allows for additional ways to reuse code.
+
+Here is a simple demonstration of inheritance at work.
+
+```python
+class Animal:
+    def __init__(self, name, sleep_duration):
+        self.name = name
+        self.sleep_time = sleep_time
+
+    def sleep(self):
+        print(
+            "{} sleeps for {} hours {}".format(
+                self.name,
+                self.sleep_time))
+```
+Lets say we have the above `Animal` class. We can instantiate a new animal object the same way we've already seen it done.
+
+```python
+dog = Animal("Sophie", 12)
+dog.sleep()
+```
+Here we have our dog Sophie that needs 12 hours of sleep every night. If we call our sleep method we'll see this:
+```
+Sophie sleeps for 12 hours
+```
+
+Our dog here is simply an instance of our `Animal` class, but what if we want specific dog functionality that only dogs have.
+
+We don't want to put a bark method in `Animal` because not every animal barks. We also don't want to have to duplicate every method that dogs and animals have in common. 
+
+Lets use inheritance to make a `Dog` class that allows us to bark. 
+
+```python
+class Animal:
+    def __init__(self, name, sleep_duration):
+        self.name = name
+        self.sleep_time = sleep_time
+
+    def sleep(self):
+        print(
+            "{} sleeps for {} hours {}".format(
+                self.name,
+                self.sleep_duration))
 
 
-## Build relic and weapons classes in inheritance-polymorphism.py
+class Dog(Animal):
+    def __init__(self, name, sleep_duration, sleep_time):
+        super().__init__(self, name, sleep_duration, sleep_time)
+
+    def bark(self):
+        print("Woof! Woof!")
+```
+
+Instantiate a new `Dog` object and call the sleep and bark methods this way.
+
+```
+my_dog = Dog("Sophie", 12)
+my_dog.sleep()
+my_dog.bark()
+```
+You should see this output in the terminal.
+
+```
+Sophie sleeps for 12 hours
+Woof! Woof!
+```
+You can see that we didn't have to create another sleep method again in order to use it. We have **inherited** this method from our **superclass** `Animal`. 
+
+In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
+
+Lets use what we learned here to give our super heroes abilities they can use.
+
+## Weapon Class
+We've already built an `Ability` class that will give our super heroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use.
+
+We can reuse the functionality in `Ability` so that we don't need to duplicate code. Lets say that weapons aren't as effective as super hero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon. 
+
+Here are the methods that you'll need to write for our new `Weapon` class.
+
+```python
+class Weapon(Ability):
+    def __init__(self, ...):
+        # This method should initialize all required
+        # values in Ability. Use super() to call init with 
+        # the required intialized values.
+
+    def attack(self):
+        # This method should should return a random value 
+        # between 0 and the full attack power of the weapon.
+```
+Here we've defined a method that already exists in our inherited `Ability` class. 
+
+This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
 ## Build Team class
+Super heroes should be team players, so lets create a team class that can manage several super heroes.
+These are the methods that we'll need to implement.
+
+```python
+class Team:
+    def init():
+        ''' This method should initialize any values that need to be stored for our team. We will need to create a list to add super heroes to.
+        '''
+    def add_hero(self, name):
+        pass
+
+    def remove_hero(self, name):
+        pass
+ 
+    def find_hero(self, name):
+        pass
+
+    def view_all_heroes(self):
+        pass
+
+    def best(self, number):
+        """
+        This method will show the top n most effective team members.
+        """
+        pass
+
+    def worst(self, number):
+        """
+        This method will show the n least effective team members.
+        """
+        pass
+
+    def battle(self, other_team):
+        pass
+```
 
 ## Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform.
