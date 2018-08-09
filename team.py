@@ -1,5 +1,7 @@
 import random
 # Super Hero Fight Book
+
+
 class Team:
     def __init__(self, name):
         self._name = name
@@ -15,7 +17,7 @@ class Team:
             if hero.get_name() == name:
                 self._heroes.pop(index)
             index += 1
- 
+
     def find_hero(self, name):
         for hero in self._heroes:
             if hero.get_name() == name:
@@ -31,8 +33,7 @@ class Team:
             #     print('Hero name mismatch:', hero)
 
     def best(self, number):
-        """
-        This method will show the top n most effective team members.
+        """This method will show the top n most effective team members.
         """
         pass
 
@@ -73,7 +74,8 @@ class Hero:
         powers = ''
         if self._abilities:
             abilites = ', '.join(str(ability) for ability in self._abilities)
-            powers += '\n  {} abilities: {}'.format(len(self._abilities), abilites)
+            powers += '\n  {} abilities: {}'.format(
+                len(self._abilities), abilites)
         if self._weapons:
             weapons = ', '.join(str(weapon) for weapon in self._weapons)
             powers += '\n  {} weapons: {}'.format(len(self._weapons), weapons)
@@ -86,7 +88,7 @@ class Hero:
         return self.name
 
     def add_ability(self, ability):
-        if  str(ability).find("Ability:") < 0:
+        if str(ability).find("Ability:") < 0:
             raise Exception("Not an Ability")
         self._abilities.append(ability)
 
@@ -98,14 +100,14 @@ class Hero:
         for ability in self._abilities:
             if ability.get_name() == ability:
                 return ability
-        return False          
+        return False
 
     def update_ability(self, name, attack, defense):
         ability = self.find_ability(name)
         if ability:
             ability.update(attack, defense)
         else:
-            print("Ability not found!")     
+            print("Ability not found!")
 
     def remove_ability(self, name):
         index = 0
@@ -174,21 +176,25 @@ class Ability:
         self._defend_strength = defend_strength
 
     def __repr__(self):
-        return '{}({!r}, {!r}, {!r})'.format(self.__class__.__name__, self._name,
-                                             self._attack_strength, self._defend_strength)
+        return '{}({!r}, {!r}, {!r})'.format(
+            self.__class__.__name__,
+            self._name,
+            self._attack_strength,
+            self._defend_strength)
 
     def __str__(self):
-        return 'Ability: {} ({}/{})'.format(self._name, self._attack_strength, self._defend_strength)
+        return 'Ability: {} ({}/{})'.format(self._name,
+                                            self._attack_strength, self._defend_strength)
 
     def get_name(self):
         return self._name
 
     def attack(self):
-        return random.randint(0,self._attack_strength)
+        return random.randint(0, self._attack_strength)
 
     def defend(self):
-        return random.randint(0,self._defend_strength)
-    
+        return random.randint(0, self._defend_strength)
+
     def update(self, attack, defense):
         self._attack_strength = attack
         self._defend_strength = defense
@@ -216,6 +222,7 @@ class Weapon(Ability):
     def defend(self):
         print("You can't defend with {}".format(self._name))
         return 0
+
 
 def get_user_input(prompt):
     user_input = input(prompt)

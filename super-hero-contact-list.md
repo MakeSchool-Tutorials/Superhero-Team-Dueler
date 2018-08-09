@@ -2,29 +2,35 @@
 ## Wonders and Perils Await
 There are times in this world when the powers of good and evil come together in a mighty clash of force. When this happens, it's up to all of us to make sure that we make every one of our assets count. What better than a simulation to make sure you have the best team with you when the time comes to stand up to the evil forces of the galaxy's greatest foes.
 
-Our task is to create a super hero team dueling application so we can be sure we're up to snuff.
+Our task is to create a super hero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **object oriented programming** to build our applications instead of relying completely on functions.
 
 ## Procedural vs Object Oriented Programming
-We've learned how to use functions to create code that is re-usable and maintainable. We can benefit from some of the power that objects give us but haven't yet jumped into creating them. 
+We've learned how to use functions to create code that is re-usable and maintainable. We have already benefitted from some of the power that objects give us but haven't explored the depths that are available to us. 
 
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world. 
 
 ## Classes vs Objects
-We've seen and used objects in Python already. Objects are created according the the specifications described in a **class**. You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications.
+We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data — called **properties** — and code which is organized in **methods** ( Similar to the functions that we've already written but localized to the scope of our object).
 
-**
-TODO:
-Give Examples...
+```python
+dogs = list()
+dogs.append("German Shepherd")
+dogs.append("Poodle")
+print(dogs)
+```
+If you run this you'll see the output:
+
+```
+['German Shepherd', 'Poodle']
+```
+
+Here we we have a list object that Python gives us. It contains methods such as `append()` that we can run to manipulate our list. 
+
+An object exists in the computer's memory somewhere and is accessed through the object's memory address. Here our memory address is referred by the name `dogs`. A **class** on the other hand is simply the specification that tells the computer what our object needs. It describes the methods and properties that are to exist in the object and the computer uses it to build the object in memory.
+
+You can think of a class as the blueprint for the object that will exist. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can have unique values just as each car from a factory can have different properties like color and such.
 
 A class will describe which **methods** (blocks of code) should exist within an object along with any data that it needs to keep.
-
-bark
-
-Data is stored as **properties** within the object that may be accessed either directly or through functions that can abstract away any complexities that may arise when setting a value.
-
-name
-
-Our methods and properties are a similar concept to functions and variables except now they exist inside our objects in memory.
 
 ### Class Definition
 ```python
@@ -32,18 +38,18 @@ class Dog:
     def bark(self):
         print("Woof!")
 ```
-Here's an example of how to make a Dog class. Our Dog class has a method called `bark` that when called will print out `Woof!` to the terminal. The syntax is similar to the syntax that we've already seen when building functions but there are some key differences.
+Here's an example of how to make a simple class. Our Dog class has a method called `bark` that when called will print out `Woof!` to the terminal. The syntax is similar to the syntax that we've already seen when building functions but there are some key differences.
 
-We can't just call `Dog.bark()` and expect something to happen though. That would be like asking all dogs to bark. Instead, you just want to ask *your* dog, Spot, to bark. 
+We can't just call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Instead, you just want to ask *your* dog, Spot, to bark. 
 
-First, we must create an **instance** of our Dog class in memory before we can use it. The process of creating an object in memory from the class definition is called **instantiation**. Our Dog class defines the instructions for Python to create a version or **instance** of it in memory.
+First, we must create an **instance** of our Dog class in memory before we can use it. The process of creating an object in memory from the class definition is called **instantiation**. Our Dog class defines the instructions for Python to create a version, known as an **instance**, of it in memory.
 
 ```python
 my_dog = Dog()
 ```
 This line will take our class definition `Dog` and create an **instance** of it in memory. We can then refer to the object's memory address as the name `my_dog`.
 
-Try this code out in your own file named `my-dogs.py`.
+Try this code out in your own file named `dog.py`.
 
 ```python
 class Dog:
@@ -61,9 +67,66 @@ If you run this file in the terminal you should see the following output.
 Woof!
 ```
 
-We first must define what an object should include with the class definition. Then we create an instance of it as an object in memory. The object is what we refer to when we want to run any code associated with it.
+### Making Your Code Modular
+Typically you'll want your code to be modular. We should be able to import our code into other projects without any issues. Python gives us a way to check where our code is being run with the built-in variable `__name__` which will come in handy.
 
-We've seen how to instantiate a Dog object which can bark, but our dog is missing a key component -- a name. Our dog exists at a memory addess that we've labeled `my_dog` but that is not our dog's name. Our anonymous dog may need to own certain unique values or **properties** that should be accessible by that object. Our dog object has no idea what we've decided to name the memory address where it lives so we can't count on the variable name to save this information. 
+At the bottom of your `dog.py` file add this line:
+```python
+print(__name__)
+```
+When run in the terminal this way `python ./dog.py` you should see
+```
+Woof!
+__main__
+```
+
+Inside a different file named `my-dogs.py` write the following code.
+
+```python
+import dogs
+```
+
+The import statement allows us to "invoke the import machinery" according to the Python Software Foundation.
+
+Import simply looks for a file with the specified name that also ends with `.py`. Here we have `Dog` described in our `dog.py` file. We had to import it using `import dog` in order for it to work properly. 
+
+You'll notice that if you run `my-dogs.py` the following will display in the terminal
+
+```
+Woof!
+dog
+```
+Can you see what's going on?
+
+When we imported our `dog.py` file, the value for `__name__` inside our module was the filename in which it exists. 
+
+Why is this a thing?
+
+As you can see, when we imported our `dog` module it immediately ran code that shouldn't be run when it's used as a module.
+
+We should check to see if our code is being run as a module or not.
+Add a check to your `dog.py` file to modularize it this way.
+
+```python
+class Dog:
+    def bark(self):
+        print("Woof!")
+
+if __name__ == "__main__"
+    my_dog = Dog()
+    my_dog.bark()
+```
+
+You'll notice if you run the `python ./dog.py` you'll see the familiar output
+```
+Woof!
+```
+However, if you run `python ./my-dogs.py` there won't by any output.
+
+We now have behavior the plays well with modularization.
+
+### Properties
+We've seen how to instantiate a Dog object which can bark, but our dog is missing a key component -- a name. Our dog exists at a memory addess that we've labeled `my_dog` but that's not our dog's name. Our anonymous dog may need to own certain unique values or **properties** that should be accessible by that object. Our dog object has no idea what we've decided to name the memory address where it lives so we can't count on the variable name to save this information. 
 
 *Can we just set the name in the class definition like this?*
 
@@ -82,12 +145,11 @@ We'll need another tool to accomplish this task.
 ### Constructors
 Many languages give you the ability to specify your own method for instantiating a class as an object in memory. This special method is called a **constructor** because it constructs your object in memory. Specifying a constructor allows us to initialize our object with unique values at creation.
 
-So far, we've seen how to create a variable that all instantiated objects will share. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. Fortunately we have other options available to us. 
+The variable `name` above is defined in the class and shared by all objects instantiated by this class. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. We have another options available to us. 
 
 We can use the python method `__init__` to set any initial values at the time your object is created in memory.  All this does is allow you to specify any initial setup steps involved when Python creates your object.
 
 This is how to add a constructor to your class.
-
 
 ```python
 class Dog:
@@ -381,8 +443,9 @@ class Dog:
     def bark(object):
         print("Woof")
 
-my_dog = Dog()
-my_dog.bark()
+if __name__ == "__main__":
+    my_dog = Dog()
+    my_dog.bark()
 ```
 As you can see instead of `self` this block of code uses the word `object`. If you run this you'll see that the output will be:
 
@@ -492,41 +555,42 @@ Here we've defined a method that already exists in our inherited `Ability` class
 This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
 ## Build Team class
-Super heroes should be team players, so lets create a team class that can manage several super heroes.
-These are the methods that we'll need to implement.
+Super heroes should be team players, so lets create a team class that can manage all of our super heroes.
+
 
 ```python
 class Team:
-    def init():
-        ''' This method should initialize any values that need to be stored for our team. We will need to create a list to add super heroes to.
-        '''
+    def init(self, name):
+        """Instantiate resources."""
+        self.name = name
+        self.heroes = list()
+
     def add_hero(self, name):
+        """Add hero to team."""
         pass
 
     def remove_hero(self, name):
+        """Remove hero from team."""
         pass
  
     def find_hero(self, name):
+        """Return hero object."""
         pass
 
     def view_all_heroes(self):
+        """Print out all heroes."""
         pass
 
-    def best(self, number):
-        """
-        This method will show the top n most effective team members.
-        """
-        pass
-
-    def worst(self, number):
-        """
-        This method will show the n least effective team members.
-        """
-        pass
-
-    def battle(self, other_team):
-        pass
 ```
+
+These are some of the methods you'll need to implement.
+
+ The Team class saves hero objects in a list. You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of add strings to our list, we want to add `Hero` objects.
+
+### find_hero
+
+
+
 
 ## Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform.
