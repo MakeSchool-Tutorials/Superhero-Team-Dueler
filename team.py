@@ -33,7 +33,8 @@ class Team:
             #     print('Hero name mismatch:', hero)
 
     def best(self, number):
-        """This method will show the top n most effective team members.
+        """
+        This method will show the top n most effective team members.
         """
         pass
 

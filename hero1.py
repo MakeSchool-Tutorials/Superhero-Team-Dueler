@@ -1,3 +1,5 @@
+import random
+
 class Hero:
     def __init__(self, name):
         self._abilities = []
@@ -10,28 +12,28 @@ class Hero:
         attack_damage = 0
         for ability in self._abilities:
             attack_damage += ability.attack()
-        print("{} attacks with {} damage".format(self._name, attack_damage))
         return attack_damage
 
 
 class Ability:
     def __init__(self, name, attack):
         self._name = name
-        self._attack = attack
+        self.attack_strength = attack
 
     def attack(self):
-        return self._attack
+        low_attack = self.attack_strength // 2
+        return random.randint(low_attack, self.attack_strength)
 
     def update_attack(self, attack):
-        self._attack = attack
+        self.attack_strength = attack
 
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")
-    hero.attack()
+    print(hero.attack())
     ability = Ability("Divine Speed", 300)
     hero.add_ability(ability)
-    hero.attack()
+    print(hero.attack())
     new_ability = Ability("Super Human Strength", 800)
     hero.add_ability(new_ability)
-    hero.attack()
+    print(hero.attack())

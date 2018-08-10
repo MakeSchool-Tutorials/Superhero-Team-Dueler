@@ -98,13 +98,14 @@ dog
 ```
 Can you see what's going on?
 
-When we imported our `dog.py` file, the value for `__name__` inside our module was the filename in which it exists. 
+When we import our `dog.py` file, the value for `__name__` is `dog` — the filename in which it exists. Instead when we ran our `dog.py` file directly in the terminal the value for `__name__` was `__main__`.
 
 Why is this a thing?
 
-As you can see, when we imported our `dog` module it immediately ran code that shouldn't be run when it's used as a module.
+As you can see, when we imported our `dog` module it immediately ran code that really shouldn't be run when if we were going to use it as a proper module.
 
-We should check to see if our code is being run as a module or not.
+This means that we should check to see if our code is being run as a module or not if we want to to execute statements the way we did.
+
 Add a check to your `dog.py` file to modularize it this way.
 
 ```python
@@ -138,16 +139,16 @@ class Dog:
         print("Woof!")
 ```
 
-This will work if all dogs were named Spot, but this obviously isn't the case. If I had a second dog that I wanted to name `Annie` I would have to change the class definition every time I instantiated another dog. This kind of thing is possible, but will inspire in you and your coworkers headaches and sadness.
+This will work if all dogs were named Spot, but this obviously isn't the case. If I had a second dog that I wanted to name `Annie` I would have to change the class definition every time I instantiated another dog. This kind of thing is possible, but will inspire in you and your coworkers headaches and sadness down the road.
 
 We'll need another tool to accomplish this task.
 
 ### Constructors
 Many languages give you the ability to specify your own method for instantiating a class as an object in memory. This special method is called a **constructor** because it constructs your object in memory. Specifying a constructor allows us to initialize our object with unique values at creation.
 
-The variable `name` above is defined in the class and shared by all objects instantiated by this class. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. We have another options available to us. 
+The variable `name` above is defined in the class and shared by all objects instantiated by this class. This type of variable is called a **class variable** and it has some special features that may be surprising. Using a class variable to save a name is not the way we should approach this problem however. 
 
-We can use the python method `__init__` to set any initial values at the time your object is created in memory.  All this does is allow you to specify any initial setup steps involved when Python creates your object.
+We should use the python method `__init__` to set any initial values at the time our object is created in memory.  All this does is allow you to specify any initial setup steps involved when Python creates your object.
 
 This is how to add a constructor to your class.
 
@@ -230,22 +231,11 @@ Here our dogs' names are instance variables: they are unique to the instance the
 
 Most of the time however we'll find instance variables to be more useful than class variables. While instance variables and methods allow for some interesting advanced behavior, it's unlikely that such complexity will be required for most of what you'll need to do.
 
-## Build Hero and Ability classes
-Lets build our project in a new file named `super-heroes.py`.
+## Build Ability and Hero classes
+Let's use what we've learned to build a couple classes in a file named `super-heroes.py`.
 
-It should look like this.
+Here is an overview of what you will build.
 ```python
-class Hero:
-    def __init__(self, name):
-        # Initialize starting values
-
-    def add_ability(self, ability):
-        # Add ability to abilities list
-
-    def attack(self):
-        # Run attack() on every ability hero has
-
-
 class Ability:
     def __init__(self, name, attack_strength):
         # Initialize starting values
@@ -257,47 +247,20 @@ class Ability:
         # Update attack value
 
 
+class Hero:
+    def __init__(self, name):
+        # Initialize starting values
+
+    def add_ability(self, ability):
+        # Add ability to abilities list
+
+    def attack(self):
+        # Run attack() on every ability hero has
+
+
 if __name__ == "__main__":
-    # If you run this from the terminal this block is executed. 
+    # If you run this file from the terminal this block is executed. 
 ```
-Here we define what we want our hero to look like. Our hero should have a name and should be able to have various different abilities. We'll store each of our hero's abilities as an element in a Python list. Each ability will be its own object that will keep track of its own properties.
-
-Let's start with the constructor for `Hero`. 
-
-We'll need to save our hero's name when our object is first created. Along with our hero's name, we'll also need to create an empty Python list that will be able to hold our abilities when we add them later. 
-
-The constructor for `Hero` should look like this:
-```python
-def __init__(self, name):
-    self._abilities = []
-    self._name = name
-```
-
-We also need to be able to add an ability to our abilities list. Since `self._abilities` is a Python list, we can use the `append` method that comes with it.
-
-Your `add_ability` method should look like this:
-```python
-def add_ability(self, ability):
-    self._abilities.append(ability)
-```
-
-
-Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list. 
-
-**Proofreader's Note**: This example may be giving out too much code. Advise if student should build method to specification instead.
-
-**make sure all ingredients are known and have student put it together**
-
-```python
-def attack(self):
-    attack_damage = 0
-    for ability in self._abilities:
-        attack_damage += ability.attack()
-    print("{} attacks with {} damage".format(self._name, attack_damage))
-    return attack_damage
-```
-This method iterates over our entire list and adds up the returned values from every run of `attack()`. It then returns the total of all attacks.
-
 ### Ability Class
 Let's give our `Ability` class three simple methods at first.
 
@@ -314,42 +277,129 @@ class Ability:
         # Update attack value
 ```
 
-The constructor should set the name and attack strength for our `Ability`.
+Use a constructor to set the name and attack strength for our `Ability` just like you did above with `name` in our `Dog` class.
 
-Use the `Hero` class above as an example for how to set the ability name and attack strength in our `Ability` constructor.
 
 ```python
 def __init__(self, name, attack_strength):
-    # Instantiate Ability name
-    # Instantiate attack strength
+    # Set Ability name
+    # Set attack strength
 ```
-Our next important function is the `attack` method. All this will need to do right now is return our maximum attack value. Later on we can tweak this for additional fun so we don't always get the same value back.
+Our next task is to write the `attack` method. 
+
+Import `random` at the very top of your file using
+
+```python
+import random
+```
+
+The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two. The trick we're going to add is to make the lowest possible attack value half of the highest possible attack value. 
+
+We only want to work with integers so use the floor division operator `//` to do the math. 
+
+So instead of using
+
+```python
+float_value = 20 / 8
+```
+use
+
+```python
+int_value = 20 // 8
+```
+
+The second example will return the integer `2` whereas the first example gives `2.5`. We don't need the precision of a floating point value so lets stick with integers to keep everything simple.
+
+
 ```python
 def attack(self):
-    return self._attack
+    # Calculate lowest attack value as an integer.
+    # Use random.randint(a, b) to select a random attack value.
+    # Return attack value.
 ```
-Get this method to work with your instantiated variables from the constructor you just made.
+Complete this function using the techniques you've learned so far.
+
+You'll need to work with values that were instantiated in the constructor earlier.
 
 Finally we should be able to update our attack value if we need to.
 
+## Finish the update_attack Method
 **TODO:**
-Write your own implementation of the `update_attack` method. It should update the value of the current attack strength with the new value passed in as a parameter.
+Write your own implementation of the `update_attack` method. All it should do is update the value of the current attack strength with the new value passed in as a parameter.
+
+
+## Build the Hero Class
+Here we define what we want our `Hero` class to look like. Our hero should have a name and it should be able to store several different abilities. We'll store each of our hero's abilities as an element in a Python list. 
+
+Let's start with the constructor for `Hero`. 
+
+The constructor for `Hero` should look like this:
+```python
+def __init__(self, name):
+    self.abilities = list()
+    self.name = name
+```
+Here we create a new empty list that will store our abilities. We also need to save the ability name as an instance variable.
+
+## Create add_ability method
+```python
+def add_ability(self, ability):
+    # Append ability to self.abilities
+```
+Use the append method to add a new ability to our `abilities` list. 
+*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial. 
+
+Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list. 
+
+
+## Create attack method
+```python
+def attack(self):
+    # Call the attack method on every ability in our ability list
+    # Total up and return the total of all attacks 
+```
+This method should iterate over our `abilities` list and call the `attack()` method on every ability. Total up the amount of every attack and return it at the end of the function. 
+
+Use a Python `for` loop to iterate over the list of abilities. We've already seen how a `for` loop returns string values from a list of strings but it also works the same way with objects. The `for` loop will return our object that we can interact with just the way we would expect.
+
+```python
+class Dog:
+    def bark(self):
+        print("Woof!")
+
+my_dogs = list()
+
+my_dogs.append(Dog())
+my_dogs.append(Dog())
+
+for dog in my_dogs:
+    dog.bark()
+```
+You'll see the output in this code snippet is:
+
+```
+Woof!
+Woof!
+```
+
 
 ## Test it out
-Make sure that you're able to create heroes with abilities that work with the following lines:
+You can test out whether your `Hero` class is working properly by adding these tests to your file:
 ```python
     hero = Hero("Wonder Woman")
-    hero.attack()
+    print(hero.attack())
     ability = Ability("Divine Speed", 300)
     hero.add_ability(ability)
-    hero.attack()
+    print(hero.attack())
     new_ability = Ability("Super Human Strength", 800)
     hero.add_ability(new_ability)
-    hero.attack()
+    print(hero.attack())
 ```
 These lines should be added after checking `__name__` this way:
 
 ```python
+import random
+
 class Hero:
     def __init__(self, name):
         # Initialize starting values
@@ -384,11 +434,11 @@ if __name__ == "__main__":
 ```
 **Note:** Don't replace your code with this block, it should only serve as a guide. 
 
-You should get the following output when running the file in the terminal:
+You should see an output similar to:
 ```
-Wonder Woman attacks with 0 damage
-Wonder Woman attacks with 300 damage
-Wonder Woman attacks with 1100 damage
+0
+293
+709
 ```
 ## A Note on Scope and Encapsulation
 **Note**: Encapsulation - collecting values together
