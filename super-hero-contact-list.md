@@ -609,20 +609,20 @@ class Team:
         self.heroes = list()
 
     def add_hero(self, name):
-        """Add hero to team."""
-        pass
+        """Add hero to heroes list."""
+        
 
     def remove_hero(self, name):
-        """Remove hero from team."""
-        pass
+        """Remove hero from heroes list."""
+        
  
     def find_hero(self, name):
-        """Return hero object."""
-        pass
+        """Return index of matching hero in list."""
+        
 
     def view_all_heroes(self):
         """Print out all heroes."""
-        pass
+        
 
 ```
 
