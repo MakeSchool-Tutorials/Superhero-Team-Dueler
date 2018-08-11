@@ -440,20 +440,13 @@ You should see an output similar to:
 293
 709
 ```
+
 ## A Note on Scope and Encapsulation
 **Note**: Encapsulation - collecting values together
 
 Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
 
-In Python this functionality is not present. Since Python is not compiled and distributed in a form that is incomprehinsible by anyone other than a computer, trying to protect areas of memory from modification becomes an exercise in futility. Since Python is interpreted instead of compiled, anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth. 
-
-The idea of encapsulation 
-
-
-### Getters and Setters
-**Note** update getters and setters, describe why it's not useful in python.
-
-Instance variables are usually managed by **getters** and **setters**. This can allow complicated actions to be simplified to a simple function call. This simplification of functionality is called **abstraction** and is one of the strengths of OOP. By abstracting complicated functionality behind a simple interface such as a method call we are able to keep our code modular and understandable. 
+In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth. 
 
 ### The `self` Argument
 You may be seeing `self` places in our code and wonder why on earth is it necessary? You may be able to deduce that `self` allows us access to things outside of a particular method. We can get some clue about what's going on if we leave it out and see what happens.
@@ -600,7 +593,7 @@ class Weapon(Ability):
         # This method should should return a random value 
         # between 0 and the full attack power of the weapon.
 ```
-Here we've defined a method that already exists in our inherited `Ability` class. 
+Here we've re-defined a method that already exists in our inherited `Ability` class.
 
 This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
