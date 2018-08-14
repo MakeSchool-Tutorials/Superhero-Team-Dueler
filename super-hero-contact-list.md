@@ -1,8 +1,8 @@
-# Super Hero Team Dueling
+# Superhero Team Dueling
 ## Wonders and Perils Await
 There are times in this world when the powers of good and evil come together in a mighty clash of force. When this happens, it's up to all of us to make sure that we make every one of our assets count. What better than a simulation to make sure you have the best team with you when the time comes to stand up to the evil forces of the galaxy's greatest foes.
 
-Our task is to create a super hero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **object oriented programming** to build our applications instead of relying completely on functions.
+Our task is to create a superhero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **object oriented programming** to build our applications instead of relying completely on functions.
 
 ## Procedural vs Object Oriented Programming
 We've learned how to use functions to create code that is re-usable and maintainable. We have already benefitted from some of the power that objects give us but haven't explored the depths that are available to us. 
@@ -232,7 +232,7 @@ Here our dogs' names are instance variables: they are unique to the instance the
 Most of the time however we'll find instance variables to be more useful than class variables. While instance variables and methods allow for some interesting advanced behavior, it's unlikely that such complexity will be required for most of what you'll need to do.
 
 ## Build Ability and Hero classes
-Let's use what we've learned to build a couple classes in a file named `super-heroes.py`.
+Let's use what we've learned to build a couple classes in a file named `superheroes.py`.
 
 Here is an overview of what you will build.
 ```python
@@ -424,13 +424,13 @@ class Ability:
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")
-    hero.attack()
+    print(hero.attack())
     ability = Ability("Divine Speed", 300)
     hero.add_ability(ability)
-    hero.attack()
+    print(hero.attack())
     new_ability = Ability("Super Human Strength", 800)
     hero.add_ability(new_ability)
-    hero.attack()
+    print(hero.attack())
 ```
 **Note:** Don't replace your code with this block, it should only serve as a guide. 
 
@@ -442,11 +442,47 @@ You should see an output similar to:
 ```
 
 ## A Note on Scope and Encapsulation
-**Note**: Encapsulation - collecting values together
 
 Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
 
 In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth. 
+
+Scope and encapsulation can be thought as useful features that allow us to compartmentalise code instead of providing a measure of security.
+
+```python
+def greeting():
+    message = "Hello World!"
+    return message
+
+print(message)
+
+```
+If you were to run the above block of code separately you will encounter the error:
+```
+NameError: name 'message' is not defined
+```
+
+This is because `message` is declared inside our function `greeting`. It can only be accessed from within our function `greeting` because of **scope**. Our function `greeting` has a **local scope** that can't be accessed from outside.
+
+We can however flip it around like this.
+
+```python
+message = "Hello World!"
+
+def greeting():
+    print(message)
+
+greeting()
+```
+
+This bit of code will output:
+
+```
+Hello World!
+```
+
+In this example we have declared our message variable in the **global scope**. That means we have access to them inside our functions.
+
 
 ### The `self` Argument
 You may be seeing `self` places in our code and wonder why on earth is it necessary? You may be able to deduce that `self` allows us access to things outside of a particular method. We can get some clue about what's going on if we leave it out and see what happens.
@@ -539,19 +575,16 @@ Lets use inheritance to make a `Dog` class that allows us to bark.
 class Animal:
     def __init__(self, name, sleep_duration):
         self.name = name
-        self.sleep_time = sleep_time
+        self.sleep_duration = sleep_duration
 
     def sleep(self):
         print(
-            "{} sleeps for {} hours {}".format(
+            "{} sleeps for {} hours".format(
                 self.name,
                 self.sleep_duration))
 
 
 class Dog(Animal):
-    def __init__(self, name, sleep_duration, sleep_time):
-        super().__init__(self, name, sleep_duration, sleep_time)
-
     def bark(self):
         print("Woof! Woof!")
 ```
@@ -573,65 +606,63 @@ You can see that we didn't have to create another sleep method again in order to
 
 In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
 
-Lets use what we learned here to give our super heroes abilities they can use.
+Lets use what we learned here to give our superheroes more options for attack.
 
 ## Weapon Class
-We've already built an `Ability` class that will give our super heroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use.
+We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
-We can reuse the functionality in `Ability` so that we don't need to duplicate code. Lets say that weapons aren't as effective as super hero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon. 
+We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon. 
 
 Here are the methods that you'll need to write for our new `Weapon` class.
 
 ```python
 class Weapon(Ability):
-    def __init__(self, ...):
-        # This method should initialize all required
-        # values in Ability. Use super() to call init with 
-        # the required intialized values.
-
     def attack(self):
-        # This method should should return a random value 
-        # between 0 and the full attack power of the weapon.
+        """
+        This method should should return a random value 
+        between 0 and the full attack power of the weapon.
+        """
 ```
 Here we've re-defined a method that already exists in our inherited `Ability` class.
 
 This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
+Everything else that was created in the `Ability` class will work the same.
+
 ## Build Team class
-Super heroes should be team players, so lets create a team class that can manage all of our super heroes.
+Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
-
+Implement the following methods using everything we've learned so far.
 ```python
 class Team:
-    def init(self, name):
+    def init(self, team_name):
         """Instantiate resources."""
-        self.name = name
+        self.name = team_name
         self.heroes = list()
 
-    def add_hero(self, name):
-        """Add hero to heroes list."""
-        
+    def add_hero(self, Hero):
+        """Add Hero object to heroes list."""
 
     def remove_hero(self, name):
-        """Remove hero from heroes list."""
-        
- 
+        """
+        Remove hero from heroes list.
+        If Hero isn't found return 0.
+        """
+
     def find_hero(self, name):
-        """Return index of matching hero in list."""
-        
+        """
+        Find and return hero from heroes list.
+        If Hero isn't found return 0.
+        """
 
     def view_all_heroes(self):
-        """Print out all heroes."""
+        """Print out all heroes to the console."""
         
-
 ```
 
 These are some of the methods you'll need to implement.
 
- The Team class saves hero objects in a list. You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of add strings to our list, we want to add `Hero` objects.
-
-### find_hero
-
+You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
 
 
