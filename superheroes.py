@@ -16,10 +16,14 @@ class Ability:
 
 
 class Hero:
-    def __init__(self, name):
+    def __init__(self, name, health=100):
         """Initialize starting values."""
         self.name = name
+        self.health = health
         self.abilities = []
+        self.armors = []
+        self.kills = 0
+        self.deaths = 0
 
     def add_ability(self, ability):
         """Add ability to abilities list"""
@@ -31,6 +35,14 @@ class Hero:
         for ability in self.abilities:
             total += ability.attack()
         return total
+    
+    def add_armor(self, Armor):
+        self.armors.append(Armor)
+    
+    def defend(self, damage):
+        defend_amt = 0
+        for item in self.armors:
+            defend_amt += item.defend()
 
 
 class Weapon(Ability):
@@ -41,8 +53,16 @@ class Weapon(Ability):
         """
         return random.randint(0, self.attack_strength)
 
+class Armor():
+    def __init__(self, name, defense):
+        self.name = name
+        self.defense = defense
+    
+    def defend(self):
+        return random.randint(0, self.defense)
+
 class Team:
-    def init(self, team_name):
+    def __init__(self, team_name):
         """Instantiate resources."""
         self.name = team_name
         self.heroes = list()
@@ -75,8 +95,18 @@ class Team:
 
     def view_all_heroes(self):
         """Print out all heroes to the console."""
+        print("Hello")
         for hero in self.heroes:
-            print(hero)
+            print(hero.name)
+
+    def attack(self, Team):
+        total_attack = 0
+        for hero in self.heroes:
+            total_attack += hero.attack()
+        Team.defend(total_attack)
+    
+    def defend(self, damage_amt):
+        pass
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")

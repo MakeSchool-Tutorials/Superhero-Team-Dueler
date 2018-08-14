@@ -1,4 +1,6 @@
 import pytest
+import io
+import sys
 import superheroes
 
 #Test Abilities
@@ -56,6 +58,19 @@ def test_hero_add_ability():
     assert "Ability" in str(Athena.abilities[0])
     assert Athena.abilities[0].name == "Overwhelming Strength"
 
+def test_hero_add_multi_ability():
+    big_strength = superheroes.Ability("Overwhelming Strength", 300)
+    speed = superheroes.Ability("Lightning Speed", 500)
+    Athena = superheroes.Hero("Athena")
+    assert len(Athena.abilities) == 0
+    Athena.add_ability(big_strength)
+    assert len(Athena.abilities) == 1
+    Athena.add_ability(speed)
+    assert len(Athena.abilities) == 2
+    #Check for correct type
+    assert "Ability" in str(Athena.abilities[0])
+    assert Athena.abilities[0].name == "Overwhelming Strength"    
+
 def test_hero_attack_ability():
     big_strength = superheroes.Ability("Overwhelming Strength", 300)
     Athena = superheroes.Hero("Athena")
@@ -63,19 +78,19 @@ def test_hero_attack_ability():
     Athena.add_ability(big_strength)
 
 def test_hero_attack_weapon():
-    big_stick = superheroes.Weapon("Overwhelming Stick", 200)
+    big_strength = superheroes.Ability("Overwhelming Strength", 200)
     Athena = superheroes.Hero("Athena")
-    Athena.add_ability(big_stick)
+    Athena.add_ability(big_strength)
     test_runs = 100
     for _ in range(0, test_runs):
-        attack = big_stick.attack()
+        attack = big_strength.attack()
         assert attack <= 200  and attack >= 0
 
 def test_hero_multi_weapon_attack():
-    big_stick = superheroes.Weapon("Overwhelming Stick", 200)
+    strength = superheroes.Weapon("Overwhelming Strength", 200)
     sword_of_truth = superheroes.Weapon("Sword of Truth", 700)
     Athena = superheroes.Hero("Athena")
-    Athena.add_ability(big_stick)
+    Athena.add_ability(strength)
     Athena.add_ability(sword_of_truth)
     assert len(Athena.abilities) == 2
 
@@ -91,8 +106,80 @@ def test_hero_weapon_ability_attack():
     Athena.add_ability(quickness)
     Athena.add_ability(sword_of_truth)
     assert len(Athena.abilities) == 2
+    attack_avg(Athena, 0, 2000)
+
+
+
+def attack_avg(object, low, high):
     test_runs = 100
     for _ in range(0, test_runs):
-        attack = Athena.attack()
-        assert attack <= 2000  and attack >= 0
+        attack = object.attack()
+        assert attack <= high  and attack >= low
+
+# Test Teams
+def test_team_instance():
+    team = superheroes.Team("One")
+    assert team
+
+def test_team_name():
+    team = superheroes.Team("One") 
+    assert team.name == "One"
+
+def test_team_hero():
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    assert len(team.heroes) == 1
+    assert team.heroes[0].name == "Jodie Foster"
+
+def test_team_remove_hero():
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    assert team.heroes[0].name == "Jodie Foster" 
+    team.remove_hero("Jodie Foster")
+    assert len(team.heroes) == 0      
+
+def test_team_remove_unlisted():
+    #Test that if no results found return 0
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    code = team.remove_hero("Athena")
+    assert code == 0
+
+def test_team_remove_empty_list():
+    team = superheroes.Team("One")
+    assert team.remove_hero("Athena") == 0
+
+def test_find_hero():
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    hero = team.find_hero("Jodie Foster")
+    assert hero.name == "Jodie Foster"
+
+def test_find_unlisted_hero():
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    assert team.find_hero("Alexa") == 0
+
+def test_find_empty_hero():
+    team = superheroes.Team("One")
+    assert team.find_hero("Alexa") == 0
+
+def test_print_heros():
+    team = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    team.add_hero(jodie)
+    athena = superheroes.Hero("Athena")
+    team.add_hero(athena)
+    std_out = io.StringIO()
+    sys.stdout = std_out
+    team.view_all_heroes()
+    sys.stdout = sys.__stdout__
+    print(std_out.getvalue())
+    assert "Jodie Foster" in std_out.getvalue()
+    assert "Athena" in std_out.getvalue()
 

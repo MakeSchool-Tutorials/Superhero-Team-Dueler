@@ -25,7 +25,7 @@ def test_ability():
         a = attack_ability(big_wallet) 
         d = defend_ability(big_wallet)
 
-        assert a > 0 and a <= 1200
+        assert a >= 0 and a <= 1200
         assert d == 0
     
     bright_light = team.Ability("Bright Flashing Lights", 0, 100)
