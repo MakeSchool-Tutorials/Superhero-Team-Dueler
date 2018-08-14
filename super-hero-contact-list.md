@@ -667,13 +667,44 @@ You'll need to use methods that exist in the built-in Python list (`self.heroes`
 
 
 ## Test Driven Development
-Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform.
+Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. 
+
+Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform before we even write the program.
+
+By writing the test first you focus on functionality first instead of implementation. In the spirit of TDD you'll be provided with tests that your class methods must pass.
 
 ## Install `pytest`
+We'll use the automated testing tool **pytest** to verify the code.
 
-## Create your first test
+Pytest must be installed into your system first before you can use it.
+
+To install, open your terminal and type:
+```
+pip install pytest
+```
+
+You should be able to verify that pytest is installed by checking which version you have.
+
+```
+pytest --version
+```
+
+You should see something similar to this output.
+
+```
+This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packages/pytest.py
+```
 
 ## Pass your first test
+Tests have been provided to help you with this assignment. To run the provided tests go to the project directory in the terminal and run
+
+```
+pytest
+```
+
+Pytest will automatically run any file that contains `test` in the filename.
+
+Make sure all the tests in the `hero_test.py` file pass.
 
 ## Run additional Tests
 
