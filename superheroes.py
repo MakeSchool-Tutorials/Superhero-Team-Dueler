@@ -1,5 +1,6 @@
 import random
 
+
 class Ability:
     def __init__(self, name, attack_strength):
         # Initialize starting values
@@ -8,8 +9,8 @@ class Ability:
 
     def attack(self):
         # Return attack value
-        return random.randint(self.attack_strength//2, self.attack_strength)
-        
+        return random.randint(self.attack_strength // 2, self.attack_strength)
+
     def update_attack(self, attack_strength):
         # Update attack value
         self.attack_strength = attack_strength
@@ -35,31 +36,44 @@ class Hero:
         for ability in self.abilities:
             total += ability.attack()
         return total
-    
+
     def add_armor(self, Armor):
         self.armors.append(Armor)
-    
-    def defend(self, damage):
+
+    def defend(self):
         defend_amt = 0
         for item in self.armors:
             defend_amt += item.defend()
+        return defend_amt
+
+    def take_damage(self, damage_amt):
+        self.health = self.health - damage_amt
+        if self.health <= 0:
+            self.deaths += 1
+            return 0
+        return 1
+
+    def reset_health(self, health=100):
+        self.health = health
 
 
 class Weapon(Ability):
     def attack(self):
         """
-        This method should should return a random value 
+        This method should should return a random value
         between 0 and the full attack power of the weapon.
         """
         return random.randint(0, self.attack_strength)
+
 
 class Armor():
     def __init__(self, name, defense):
         self.name = name
         self.defense = defense
-    
+
     def defend(self):
         return random.randint(0, self.defense)
+
 
 class Team:
     def __init__(self, team_name):
@@ -95,18 +109,33 @@ class Team:
 
     def view_all_heroes(self):
         """Print out all heroes to the console."""
-        print("Hello")
+        print("view all heroes")
         for hero in self.heroes:
             print(hero.name)
 
-    def attack(self, Team):
+    def attack(self, other_team):
         total_attack = 0
         for hero in self.heroes:
             total_attack += hero.attack()
-        Team.defend(total_attack)
-    
+        return other_team.defend(total_attack)
+
     def defend(self, damage_amt):
+        total_defend = 0
+        for hero in self.heroes:
+            total_defend += hero.defend()
+        damage = damage_amt - total_defend
+        if damage > 0:
+            self.deal_damage(damage)
+
+    def deal_damage(self, damage):
+        team_size = len(self.heroes)
+        hero_damage = damage // team_size
+        for hero in self.heroes:
+            hero.take_damage(hero_damage)
+
+    def revive_heroes(self, health=100):
         pass
+
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")

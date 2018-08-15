@@ -664,8 +664,6 @@ These are some of the methods you'll need to implement.
 
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
-
-
 ## Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. 
 
@@ -706,13 +704,87 @@ Pytest will automatically run any file that contains `test` in the filename.
 
 Make sure all the tests in the `hero_test.py` file pass.
 
-## Run additional Tests
+**Note:**
+Note how to run single files and methods for testing
+pytest hero_test.py::test_print_heros
 
 ## Add fight functionality
+We've got most everything together but we don't have the ability to have our teams duel each other just yet. We'll need another class and a few more properties in order to get this ability.
+
+```python
+class Armor:
+    def __init__(self, name, defense):
+        """Instantiate name and defend strength."""
+        self.name = name
+        self.defense = defense
+    
+    def defend(self):
+        """Return a random value between 0 and the full defend strength."""
+```
+Our super heroes should have armor that they can wear to help defend themselves. Not only that, but they also need an amount of health that they can lose in a fight. Fortunately we have all the skill to do this.
+
+Implement the defend method so that it returns a random integer between 0 and the full defend strength.
+
+### Add health to Hero class
+In the Hero class's constructor add a third parameter for health as such.
+
+```python
+class Hero:
+    def __init__(self, name, health=100):
+        # add the following to the code you already have written here
+        self.armors = list()
+        self.health = health
+    
+    def defend(self):
+        """
+        This method should run the defend method on each armor and calculate the total defense. 
+        """
+
+    def damage(self, damage_amt):
+        """
+        This method should subtract the damage amount from the health. 
+
+        If the hero dies return 0 and update number of deaths.
+
+        Otherwise return 1
+        """
+```
+We will need to implement a new methods in our Hero class that will calculate our hero's defense strength and update the health of our hero if damage is taken.
+
+## Update Team Class with Attack and Defend Methods
+
+```python
+class Team:
+    # Keep all your current code, but add these methods
+    def attack(self, Team):
+        """
+        This method should total our teams attack strength and 
+        call the defend() method on the rival team that is passed in.
+        """
+
+    def defend(self, damage):
+        """
+        This method should calculate our team's total defense.
+        Any damage in excess of our team's total defense should be evenly distributed amongst all heroes with the deal_damage() method.
+        """
+    
+    def deal_damage(self, damage):
+        """
+        Divide the total damage amongst all heroes.
+        """
+```
+Just as each hero needed a defend method, our Team needs to be able to coordinate our hero's attacks.
+
+
+
+
+
+
+
+
 
 ## Add fight statistics
 
 # Stretch Challenges
 ## Build Interactive Menu
-## Polymorphism
 ## Different battle implementation
