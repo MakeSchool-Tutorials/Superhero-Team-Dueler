@@ -31,6 +31,8 @@ class Hero:
         self.abilities.append(ability)
 
     def attack(self):
+        if self.health <= 0:
+            return 0
         total = 0
         # Run attack() on every ability hero has
         for ability in self.abilities:
@@ -41,6 +43,10 @@ class Hero:
         self.armors.append(Armor)
 
     def defend(self):
+        #return
+        if self.health <= 0:
+            return 0
+
         defend_amt = 0
         for item in self.armors:
             defend_amt += item.defend()
@@ -50,11 +56,8 @@ class Hero:
         self.health = self.health - damage_amt
         if self.health <= 0:
             self.deaths += 1
-            return 0
-        return 1
-
-    def reset_health(self, health=100):
-        self.health = health
+            return 1
+        return 0
 
 
 class Weapon(Ability):
@@ -117,24 +120,48 @@ class Team:
         total_attack = 0
         for hero in self.heroes:
             total_attack += hero.attack()
+        #Return 0 of team dead
+        #Return 1 if still alive
         return other_team.defend(total_attack)
 
     def defend(self, damage_amt):
+        #Return 0 of team dead
+        #Return 1 if still alive
         total_defend = 0
         for hero in self.heroes:
             total_defend += hero.defend()
         damage = damage_amt - total_defend
         if damage > 0:
             self.deal_damage(damage)
+        
+        #Loop through heros
+        #If any living heroes return 1
+        #else return 0
+        
 
     def deal_damage(self, damage):
         team_size = len(self.heroes)
         hero_damage = damage // team_size
+        team_deaths = 0
+
         for hero in self.heroes:
-            hero.take_damage(hero_damage)
+            team_deaths += hero.take_damage(hero_damage)
+        return team_deaths
+    
+    def battle(self, other_team):
+        battling = True
+
+        # while battling:
+        #     if 
 
     def revive_heroes(self, health=100):
-        pass
+        for hero in self.heroes:
+            hero.health = health
+
+    def stats(self):
+        for hero in self.heroes:
+            print("{} {} kills / {} deaths {} k/d".format(hero.name,
+                                                          hero.kills, hero.deaths, hero.kills / hero.deaths))
 
 
 if __name__ == "__main__":

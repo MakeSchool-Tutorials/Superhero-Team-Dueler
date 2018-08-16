@@ -694,19 +694,39 @@ This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packag
 ```
 
 ## Pass your first test
-Tests have been provided to help you with this assignment. To run the provided tests go to the project directory in the terminal and run
+Tests have been provided to help you with this assignment. To run the provided tests `cd` into to the project directory in the terminal
+
+```
+> cd Super-Hero-Battle
+```
+ then run
 
 ```
 pytest
 ```
 
-Pytest will automatically run any file that contains `test` in the filename.
+This command will automatically look at any file that contains `test` in the filename then run any function that begins with `test_`.
 
-Make sure all the tests in the `hero_test.py` file pass.
+Fortunately `pytest` has options that allow us to specify which tests to run and how many tests to focus on.
 
-**Note:**
-Note how to run single files and methods for testing
-pytest hero_test.py::test_print_heros
+If you want pytest to stop after the first failure you can use this instead.
+
+```
+pytest -x
+```
+
+Our test files are `hero_test.py` and `battle_test.py`.
+
+If you want to focus on the tests contained in a specific file instead try this:
+
+```
+pytest -x hero_test.py
+```
+This will run all tests in hero_test.py and stop after the first failure.
+
+For additional `pytest` options see their documentation [here](https://docs.pytest.org/en/latest/usage.html).
+
+Make sure all the tests in the `hero_test.py` and `battle_test.py` file pass.
 
 ## Add fight functionality
 We've got most everything together but we don't have the ability to have our teams duel each other just yet. We'll need another class and a few more properties in order to get this ability.
@@ -714,7 +734,7 @@ We've got most everything together but we don't have the ability to have our tea
 ```python
 class Armor:
     def __init__(self, name, defense):
-        """Instantiate name and defend strength."""
+        """Instantiate name and defense strength."""
         self.name = name
         self.defense = defense
     
@@ -737,16 +757,16 @@ class Hero:
     
     def defend(self):
         """
-        This method should run the defend method on each armor and calculate the total defense. 
+        This method should run the defend method on each piece of armor and calculate the total defense. 
         """
 
-    def damage(self, damage_amt):
+    def take_damage(self, damage_amt):
         """
         This method should subtract the damage amount from the health. 
 
-        If the hero dies return 0 and update number of deaths.
+        If the hero dies return 1 and update number of deaths.
 
-        Otherwise return 1
+        Otherwise return 0
         """
 ```
 We will need to implement a new methods in our Hero class that will calculate our hero's defense strength and update the health of our hero if damage is taken.
@@ -756,13 +776,13 @@ We will need to implement a new methods in our Hero class that will calculate ou
 ```python
 class Team:
     # Keep all your current code, but add these methods
-    def attack(self, Team):
+    def attack(self, other_team:
         """
         This method should total our teams attack strength and 
         call the defend() method on the rival team that is passed in.
         """
 
-    def defend(self, damage):
+    def defend(self, damage_amt):
         """
         This method should calculate our team's total defense.
         Any damage in excess of our team's total defense should be evenly distributed amongst all heroes with the deal_damage() method.
@@ -771,8 +791,23 @@ class Team:
     def deal_damage(self, damage):
         """
         Divide the total damage amongst all heroes.
+        Return the number of heros that died in attack.
+        """
+
+    def revive_heroes(self, health=100):
+        """
+        This method should reset all heroes health.
+        Stretch Challenge: Let heroes start with different amounts of health.
+        """
+    
+    def stats(self):
+        """
+        This method should print the ratio of kills/deaths for each member of the team to the screen. 
+
+        This data must be output to the terminal.
         """
 ```
+
 Just as each hero needed a defend method, our Team needs to be able to coordinate our hero's attacks.
 
 

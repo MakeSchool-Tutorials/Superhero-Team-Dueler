@@ -3,6 +3,17 @@ import io
 import sys
 import superheroes
 
+# Helper Function
+
+
+def capture_console_output(function_body):
+    # _io.StringIO object
+    string_io = io.StringIO()
+    sys.stdout = string_io
+    function_body()
+    sys.stdout = sys.__stdout__
+    return string_io.getvalue()
+
 # Test Abilities Class
 
 
@@ -85,11 +96,12 @@ def test_hero_add_multi_ability():
 
 
 def test_hero_attack_ability():
-    big_strength = superheroes.Ability("Overwhelming Strength", 300)
-    Athena = superheroes.Hero("Athena")
-    assert Athena.attack() == 0
-    Athena.add_ability(big_strength)
-
+    big_strength = superheroes.Ability("Overwhelming Strength", 30000)
+    athena = superheroes.Hero("Athena")
+    assert athena.attack() == 0
+    athena.add_ability(big_strength)
+    attack = athena.attack()
+    assert attack <= 30000 and attack >= 15000
 
 def test_hero_attack_weapon():
     big_strength = superheroes.Ability("Overwhelming Strength", 200)
@@ -195,22 +207,13 @@ def test_find_empty_hero():
     assert team.find_hero("Alexa") == 0
 
 
-def test_print_heros():
+def test_print_heroes():
     team = superheroes.Team("One")
     jodie = superheroes.Hero("Jodie Foster")
     team.add_hero(jodie)
     athena = superheroes.Hero("Athena")
     team.add_hero(athena)
+    output_string = capture_console_output(team.view_all_heroes)
 
-
-    sys.stdout = io.StringIO()
-
-    team.view_all_heroes()
-
-    sys.stdout = sys.__stdout__
-
-    print(std_out.getvalue())
-
-    # assert False
-    assert "Jodie Foster" in std_out.getvalue()
-    assert "Athena" in std_out.getvalue()
+    assert "Jodie Foster" in output_string
+    assert "Athena" in output_string
