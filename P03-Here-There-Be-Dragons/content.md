@@ -86,12 +86,6 @@ Just as each hero needed a defend method, our Team needs to be able to coordinat
 
 
 
-
-
-
-
-
-
 ## Add fight statistics
 
 ## Stretch Challenges
