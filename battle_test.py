@@ -71,25 +71,23 @@ def create_set():
 
 
 # Test Armor
-
-
 def test_armor():
-    jodie = superheroes.Hero("Jodie Foster")
-    gauntlets = superheroes.Armor("Gauntlets", 30)
-    jodie.add_armor(gauntlets)
-    assert len(jodie.armors) == 1
-    assert jodie.armors[0].name == "Gauntlets"
+    armor = superheroes.Hero("The Ring", 200)
+    for _ in range(0, 500):
+        defense = armor.defend() <= 200
+        assert (defense <= 200 and defense >= 0)
+
+
 
 # Test Hero Health
 
 
-def test_hero_health():
+def test_hero_default_health():
     jodie = superheroes.Hero("Jodie Foster")
     assert jodie.health == 100
-    hermes = superheroes.Hero("Hermes", 300)
-    assert hermes.health == 300
 
-def test_hero_heath():
+
+def test_hero_init_new_health():
     hero = superheroes.Hero("Jodie Foster", 600)
     assert hero.health == 600
 
@@ -98,6 +96,12 @@ def test_hero_start_health():
     hero = superheroes.Hero("Jodie Foster", 300)
     assert hero.start_health == 300
 
+def test_hero_equip_armor():
+    jodie = superheroes.Hero("Jodie Foster")
+    gauntlets = superheroes.Armor("Gauntlets", 30)
+    jodie.add_armor(gauntlets)
+    assert len(jodie.armors) == 1
+    assert jodie.armors[0].name == "Gauntlets"
 
 def test_hero_attack():
     flash = superheroes.Hero("The Flash")
@@ -116,7 +120,7 @@ def test_hero_defense():
     assert defense >= 0 and defense <= 30
 
 
-def test_defend_multiple():
+def test_hero_defend_multi_armor():
     jodie = superheroes.Hero("Jodie Foster")
     gauntlets = superheroes.Armor("Gauntlets", 4000)
     science = superheroes.Armor("Science", 9000)
