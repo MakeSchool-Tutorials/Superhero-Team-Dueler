@@ -65,7 +65,15 @@ Import `random` at the very top of your file using
 import random
 ```
 
-The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two. The trick we're going to add is to make the lowest possible attack value half of the highest possible attack value. 
+The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two. 
+
+You'll need to use the module name in order to use this method properly.
+
+```random.randint(2, 7)```
+
+Will return back to you some value between and including 2 and 7.
+
+We want our abilities to have more power so we need to alter the arithmetic a bit. Lets make the lowest possible attack value half of the highest possible attack value for simplicity.
 
 We only want to work with integers so use the floor division operator `//` to do the math. 
 
@@ -87,7 +95,7 @@ The second example will return the integer `2` whereas the first example gives `
 def attack(self):
     # Calculate lowest attack value as an integer.
     # Use random.randint(a, b) to select a random attack value.
-    # Return attack value.
+    # Return attack value between 0 and the full attack.
 ```
 Complete this function using the techniques you've learned so far.
 
@@ -128,7 +136,7 @@ Finally we'll need to allow our hero to use their abilities. We need to be able 
 ```python
 def attack(self):
     # Call the attack method on every ability in our ability list
-    # Total up and return the total of all attacks 
+    # Add up and return the total of all attacks 
 ```
 This method should iterate over our `abilities` list and call the `attack()` method on every ability. Total up the amount of every attack and return it at the end of the function. 
 
@@ -153,7 +161,6 @@ You'll see the output in this code snippet is:
 Woof!
 Woof!
 ```
-
 
 ## Test it out
 You can test out whether your `Hero` class is working properly by adding these tests to your file:

@@ -89,6 +89,15 @@ def test_hero_health():
     hermes = superheroes.Hero("Hermes", 300)
     assert hermes.health == 300
 
+def test_hero_heath():
+    hero = superheroes.Hero("Jodie Foster", 600)
+    assert hero.health == 600
+
+
+def test_hero_start_health():
+    hero = superheroes.Hero("Jodie Foster", 300)
+    assert hero.start_health == 300
+
 
 def test_hero_attack():
     flash = superheroes.Hero("The Flash")

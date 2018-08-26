@@ -103,6 +103,7 @@ def test_hero_attack_ability():
     attack = athena.attack()
     assert attack <= 30000 and attack >= 15000
 
+
 def test_hero_attack_weapon():
     big_strength = superheroes.Ability("Overwhelming Strength", 200)
     Athena = superheroes.Hero("Athena")

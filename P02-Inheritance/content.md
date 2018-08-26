@@ -159,7 +159,7 @@ You should see something similar to this output.
 This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packages/pytest.py
 ```
 
-## Pass your first test
+## Pass Your First Test
 Tests have been provided to help you with this assignment. To run the provided tests `cd` into to the project directory in the terminal
 
 ```
@@ -175,7 +175,7 @@ This command will automatically look at any file that contains `test` in the fil
 
 Fortunately `pytest` has options that allow us to specify which tests to run and how many tests to focus on.
 
-If you want pytest to stop after the first failure you can use this instead.
+If you want pytest to stop after the first failure you can use this command instead.
 
 ```
 pytest -x
@@ -183,7 +183,7 @@ pytest -x
 
 Our test files are `hero_test.py` and `battle_test.py`.
 
-If you want to focus on the tests contained in a specific file instead try this:
+Right now we want to focus on the tests contained in `hero_test.py` so use:
 
 ```
 pytest -x hero_test.py

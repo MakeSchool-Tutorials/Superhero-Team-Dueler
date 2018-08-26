@@ -88,7 +88,7 @@ __main__
 Inside a different file named `my-dogs.py` write the following code.
 
 ```python
-import dogs
+import dog
 ```
 
 The import statement allows us to "invoke the import machinery" according to the Python Software Foundation.
@@ -118,7 +118,7 @@ class Dog:
     def bark(self):
         print("Woof!")
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     my_dog = Dog()
     my_dog.bark()
 ```
