@@ -52,18 +52,18 @@ class Hero:
         Otherwise return 0
         """
 ```
-This third parameter we added has a default value of 100 so it's optional when instantiating our Hero class. We'll need to also be able to save the starting value as well as our current health. We'll just use `health` when referring the heroe's current health for the sake of clarity.
+This third parameter we added has a default value of 100 so it's optional when instantiating our Hero class. We'll need to also be able to save the starting value as well as our current health. We'll just use `health` when referring our heroe's current health for the sake of clarity.
 
-We will also track some statistics with the hero, specifically the number of kills and deaths. 
+We will also track some statistics with the hero, specifically the number of kills and deaths. So these values will be initialized in our constructor and updated as they change.
 
-There is also some new methods to implement in our Hero class that will calculate our hero's defense strength and update the health of our hero if damage is taken.
+There are also some new methods to implement in our Hero class that will calculate our hero's defense strength and update the health of our hero if damage is taken.
 
-## Update Team Class with Attack and Defend Methods
+## Update Team Class With Attack and Defend Methods
 
 ```python
 class Team:
     # Keep all your current code, but add these methods
-    def attack(self, other_team:
+    def attack(self, other_team):
         """
         This method should total our teams attack strength and 
         call the defend() method on the rival team that is passed in.
@@ -83,8 +83,8 @@ class Team:
 
     def revive_heroes(self, health=100):
         """
-        This method should reset all heroes health.
-        Stretch Challenge: Let heroes revive with different amounts of health.
+        This method should reset all heroes health to the
+        starting value.
         """
     
     def stats(self):
