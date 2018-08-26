@@ -14,4 +14,4 @@ Add break to battle (if all dead do something...)
 describe default values, why they are nice and how to deal with None's
 
 
-
+removed P00 folder from repository
