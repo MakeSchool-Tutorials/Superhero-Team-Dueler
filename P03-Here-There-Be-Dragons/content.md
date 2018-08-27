@@ -40,6 +40,8 @@ class Hero:
     def defend(self):
         """
         This method should run the defend method on each piece of armor and calculate the total defense. 
+        
+        If the heroe's health is 0, the hero is out of play and should return 0 defense point.
         """
 
     def take_damage(self, damage_amt):
@@ -84,7 +86,7 @@ class Team:
     def revive_heroes(self, health=100):
         """
         This method should reset all heroes health to the
-        starting value.
+        original value.
         """
     
     def stats(self):
