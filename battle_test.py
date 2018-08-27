@@ -120,6 +120,13 @@ def test_hero_defense():
     assert defense >= 0 and defense <= 30
 
 
+def test_dead_hero_defense():
+    hero = superheroes.Hero("Vlaad", 0)
+    garlic = superheroes.Armor("Garlic", 30000)
+    hero.add_ability(garlic)
+    assert hero.defend() == 0
+
+
 def test_hero_defend_multi_armor():
     jodie = superheroes.Hero("Jodie Foster")
     gauntlets = superheroes.Armor("Gauntlets", 4000)
