@@ -96,13 +96,4 @@ class Team:
         """
 ```
 
-Just as each hero needed a defend method, our Team needs to be able to coordinate our hero's attacks.
-
-## Stretch Challenge
-Make some heroes more heroic than others. They may take more of the damage for the team.
-
-## Add fight statistics
-
-## Stretch Challenges
-
-### Different battle implementation
+We have a way now for our teams to attack and defend. We just need a way to manage the battle.
