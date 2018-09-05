@@ -2,7 +2,6 @@
 title: Create the Arena
 slug: arena
 ---
-
 ## Creating the Battle Arena
 Our heroes need a place to fight. This means that we're going to need an object that will manage our game for us. This object will make sure that each team gets a chance to attack the other. These are some methods that need to be completed for a battle to take place.
 
