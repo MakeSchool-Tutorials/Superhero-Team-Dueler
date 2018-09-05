@@ -27,12 +27,14 @@ class Arena:
     
     def team_battle(self):
         """
-        This method should continue to battle teams until one or both teams are dead.
+        This method should continue to battle teams until 
+        one or both teams are dead.
         """
 
     def show_stats(self):
         """
-        This method should print out the battle statistics including each heroes kill/death ratio.
+        This method should print out the battle statistics 
+        including each heroes kill/death ratio.
         """
 ```
 
