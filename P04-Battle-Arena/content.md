@@ -29,6 +29,7 @@ class Arena:
         This method should print out the battle statistics including each heroes kill/death ratio.
         """
 ```
+
 Implement these methods in a way that allows at least one battle to take place. Feel free to add helper methods and additional features to make it a playable terminal game.
 
 
@@ -37,3 +38,4 @@ Implement these methods in a way that allows at least one battle to take place. 
 * Allow use of only "authorized" abilites, weapons, and armor controlled by the Arena.
 * Add tests that cover more edge cases.
 * Change the way Health is dealt out to the team. i.e. create heroes that may take take damage first or may take more of the damage.
+
