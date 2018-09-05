@@ -3,19 +3,25 @@ Our heroes need a place to fight. This means that we're going to need an object 
 
 ```python
 class Arena:
-    def build_team_one():
-        ```
-        This method should allow a user to build team one.
-        ```
+    def __init__(self):
+        """
+        self.team_one = None
+        self.team_two = None
+        """
 
-    def build_team_two():
-        ```
+    def build_team_one(self):
+        """
+        This method should allow a user to build team one.
+        """
+
+    def build_team_two(self):
+        """
         This method should allow user to build team two.
-        ```
+        """
     
-    def team_battle():
-        ```
-        This method should 
-        ```
+    def team_battle(self):
+        """
+        This method should battle the teams until one team is dead.
+        """
 
 ```
