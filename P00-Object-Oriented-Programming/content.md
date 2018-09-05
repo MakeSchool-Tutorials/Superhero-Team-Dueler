@@ -15,7 +15,7 @@ We've learned how to use functions to create code that is re-usable and maintain
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world. 
 
 ### Classes vs Objects
-We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data — called **properties** — and code which is organized in **methods** ( Similar to the functions that we've already written but localized to the scope of our object).
+We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data (called **properties**) and code (called **methods**). Both properties and methods are similar to the **variables** and **functions** that we've already seen and written. The difference is that properties and methods are localized to the **scope** of their object.
 
 ```python
 dogs = list()
@@ -29,11 +29,19 @@ If you run this you'll see the output:
 ['German Shepherd', 'Poodle']
 ```
 
-Here we we have a list object that Python gives us. It contains methods such as `append()` that we can run to manipulate our list. 
+Here we have a list object that Python gives us. It contains methods such as `append()` that we can run to manipulate our list. 
 
-An object exists in the computer's memory somewhere and is accessed through the object's memory address. Here our memory address is referred by the name `dogs`. A **class** on the other hand is simply the specification that tells the computer what our object needs. It describes the methods and properties that are to exist in the object and the computer uses it to build the object in memory.
+## What is an Object?
+An object is a collection of data (properties) and code (methods) somewhere in memory.
 
-You can think of a class as the blueprint for the object that will exist. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can have unique values just as each car from a factory can have different properties like color and such.
+Above, our memory address is referred by the name `dogs`. 
+
+Through that memory address you can access the properties and methods within the object.
+
+## What is a Class?
+A **class** on the other hand is simply the specification that tells the computer what our object needs. It describes the methods and properties that are to exist in that object and the computer uses that specification to build (or **instantiate**) the object in memory.
+
+You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can have unique values just as each car from a factory can have different properties like color and such.
 
 A class will describe which **methods** (blocks of code) should exist within an object along with any data that it needs to keep.
 
