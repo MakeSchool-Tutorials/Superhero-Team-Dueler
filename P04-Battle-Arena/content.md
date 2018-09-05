@@ -38,6 +38,7 @@ class Arena:
 
 Implement these methods in a way that allows at least one battle to take place. Feel free to add helper methods and additional features to make it a playable terminal game.
 
+This is just the start of what you can make. Add to your game with these stretch challenges. 
 
 ## Stretch Challenges 
 * Add a command line interface that allows for creating, editing, and battling teams.
