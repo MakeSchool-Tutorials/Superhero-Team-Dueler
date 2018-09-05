@@ -4,7 +4,9 @@ import random
 import io
 import sys
 
-#Helper Functions
+# Helper Functions
+
+
 def capture_console_output(function_body):
     # _io.StringIO object
     string_io = io.StringIO()
@@ -13,45 +15,142 @@ def capture_console_output(function_body):
     sys.stdout = sys.__stdout__
     return string_io.getvalue()
 
+
 def create_armor():
-    armors = ["Calculator", "Laser Shield", "Invisibility", "SFPD Strike Force", "Social Workers", "Face Paint", "Damaskus Shield", "Bamboo Wall", "Forced Projection", "Thick Fog", "Wall of Will", "Wall of Walls", "Obamacare", "Thick Goo"]
-    name = armors[random.randint(0, len(armors)-1)]
+    armors = [
+        "Calculator",
+        "Laser Shield",
+        "Invisibility",
+        "SFPD Strike Force",
+        "Social Workers",
+        "Face Paint",
+        "Damaskus Shield",
+        "Bamboo Wall",
+        "Forced Projection",
+        "Thick Fog",
+        "Wall of Will",
+        "Wall of Walls",
+        "Obamacare",
+        "Thick Goo"]
+    name = armors[random.randint(0, len(armors) - 1)]
     power = random.randint(23, 700000)
     return superheroes.Armor(name, power)
 
+
 def create_weapon():
-    weapons = ["Antimatter Gun", "Star Cannon", "Black Hole Ram Jet", "Laser Sword", "Laser Cannon", "Ion Accellerated Disc Drive", "Superhuman Strength", "Blinding Lights", "Ferociousness", "Speed of Hermes", "Lightning Bolts"]
-    name = weapons[random.randint(0, len(weapons)-1)]
+    weapons = [
+        "Antimatter Gun",
+        "Star Cannon",
+        "Black Hole Ram Jet",
+        "Laser Sword",
+        "Laser Cannon",
+        "Ion Accellerated Disc Drive",
+        "Superhuman Strength",
+        "Blinding Lights",
+        "Ferociousness",
+        "Speed of Hermes",
+        "Lightning Bolts"]
+    name = weapons[random.randint(0, len(weapons) - 1)]
     power = random.randint(27, 700000)
     return superheroes.Weapon(name, power)
 
+
 def create_ability():
-    abilities = ["Alien Attack", "Science", "Star Power", "Immortality", "Grandmas Cookies", "Blinding Strength", "Cute Kittens", "Team Morale", "Luck", "Obsequious Destruction", "The Kraken", "The Fire of A Million Suns", "Team Spirit", "Canada"]
-    name = abilities[random.randint(0, len(abilities)-1)]
+    abilities = [
+        "Alien Attack",
+        "Science",
+        "Star Power",
+        "Immortality",
+        "Grandmas Cookies",
+        "Blinding Strength",
+        "Cute Kittens",
+        "Team Morale",
+        "Luck",
+        "Obsequious Destruction",
+        "The Kraken",
+        "The Fire of A Million Suns",
+        "Team Spirit",
+        "Canada"]
+    name = abilities[random.randint(0, len(abilities) - 1)]
     power = random.randint(45, 700000)
     return superheroes.Ability(name, power)
 
-def create_hero(weapons=False, armor=False):
-    heroes = ["Athena", "Jodie Foster", "Christina Aguilera", "Gamora", "Supergirl", "Wonder Woman", "Batgirl", "Carmen Sandiego", "Okoye", "America Chavez", "Cat Woman", "White Canary", "Nakia", "Mera", "Iris West", "Quake", "Wasp", "Storm", "Black Widow", "Yemaya", "San Luis Obispo", "Ted Kennedy", "San Francisco", "Bananas" ]
-    name = heroes[random.randint(0, len(heroes)-1)]
-    power = random.randint(3, 700000)
+
+def create_hero(weapons=False, armors=False, health=False):
+
+    heroes = [
+        "Athena",
+        "Jodie Foster",
+        "Christina Aguilera",
+        "Gamora",
+        "Supergirl",
+        "Wonder Woman",
+        "Batgirl",
+        "Carmen Sandiego",
+        "Okoye",
+        "America Chavez",
+        "Cat Woman",
+        "White Canary",
+        "Nakia",
+        "Mera",
+        "Iris West",
+        "Quake",
+        "Wasp",
+        "Storm",
+        "Black Widow",
+        "San Luis Obispo",
+        "Ted Kennedy",
+        "San Francisco",
+        "Bananas"]
+    name = heroes[random.randint(0, len(heroes) - 1)]
+    if health:
+        power = health
+    else:
+        power = random.randint(3, 700000)
     hero = superheroes.Hero(name, power)
-    if weapons and armor:
+    if weapons and armors:
         for weapon in weapons:
             hero.add_ability(weapon)
-        for armor in armor:
+        for armor in armors:
             hero.add_armor(armor)
+    if armors and not weapons:
+        for armor in armors:
+            hero.add_armor(armor)
+
     return hero
 
+
 def create_team(heroes=[]):
-    teams = ["Orchids", "Red", "Blue", "Cheese Steaks", "Warriors", "49ers", "Marvel", "DC", "Rat Pack", "The Little Red Riding Hoods", "Team One", "Generic Team", "X-men", "Team Two", "Golden Champions", "Vegan Protectors", "The Cardinals", "Winky Bears", "Steelsmiths", "Boilermakers", "Nincompoops"]
-    name = teams[random.randint(0, len(teams)-1)]
+    teams = [
+        "Orchids",
+        "Red",
+        "Blue",
+        "Cheese Steaks",
+        "Warriors",
+        "49ers",
+        "Marvel",
+        "DC",
+        "Rat Pack",
+        "The Little Red Riding Hoods",
+        "Team One",
+        "Generic Team",
+        "X-men",
+        "Team Two",
+        "Golden Champions",
+        "Vegan Protectors",
+        "The Cardinals",
+        "Winky Bears",
+        "Steelsmiths",
+        "Boilermakers",
+        "Nincompoops"]
+    name = teams[random.randint(0, len(teams) - 1)]
     team = superheroes.Team(name)
-    if len(heroes)>0:
+    if len(heroes) > 0:
         for member in heroes:
             team.add_hero(member)
-    
+
     return team
+
 
 def create_set():
     armor_pieces = random.randint(1, 300)
@@ -78,8 +177,7 @@ def test_armor():
         assert (defense <= 200 and defense >= 0)
 
 
-
-# Test Hero Health
+# Test Hero
 
 
 def test_hero_default_health():
@@ -95,21 +193,6 @@ def test_hero_init_new_health():
 def test_hero_start_health():
     hero = superheroes.Hero("Jodie Foster", 300)
     assert hero.start_health == 300
-
-def test_hero_equip_armor():
-    jodie = superheroes.Hero("Jodie Foster")
-    gauntlets = superheroes.Armor("Gauntlets", 30)
-    jodie.add_armor(gauntlets)
-    assert len(jodie.armors) == 1
-    assert jodie.armors[0].name == "Gauntlets"
-
-def test_hero_attack():
-    flash = superheroes.Hero("The Flash")
-    assert flash.attack() == 0
-    pesto = superheroes.Ability("Pesto Sauce", 8000)
-    flash.add_ability(pesto)
-    attack = flash.attack()
-    assert attack <= 8000 and attack >= 4000
 
 
 def test_hero_defense():
@@ -127,6 +210,14 @@ def test_dead_hero_defense():
     assert hero.defend() == 0
 
 
+def test_hero_equip_armor():
+    jodie = superheroes.Hero("Jodie Foster")
+    gauntlets = superheroes.Armor("Gauntlets", 30)
+    jodie.add_armor(gauntlets)
+    assert len(jodie.armors) == 1
+    assert jodie.armors[0].name == "Gauntlets"
+
+
 def test_hero_defend_multi_armor():
     jodie = superheroes.Hero("Jodie Foster")
     gauntlets = superheroes.Armor("Gauntlets", 4000)
@@ -136,7 +227,17 @@ def test_hero_defend_multi_armor():
     defend = jodie.defend()
     assert defend <= 13000 and defend >= 0
 
-# Test Team Battle
+
+def test_hero_attack():
+    flash = superheroes.Hero("The Flash")
+    assert flash.attack() == 0
+    pesto = superheroes.Ability("Pesto Sauce", 8000)
+    flash.add_ability(pesto)
+    attack = flash.attack()
+    assert attack <= 8000 and attack >= 4000
+
+
+# Test Team
 
 
 def test_team_attack():
@@ -150,29 +251,75 @@ def test_team_attack():
     socks = superheroes.Armor("Socks", 10)
     athena.add_armor(socks)
     team_two.add_hero(athena)
-    result = team_one.attack(team_two)
+    assert team_two.heroes[0].health == 100
 
-    assert result == 1
+    team_one.attack(team_two)
+
+    assert team_two.heroes[0].health <= 0
 
 
-def test_team_battle():
-    
+def test_team_attack_kills():
+    team_one = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    aliens = superheroes.Ability("Alien Friends", 10000)
+    jodie.add_ability(aliens)
+    team_one.add_hero(jodie)
+    team_two = superheroes.Team("Two")
+    athena = superheroes.Hero("Athena")
+    socks = superheroes.Armor("Socks", 10)
+    athena.add_armor(socks)
+    team_two.add_hero(athena)
+    assert team_one.heroes[0].kills == 0
+    team_one.attack(team_two)
+    assert team_one.heroes[0].kills == 1
+
+
+def test_team_attack_deaths():
+    team_one = superheroes.Team("One")
+    jodie = superheroes.Hero("Jodie Foster")
+    aliens = superheroes.Ability("Alien Friends", 10000)
+    jodie.add_ability(aliens)
+    team_one.add_hero(jodie)
+    team_two = superheroes.Team("Two")
+    athena = superheroes.Hero("Athena")
+    socks = superheroes.Armor("Socks", 10)
+    athena.add_armor(socks)
+    team_two.add_hero(athena)
+    assert team_two.heroes[0].deaths == 0
+    team_one.attack(team_two)
+    assert team_two.heroes[0].deaths == 1
+
+
+def test_team_defend():
     heroes = []
+    for _ in range(0, 20):
+        heroes.append(create_hero(health=20))
+        print(heroes[_].health)
+    team_one = superheroes.Team("One")
+    for hero in heroes:
+        team_one.add_hero(hero)
 
-    for _ in range(0, 500):
-        hero_set = create_set()
-        heroes.append(create_hero(hero_set["weapons"], hero_set["armors"]))
-    
-    team_one = create_team(heroes)
+    deaths = team_one.defend(100)
+    for hero in team_one.heroes:
+        assert hero.health == 15
 
+    assert deaths == 0
+
+    assert team_one.defend(400) == 20
+
+
+def test_revive_heroes():
     heroes = []
+    for _ in range(0, 20):
+        heroes.append(create_hero(health=60))
 
-    for _ in range(0, 500):
-        hero_set = create_set()
-        heroes.append(create_hero(hero_set["weapons"], hero_set["armors"]))
+    team_one = superheroes.Team("One")
+    for hero in heroes:
+        team_one.add_hero(hero)
 
-
-    team_two = create_team(heroes)
-
-    team_one.battle(team_two)
-
+    team_one.defend(300)
+    for hero in team_one.heroes:
+        assert hero.health == 45
+    team_one.revive_heroes()
+    for hero in team_one.heroes:
+        assert hero.health == 60
