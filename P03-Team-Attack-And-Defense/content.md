@@ -1,6 +1,6 @@
 ---
 title: Team Attack and Defense
-slug: dragons
+slug: attack-defend
 ---
 ## Add fight functionality
 We've got most everything together but we don't have the ability to have our teams duel each other just yet. We'll need another class and a few more properties in order to get this ability.
@@ -22,7 +22,7 @@ Our super heroes should have armor that they can wear to help defend themselves.
 
 Implement the defend method so that it returns a random integer between 0 and the full defend strength.
 
-### Add health to Hero class
+### Add health and stats to Hero class
 In the Hero class's constructor add a third parameter for health as such.
 
 ```python
@@ -49,10 +49,14 @@ class Hero:
         This method should subtract the damage amount from the 
         hero's health. 
 
-        If the hero dies return 1 and update number of deaths.
-
-        Otherwise return 0
+        If the hero dies update number of deaths.
         """
+
+    def add_kill(self, num_kills):
+        """
+        This method should add the number of kills to self.kills
+        """
+
 ```
 This third parameter we added has a default value of 100 so it's optional when instantiating our Hero class. We'll need to also be able to save the starting value as well as our current health. We'll just use `health` when referring our heroe's current health for the sake of clarity.
 
@@ -68,12 +72,16 @@ class Team:
     def attack(self, other_team):
         """
         This method should total our teams attack strength and call the defend() method on the rival team that is passed in.
+
+        It should call add_kill() on each hero with the number of kills made.
         """
 
     def defend(self, damage_amt):
         """
         This method should calculate our team's total defense.
         Any damage in excess of our team's total defense should be evenly distributed amongst all heroes with the deal_damage() method.
+        
+        Return number of heroes killed in attack.
         """
     
     def deal_damage(self, damage):
@@ -94,6 +102,12 @@ class Team:
 
         This data must be output to the terminal.
         """
+    
+    def update_kills(self):
+        """
+        This method should update each hero when there is a team kill.
+        """
 ```
 
 We have a way now for our teams to attack and defend. We just need a way to manage the battle.
+
