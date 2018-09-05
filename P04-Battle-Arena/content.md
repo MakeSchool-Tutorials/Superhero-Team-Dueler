@@ -43,7 +43,7 @@ Implement these methods in a way that allows at least one battle to take place. 
 This is just the start of what you can make. Add to your game with these stretch challenges. 
 
 ## Stretch Challenges 
-* Add a command line interface that allows for creating, editing, and battling teams.
+* Add a command line interface that allows for creating, editing, and battling of teams.
 * Allow use of only "authorized" abilites, weapons, and armor controlled by the Arena.
 * Add tests that cover more edge cases.
 * Change the way health is dealt out across the team. i.e. create heroes that may take damage first or may take more of the teams damage.
