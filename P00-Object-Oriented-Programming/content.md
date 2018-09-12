@@ -5,7 +5,7 @@ slug: superhero-objects
 
 ## Superhero Team Dueling
 ### Wonders and Perils Await
-There are times in this world when the powers of good and evil come together in a mighty clash of force. When this happens, it's up to all of us to make sure that we make every one of our assets count. What better than a simulation to make sure you have the best team with you when the time comes to stand up to the evil forces of the galaxy's greatest foes.
+There are times when the powers of good and evil come together in a mighty clash of force. When this happens, it's up to all of us to make sure that we make every one of our assets count. What better than a simulation to make sure you have the best team with you when the time comes to stand up to the evil forces of the galaxy's greatest foes.
 
 Our task is to create a superhero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **object oriented programming** to build our applications instead of relying completely on functions.
 
@@ -43,7 +43,7 @@ A **class** on the other hand is simply the specification that tells the compute
 
 You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can have unique values just as each car from a factory can have different properties like color and such.
 
-A class will describe which **methods** (blocks of code) should exist within an object along with any data that it needs to keep.
+A class will describe which **methods** (blocks of code) that should exist within an object along with any data that it needs to keep.
 
 ### Class Definition
 ```python
