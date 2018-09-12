@@ -18,6 +18,7 @@ class Armor:
         initialized defend strength.
         """
 ```
+
 Our super heroes should have armor that they can wear to help defend themselves. Not only that, but they also need an amount of health that they can lose in a fight. Fortunately we have all the skill to do this.
 
 Implement the defend method so that it returns a random integer between 0 and the full defend strength.
@@ -58,6 +59,7 @@ class Hero:
         """
 
 ```
+
 This third parameter we added has a default value of 100 so it's optional when instantiating our Hero class. We'll need to also be able to save the starting value as well as our current health. We'll just use `health` when referring our heroe's current health for the sake of clarity.
 
 We will also track some statistics with the hero, specifically the number of kills and deaths. So these values will be initialized in our constructor and updated as they change.
@@ -111,3 +113,14 @@ class Team:
 
 We have a way now for our teams to attack and defend. We just need a way to manage the battle.
 
+## Helpful tests
+
+In this section you can verify your code with the tests provided in [this](../battle_test.py) file. You'll want to make sure the file exists in the same folder as your `superheroes.py` file. 
+
+You can run just the tests contained in this file by using the command:
+
+```
+pytest -x battle_test.py
+```
+
+However tests in both files should pass.
