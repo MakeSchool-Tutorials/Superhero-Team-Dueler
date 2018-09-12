@@ -87,6 +87,7 @@ class Weapon(Ability):
         """
         This method should should return a random value 
         between 0 and the full attack power of the weapon.
+        Hint: The attack power is inherited.
         """
 ```
 Here we've re-defined a method that already exists in our inherited `Ability` class.
@@ -160,7 +161,11 @@ This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packag
 ```
 
 ## Pass Your First Test
-Tests have been provided to help you with this assignment. To run the provided tests `cd` into to the project directory in the terminal
+Tests have been provided to help you with this assignment. 
+
+You can download the test [here](../hero_test.py) and place it in the same folder as heroperoes.py
+
+To run the provided tests `cd` into to the project directory in the terminal
 
 ```
 > cd Super-Hero-Battle
@@ -181,17 +186,8 @@ If you want pytest to stop after the first failure you can use this command inst
 pytest -x
 ```
 
-Our test files are `hero_test.py` and `battle_test.py`.
-
-Right now we want to focus on the tests contained in `hero_test.py` so use:
-
-```
-pytest -x hero_test.py
-```
 This will run all tests in hero_test.py and stop after the first failure.
 
 For additional `pytest` options see their documentation [here](https://docs.pytest.org/en/latest/usage.html).
 
 Make sure all the tests in the `hero_test.py` file pass.
-
-Don't worry about `battle_test.py` yet as we haven't built the battle functions yet.
