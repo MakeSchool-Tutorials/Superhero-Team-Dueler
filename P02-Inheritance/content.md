@@ -1,5 +1,5 @@
 ---
-title: Inheritance and Polymorphism
+title: Inheritance
 slug: inheritance
 ---
 
@@ -90,6 +90,7 @@ class Weapon(Ability):
         Hint: The attack power is inherited.
         """
 ```
+
 Here we've re-defined a method that already exists in our inherited `Ability` class.
 
 This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
@@ -100,6 +101,7 @@ Everything else that was created in the `Ability` class will work the same.
 Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
 Implement the following methods using everything we've learned so far.
+
 ```python
 class Team:
     def init(self, team_name):
@@ -144,6 +146,7 @@ We'll use the automated testing tool **pytest** to verify the code.
 Pytest must be installed into your system first before you can use it.
 
 To install, open your terminal and type:
+
 ```
 pip install pytest
 ```
