@@ -4,6 +4,7 @@ slug: superhero-objects
 ---
 
 ## Superhero Team Dueling
+![](superhero-clipart.jpg)
 ### Wonders and Perils Await
 There are times when the powers of good and evil come together in a mighty clash of force. When this happens, it's up to all of us to make sure that we make every one of our assets count. What better than a simulation to make sure you have the best team with you when the time comes to stand up to the evil forces of the galaxy's greatest foes.
 
