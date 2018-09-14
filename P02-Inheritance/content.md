@@ -166,7 +166,7 @@ This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packag
 ## Pass Your First Test
 Tests have been provided to help you with this assignment. 
 
-You can download the test [here](../hero_test.py) and place it in the same folder as heroperoes.py
+You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as heroperoes.py
 
 To run the provided tests `cd` into to the project directory in the terminal
 
