@@ -115,7 +115,7 @@ We have a way now for our teams to attack and defend. We just need a way to mana
 
 ## Helpful tests
 
-In this section you can verify your code with the tests provided in [this](../battle_test.py) file. You'll want to make sure the file exists in the same folder as your `superheroes.py` file. 
+In this section you can verify your code with the tests provided in [this](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/battle_test.py) file. You'll want to make sure the file exists in the same folder as your `superheroes.py` file. 
 
 You can run just the tests contained in this file by using the command:
 
