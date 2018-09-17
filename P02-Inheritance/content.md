@@ -3,7 +3,7 @@ title: Inheritance
 slug: inheritance
 ---
 
-## Inheritance 
+## Inheritance
 One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in useful because it allows for additional ways to reuse code.
 
 Here is a simple demonstration of inheritance at work.
@@ -20,22 +20,25 @@ class Animal:
                 self.name,
                 self.sleep_time))
 ```
+
 Lets say we have the above `Animal` class. We can instantiate a new animal object the same way we've already seen it done.
 
 ```python
 dog = Animal("Sophie", 12)
 dog.sleep()
 ```
+
 Here we have our dog Sophie that needs 12 hours of sleep every night. If we call our sleep method we'll see this:
+
 ```
 Sophie sleeps for 12 hours
 ```
 
 Our dog here is simply an instance of our `Animal` class, but what if we want specific dog functionality that only dogs have.
 
-We don't want to put a bark method in `Animal` because not every animal barks. We also don't want to have to duplicate every method that dogs and animals have in common. 
+We don't want to put a bark method in `Animal` because not every animal barks. We also don't want to have to duplicate every method that dogs and animals have in common.
 
-Lets use inheritance to make a `Dog` class that allows us to bark. 
+Lets use inheritance to make a `Dog` class that allows us to bark.
 
 ```python
 class Animal:
@@ -62,13 +65,15 @@ my_dog = Dog("Sophie", 12)
 my_dog.sleep()
 my_dog.bark()
 ```
+
 You should see this output in the terminal.
 
 ```
 Sophie sleeps for 12 hours
 Woof! Woof!
 ```
-You can see that we didn't have to create another sleep method again in order to use it. We have **inherited** this method from our **superclass** `Animal`. 
+
+You can see that we didn't have to create another sleep method again in order to use it. We have **inherited** this method from our **superclass** `Animal`.
 
 In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
 
@@ -77,7 +82,7 @@ Lets use what we learned here to give our superheroes more options for attack.
 ## Weapon Class
 We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
-We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon. 
+We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
 
 Here are the methods that you'll need to write for our new `Weapon` class.
 
@@ -85,7 +90,7 @@ Here are the methods that you'll need to write for our new `Weapon` class.
 class Weapon(Ability):
     def attack(self):
         """
-        This method should should return a random value 
+        This method should should return a random value
         between 0 and the full attack power of the weapon.
         Hint: The attack power is inherited.
         """
@@ -126,7 +131,7 @@ class Team:
 
     def view_all_heroes(self):
         """Print out all heroes to the console."""
-        
+
 ```
 
 These are some of the methods you'll need to implement.
@@ -134,7 +139,7 @@ These are some of the methods you'll need to implement.
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
 ## Test Driven Development
-Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way. 
+Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way.
 
 Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform before we even write the program.
 
@@ -164,14 +169,14 @@ This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packag
 ```
 
 ## Pass Your First Test
-Tests have been provided to help you with this assignment. 
+Tests have been provided to help you with this assignment.
 
 You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as heroperoes.py
 
 To run the provided tests `cd` into to the project directory in the terminal
 
 ```
-> cd Super-Hero-Battle
+cd Super-Hero-Battle
 ```
  then run
 
