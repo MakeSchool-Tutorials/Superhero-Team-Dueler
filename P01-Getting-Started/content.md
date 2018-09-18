@@ -1,12 +1,13 @@
 ---
 title: Build Ability and Hero Classes
-slug: abilihero
+slug: build-ability-and-hero-classes
 ---
 
 ## Build Ability and Hero classes
 Let's use what we've learned to build a couple classes in a file named `superheroes.py`.
 
 Here is an overview of what you will build.
+
 ```python
 class Ability:
     def __init__(self, name, attack_strength):
@@ -31,8 +32,9 @@ class Hero:
 
 
 if __name__ == "__main__":
-    # If you run this file from the terminal this block is executed. 
+    # If you run this file from the terminal this block is executed.
 ```
+
 ### Ability Class
 Let's give our `Ability` class three simple methods at first.
 
@@ -51,13 +53,13 @@ class Ability:
 
 Use a constructor to set the name and attack strength for our `Ability` just like you did above with `name` in our `Dog` class.
 
-
 ```python
 def __init__(self, name, attack_strength):
     # Set Ability name
     # Set attack strength
 ```
-Our next task is to write the `attack` method. 
+
+Our next task is to write the `attack` method.
 
 Import `random` at the very top of your file using
 
@@ -65,7 +67,7 @@ Import `random` at the very top of your file using
 import random
 ```
 
-The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two. 
+The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two.
 
 You'll need to use the module name in order to use this method properly.
 
@@ -75,7 +77,7 @@ Will return back to you some value between and including 2 and 7.
 
 We want our abilities to have more power so we need to alter the arithmetic a bit. Lets make the lowest possible attack value half of the highest possible attack value for simplicity.
 
-We only want to work with integers so use the floor division operator `//` to do the math. 
+We only want to work with integers so use the floor division operator `//` to do the math.
 
 So instead of using
 
@@ -90,13 +92,13 @@ int_value = 20 // 8
 
 The second example will return the integer `2` whereas the first example gives `2.5`. We don't need the precision of a floating point value so lets stick with integers to keep everything simple.
 
-
 ```python
 def attack(self):
     # Calculate lowest attack value as an integer.
     # Use random.randint(a, b) to select a random attack value.
     # Return attack value between 0 and the full attack.
 ```
+
 Complete this function using the techniques you've learned so far.
 
 You'll need to work with values that were instantiated in the constructor earlier.
@@ -109,16 +111,18 @@ Write your own implementation of the `update_attack` method. All it should do is
 
 
 ## Build the Hero Class
-Here we define what we want our `Hero` class to look like. Our hero should have a name and it should be able to store several different abilities. We'll store each of our hero's abilities as an element in a Python list. 
+Here we define what we want our `Hero` class to look like. Our hero should have a name and it should be able to store several different abilities. We'll store each of our hero's abilities as an element in a Python list.
 
-Let's start with the constructor for `Hero`. 
+Let's start with the constructor for `Hero`.
 
 The constructor for `Hero` should look like this:
+
 ```python
 def __init__(self, name):
     self.abilities = list()
     self.name = name
 ```
+
 Here we create a new empty list that will store our abilities. We also need to save the ability name as an instance variable.
 
 ## Create add_ability method
@@ -126,19 +130,20 @@ Here we create a new empty list that will store our abilities. We also need to s
 def add_ability(self, ability):
     # Append ability to self.abilities
 ```
-Use the append method to add a new ability to our `abilities` list. 
-*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial. 
 
-Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list. 
+Use the append method to add a new ability to our `abilities` list.
+*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial.
 
+Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability in our list.
 
 ## Create attack method
 ```python
 def attack(self):
     # Call the attack method on every ability in our ability list
-    # Add up and return the total of all attacks 
+    # Add up and return the total of all attacks
 ```
-This method should iterate over our `abilities` list and call the `attack()` method on every ability. Total up the amount of every attack and return it at the end of the function. 
+
+This method should iterate over our `abilities` list and call the `attack()` method on every ability. Total up the amount of every attack and return it at the end of the function.
 
 Use a Python `for` loop to iterate over the list of abilities. We've already seen how a `for` loop returns string values from a list of strings but it also works the same way with objects. The `for` loop will return our object that we can interact with just the way we would expect.
 
@@ -155,6 +160,7 @@ my_dogs.append(Dog())
 for dog in my_dogs:
     dog.bark()
 ```
+
 You'll see the output in this code snippet is:
 
 ```
@@ -164,6 +170,7 @@ Woof!
 
 ## Test it out
 You can test out whether your `Hero` class is working properly by adding these tests to your file:
+
 ```python
     hero = Hero("Wonder Woman")
     print(hero.attack())
@@ -174,6 +181,7 @@ You can test out whether your `Hero` class is working properly by adding these t
     hero.add_ability(new_ability)
     print(hero.attack())
 ```
+
 These lines should be added after checking `__name__` this way:
 
 ```python
@@ -211,9 +219,11 @@ if __name__ == "__main__":
     hero.add_ability(new_ability)
     print(hero.attack())
 ```
-**Note:** Don't replace your code with this block, it should only serve as a guide. 
+
+**Note:** Don't replace your code with this block, it should only serve as a guide.
 
 You should see an output similar to:
+
 ```
 0
 293
@@ -224,7 +234,7 @@ You should see an output similar to:
 
 Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
 
-In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth. 
+In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that The Benevolent Dictator of Python, Guido Van Rossum, has decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth.
 
 Scope and encapsulation can be thought as useful features that allow us to compartmentalise code instead of providing a measure of security.
 
@@ -236,7 +246,9 @@ def greeting():
 print(message)
 
 ```
+
 If you were to run the above block of code separately you will encounter the error:
+
 ```
 NameError: name 'message' is not defined
 ```
@@ -274,27 +286,28 @@ class Dog:
 mydog = Dog()
 mydog.bark()
 ```
+
 You'll see an error when the bark method is run.
+
 ```
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: bark() takes 0 positional arguments but 1 was given
 ```
 
-What is this error saying?
+What is this error saying? Here is the clue:
 
-Here is the clue.
 ```
 bark() takes 0 positional arguments but 1 was given
 ```
 
-When we run a method, `bark()` in this case, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. This allows us to access anything else inside our object. 
+When we run a method, `bark()` in this case, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. This allows us to access anything else inside our object.
 
-Here our `bark` method doesn't accept any parameters so it fails when Python tries to pass in the instantiated object. 
+Here our `bark` method doesn't accept any parameters so it fails when Python tries to pass in the instantiated object.
 
 Many languages take care of passing a reference to the parent invisibly by using a reserved keyword such as `this`. The Python philosophy of "explicit is better than implicit" is one of the reasons that `self` is not handled automatically behind the scenes. By explicitly passing a reference to the instantiated object, Python bypasses the issue of what `this` refers to.
 
-In Python the word `self` is not **reserved** like the word `this` is in other languages. Not only will Python allow you to use self anywhere you like, but it doesn't even require the first parameter to be named `self`.  
+In Python the word `self` is not **reserved** like the word `this` is in other languages. Not only will Python allow you to use self anywhere you like, but it doesn't even require the first parameter to be named `self`.
 
 ```python
 class Dog:
@@ -305,11 +318,13 @@ if __name__ == "__main__":
     my_dog = Dog()
     my_dog.bark()
 ```
+
 As you can see instead of `self` this block of code uses the word `object`. If you run this you'll see that the output will be:
 
 ```
 Woof
 ```
+
 In order to maintain code clarity and to comply with industry best practises we follow the PEP8 style guide. In this case our style guide is clear:
 
 >Always use `self` for the first argument to instance methods.
