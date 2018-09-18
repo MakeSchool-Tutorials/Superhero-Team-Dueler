@@ -47,3 +47,7 @@ This is just the start of what you can make. Add to your game with these stretch
 * Allow use of only "authorized" abilites, weapons, and armor controlled by the Arena.
 * Add tests that cover more edge cases.
 * Change the way health is dealt out across the team. i.e. create heroes that may take damage first or may take more of the teams damage.
+* Write additional classes that implement different ways to  attack or defend -- i.e. create a relic class that only defends against abilities.
+* Develop a way to steal weapons and abilities from the opposing team.
+* Add rewards for team success such as weapon drops.
+
