@@ -94,9 +94,12 @@ The second example will return the integer `2` whereas the first example gives `
 
 ```python
 def attack(self):
-    # Calculate lowest attack value as an integer.
-    # Use random.randint(a, b) to select a random attack value.
-    # Return attack value between 0 and the full attack.
+    """
+    Calculate lowest attack value as an integer.
+    Use random.randint(a, b) to select a random attack value.
+    Return attack value between 0 and the full attack.
+    Hint: The constructor initializes the maximum attack value.
+    """
 ```
 
 Complete this function using the techniques you've learned so far.
