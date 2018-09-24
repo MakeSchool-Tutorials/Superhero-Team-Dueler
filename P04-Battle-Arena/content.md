@@ -56,10 +56,11 @@ if __name__ == "__main__":
 Our program right now has the parts and pieces to run once before it exits. This is fine for one off scripts that can run without user input, but games should be interactive. Our interactivity will come from a useful programming pattern called the game loop.
 
 A typical game loop will do a few things over and over again:
-- check for user input
-- check length of time between loops
-- update the game state
-- render output to screen
+
+* check for user input
+* check length of time between loops
+* update the game state
+* render output to screen
 
 Our terminal game isn't really your typical game so our game loop will be a bit different. 
 
