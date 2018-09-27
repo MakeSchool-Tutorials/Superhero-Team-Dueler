@@ -173,7 +173,7 @@ def create_set():
 def test_armor():
     armor = superheroes.Hero("The Ring", 200)
     for _ in range(0, 500):
-        defense = armor.defend() <= 200
+        defense = armor.defend()
         assert (defense <= 200 and defense >= 0)
 
 
@@ -294,7 +294,6 @@ def test_team_defend():
     heroes = []
     for _ in range(0, 20):
         heroes.append(create_hero(health=20))
-        print(heroes[_].health)
     team_one = superheroes.Team("One")
     for hero in heroes:
         team_one.add_hero(hero)
