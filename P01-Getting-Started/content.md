@@ -109,7 +109,7 @@ Our hero will need abilties. Later on we'll see exactly what those will entail. 
 
 Use the append method to add a new ability to our `abilities` list.
 
-*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial.
+*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial. This time we're not adding strings, instead we'll add ability objects.
 
 Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability object that exists in our list.
 
