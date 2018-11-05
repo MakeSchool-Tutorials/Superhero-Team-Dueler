@@ -182,19 +182,19 @@ def is_alive(self):
 
 ## Fight!
 
-It's time to get a one vs one battle happening! Create a method that will allow each hero to attack the other one.
+It's time to get a one vs one battle happening! Create a method that will allow each hero to attack the other.
 
 Because we don't know how many times our hero will need to attack -- it's best to use a while loop to continue the attack until someone dies.
 
 ```python
 def fight(self, opponent):  
     '''
-    Runs a loop to attack opponent until one dies.
+    Runs a loop to attack opponent until someone dies.
     '''
     pass
 ```
 You'll need to use the methods that we just built to complete this. 
-This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage. If no damage is 
+This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage.
 
 When a hero dies print to the console.
 
@@ -203,7 +203,7 @@ HeroName died
 ```
 Where HeroName is the name of the hero that died.
 
-The core functionality for this method will come from calling methods that exists in the current instantiated object (using self) as well as calling methods one the object that is passed in. 
+The core functionality for this method will come from calling methods that exist in the current instantiated object (using self) as well as calling methods on the object that is passed in. 
 
 
 ## Test it out
@@ -231,16 +231,17 @@ Create the ability class and don't be afraid to add as many calls to your method
 Let's give our `Ability` class three simple methods at first.
 
 ```python
-
 class Ability:
     def __init__(self, name, attack_strength):
-        # Initialize starting values
+        ''' Initialize starting values '''
+        pass
 
     def attack(self):
-        # Return attack value
-
-    def update_attack(self, attack_strength):
-        # Update attack value
+        '''
+         Return attack value 
+         between 0 and the full attack.
+         '''
+        pass
 ```
 
 Use a constructor to set the name and attack strength for our `Ability` just like you did above with `name` in our `Dog` class.
@@ -249,6 +250,7 @@ Use a constructor to set the name and attack strength for our `Ability` just lik
 def __init__(self, name, attack_strength):
     # Set Ability name
     # Set attack strength
+    pass
 ```
 
 Our next task is to write the `attack` method.
@@ -267,42 +269,22 @@ You'll need to use the module name in order to use this method properly.
 
 Will return back to you some value between and including 2 and 7.
 
-We want our abilities to have more power so we need to alter the arithmetic a bit. Lets make the lowest possible attack value half of the highest possible attack value for simplicity.
 
-We only want to work with integers so use the floor division operator `//` to do the math.
-
-So instead of using
-
-```python
-float_value = 20 / 8
-```
-use
-
-```python
-int_value = 20 // 8
-```
-
-The second example will return the integer `2` whereas the first example gives `2.5`. We don't need the precision of a floating point value so lets stick with integers to keep everything simple.
 
 ```python
 def attack(self):
     """
-    Calculate lowest attack value as an integer.
     Use random.randint(a, b) to select a random attack value.
-    Return attack value between 0 and the full attack.
+    Return an attack value between 0 and the full attack.
     Hint: The constructor initializes the maximum attack value.
     """
+    pass
 ```
 
 Complete this function using the techniques you've learned so far.
 
 You'll need to work with values that were instantiated in the constructor earlier.
 
-Finally we should be able to update our attack value if we need to.
-
-## Finish the update_attack Method
-**TODO:**
-Write your own implementation of the `update_attack` method. All it should do is update the value of the current attack strength with the new value passed in as a parameter.
 
 ## Continue To Test it out
 You can test out whether your `Hero` class is working properly by adding these tests to your file:
@@ -324,25 +306,15 @@ These lines should be added after checking `__name__` this way:
 import random
 
 class Hero:
-    def __init__(self, name):
-        # Initialize starting values
-
-    def add_ability(self, ability):
-        # Add ability to abilities list
-
-    def attack(self):
-        # Run attack() on every ability hero has
+    '''
+    Methods not shown here for clarity
+    '''
 
 
 class Ability:
-    def __init__(self, name, attack):
-        # Initialize starting values
-
-    def attack(self):
-        # Return attack value
-
-    def update_attack(self, attack):
-        # Update attack value
+    '''
+    Methods not shown here for clarity
+    '''
 
 
 if __name__ == "__main__":
