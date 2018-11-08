@@ -22,7 +22,7 @@ class Armor:
         pass
 ```
 
-### Add stats to Hero class
+### Adding to the Hero class
 Add additional properties to the hero class that will allow for equipping our hero's armor and also for saving fight statistics.
 
 ```python
