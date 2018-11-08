@@ -202,3 +202,10 @@ This will run all tests in hero_test.py and stop after the first failure.
 For additional `pytest` options see their documentation [here](https://docs.pytest.org/en/latest/usage.html).
 
 Make sure all the tests in the `hero_test.py` file pass.
+
+## A Note About Python 2 vs Python 3
+One of the exciting features about python3 is that it supports unicode! This is great but it can cause compatibility issues when running python2. 
+
+If you receive an error saying that there's a unicode error you'll need to force pytest to use python3 this way.
+
+`python3 -m pytest`
