@@ -19,6 +19,7 @@ class Armor:
         Return a random value between 0 and the 
         initialized max_block strength.
         '''
+        pass
 ```
 
 ### Add stats to Hero class
