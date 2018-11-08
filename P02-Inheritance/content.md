@@ -91,7 +91,7 @@ class Weapon(Ability):
     def attack(self):
         """
         This method should should return a random value
-        between 0 and the full attack power of the weapon.
+        between one half to the full attack power of the weapon.
         Hint: The attack power is inherited.
         """
 ```
@@ -102,6 +102,12 @@ This is called **method overriding** and allows you to specify a different funct
 
 Everything else that was created in the `Ability` class will work the same.
 
+Create a new implementation of attack that returns a random value between the full attack power and half of the full attack power. 
+
+If for example the maximum attack value is 80 then this attack method should return a value between 40 and 80.
+
+Make sure to use integer division ( Using the `//` operator) to be certain that you return an integer.
+
 ## Build Team class
 Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
@@ -110,27 +116,24 @@ Implement the following methods using everything we've learned so far.
 ```python
 class Team:
     def init(self, team_name):
-        """Instantiate resources."""
+        '''Instantiate resources.'''
         self.name = team_name
         self.heroes = list()
 
     def add_hero(self, Hero):
-        """Add Hero object to heroes list."""
+        '''Add Hero object to heroes list.'''
+        pass
 
     def remove_hero(self, name):
-        """
+        '''
         Remove hero from heroes list.
         If Hero isn't found return 0.
-        """
-
-    def find_hero(self, name):
-        """
-        Find and return hero from heroes list.
-        If Hero isn't found return 0.
-        """
+        '''
+        pass
 
     def view_all_heroes(self):
-        """Print out all heroes to the console."""
+        '''Print out all heroes to the console.'''
+        pass
 
 ```
 

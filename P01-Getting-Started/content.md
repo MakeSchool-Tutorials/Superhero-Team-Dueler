@@ -309,12 +309,14 @@ class Hero:
     '''
     Methods not shown here for clarity
     '''
+    pass
 
 
 class Ability:
     '''
     Methods not shown here for clarity
     '''
+    pass
 
 
 if __name__ == "__main__":
