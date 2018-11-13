@@ -115,12 +115,12 @@ Implement the following methods using everything we've learned so far.
 
 ```python
 class Team:
-    def init(self, team_name):
+    def __init__(self, team_name):
         '''Instantiate resources.'''
         self.name = team_name
         self.heroes = list()
 
-    def add_hero(self, Hero):
+    def add_hero(self, hero):
         '''Add Hero object to heroes list.'''
         pass
 
