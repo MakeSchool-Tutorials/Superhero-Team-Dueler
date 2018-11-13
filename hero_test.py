@@ -2,6 +2,8 @@ import pytest
 import io
 import sys
 import superheroes
+import math
+import random
 
 # Helper Function
 
@@ -29,23 +31,13 @@ def test_ability_name():
     assert big_strength.name == "Overwhelming Strength"
 
 
-def test_ability_update_attack():
-    big_strength = superheroes.Ability("Overwhelming Strength", 300)
-    big_strength.update_attack(400)
-    test_runs = 100
-    attack = 0
-    for _ in range(0, test_runs):
-        attack += big_strength.attack()
-    assert attack <= (400 * test_runs) and attack >= (200 * test_runs)
-
-
 def test_ability_attack():
     # Test for correct attack value
-    test_runs = 100
+    test_runs = 400
     big_strength = superheroes.Ability("Overwhelming Strength", 400)
     for _ in range(0, test_runs):
         attack = big_strength.attack()
-        assert attack <= 400 and attack >= 200
+        assert attack >= 0 and attack <= 400
 
 # Test Weapons Class
 
@@ -60,7 +52,7 @@ def test_weapon_attack():
     test_runs = 100
     for _ in range(0, test_runs):
         attack = big_stick.attack()
-        assert attack <= 200 and attack >= 0
+        assert attack <= 200 and attack >= 100
 
 # Test Heroes Class
 
@@ -101,7 +93,67 @@ def test_hero_attack_ability():
     assert athena.attack() == 0
     athena.add_ability(big_strength)
     attack = athena.attack()
-    assert attack <= 30000 and attack >= 15000
+    assert attack <= 30000 and attack >= 0
+
+def test_hero_ability_attack_mean_value():
+    athena = superheroes.Hero("Athena")
+    strength = random.randint(10, 30000)
+    big_strength = superheroes.Ability("Overwhelming Strength", strength)
+    athena.add_ability(big_strength)
+    calculated_mean = strength // 2
+    iterations = 6000
+
+    sum_of_sqr = 0
+    total_attack = 0
+
+    for _ in range(iterations): 
+        attack_value = athena.attack()
+        assert attack_value >= 0 and attack_value <= strength
+        total_attack += attack_value
+        deviation = attack_value - calculated_mean
+        sum_of_sqr += deviation * deviation
+    
+
+    actual_mean = total_attack / iterations
+    standard_dev = math.sqrt(sum_of_sqr/float(iterations))
+    print("Max Allowed Damage: {}".format(strength))
+    print("Attacks Tested: {}".format(iterations))
+    print("Standard Deviation: {}".format(standard_dev))
+    print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - standard_dev, actual_mean + standard_dev))
+    print("Tested Result: {}".format(actual_mean))
+    assert actual_mean <= actual_mean + standard_dev and actual_mean >= actual_mean - standard_dev
+
+
+def test_hero_weapon_attack_mean_value():
+    kkrunch = superheroes.Hero("Kaptain Krunch")
+    strength = random.randint(10, 30000)
+    min_attack = strength // 2
+    big_strength = superheroes.Weapon("Sword of Whimsy", strength)
+    kkrunch.add_ability(big_strength)
+    calculated_mean = (strength - min_attack) // 2 + min_attack
+    iterations = 6000
+
+    sum_of_sqr = 0
+    total_attack = 0
+
+    for _ in range(iterations): 
+        attack_value = kkrunch.attack()
+        assert attack_value >= min_attack and attack_value <= strength
+        total_attack += attack_value
+        deviation = attack_value - calculated_mean
+        sum_of_sqr += deviation * deviation
+    
+
+    actual_mean = total_attack / iterations
+    standard_dev = math.sqrt(sum_of_sqr/float(iterations))
+    print("Max Allowed Damage: {}".format(strength))
+    print("Attacks Tested: {}".format(iterations))
+    print("Standard Deviation: {}".format(standard_dev))
+    print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - standard_dev, actual_mean + standard_dev))
+    print("Tested Result: {}".format(actual_mean))
+    assert actual_mean <= actual_mean + standard_dev and actual_mean >= actual_mean - standard_dev
 
 
 def test_hero_attack_weapon():
@@ -186,26 +238,6 @@ def test_team_remove_unlisted():
 def test_team_remove_empty_list():
     team = superheroes.Team("One")
     assert team.remove_hero("Athena") == 0
-
-
-def test_find_hero():
-    team = superheroes.Team("One")
-    jodie = superheroes.Hero("Jodie Foster")
-    team.add_hero(jodie)
-    hero = team.find_hero("Jodie Foster")
-    assert hero.name == "Jodie Foster"
-
-
-def test_find_unlisted_hero():
-    team = superheroes.Team("One")
-    jodie = superheroes.Hero("Jodie Foster")
-    team.add_hero(jodie)
-    assert team.find_hero("Alexa") == 0
-
-
-def test_find_empty_hero():
-    team = superheroes.Team("One")
-    assert team.find_hero("Alexa") == 0
 
 
 def test_print_heroes():
