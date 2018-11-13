@@ -120,9 +120,9 @@ def test_hero_ability_attack_mean_value():
     print("Attacks Tested: {}".format(iterations))
     print("Standard Deviation: {}".format(standard_dev))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
-    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - standard_dev, actual_mean + standard_dev))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 150, actual_mean + 150))
     print("Tested Result: {}".format(actual_mean))
-    assert actual_mean <= actual_mean + standard_dev and actual_mean >= actual_mean - standard_dev
+    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
 
 
 def test_hero_weapon_attack_mean_value():
@@ -143,7 +143,6 @@ def test_hero_weapon_attack_mean_value():
         total_attack += attack_value
         deviation = attack_value - calculated_mean
         sum_of_sqr += deviation * deviation
-    
 
     actual_mean = total_attack / iterations
     standard_dev = math.sqrt(sum_of_sqr/float(iterations))
@@ -151,9 +150,9 @@ def test_hero_weapon_attack_mean_value():
     print("Attacks Tested: {}".format(iterations))
     print("Standard Deviation: {}".format(standard_dev))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
-    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - standard_dev, actual_mean + standard_dev))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 300, actual_mean + 300))
     print("Tested Result: {}".format(actual_mean))
-    assert actual_mean <= actual_mean + standard_dev and actual_mean >= actual_mean - standard_dev
+    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
 
 
 def test_hero_attack_weapon():
