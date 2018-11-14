@@ -34,16 +34,18 @@ class Hero:
         self.armors = list()
         self.deaths = 0
         self.kills = 0
+
+    def add_armor(self, armor):
+        ''' Add armor to armors list.'''
     
     def defend(self):
         '''
-        This method should run the defend 
+        This method should run the block 
         method on each piece of armor and 
         calculate the total defense. 
         
-        If the hero's health is 0, the hero 
-        is out of play and should return 0 
-        defense points.
+        If the hero's health is 0
+        return 0 
         '''
         pass
 
