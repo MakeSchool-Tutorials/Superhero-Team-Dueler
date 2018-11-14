@@ -13,7 +13,8 @@ class Armor:
         '''Instantiate name and defense strength.'''
         self.name = name
         self.max_block = max_block
-    
+        pass
+        
     def block(self):
         '''
         Return a random value between 0 and the 
