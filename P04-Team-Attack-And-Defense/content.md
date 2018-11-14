@@ -14,7 +14,7 @@ class Armor:
         self.name = name
         self.max_block = max_block
         pass
-        
+
     def block(self):
         '''
         Return a random value between 0 and the 
@@ -37,27 +37,39 @@ class Hero:
     
     def defend(self):
         '''
-        This method should run the defend method on each piece of armor and calculate the total defense. 
+        This method should run the defend 
+        method on each piece of armor and 
+        calculate the total defense. 
         
-        If the hero's health is 0, the hero is out of play and should return 0 defense points.
+        If the hero's health is 0, the hero 
+        is out of play and should return 0 
+        defense points.
         '''
         pass
 
     def take_damage(self, damage_amt):
         ''' 
-        Refactor this method to use the new defend method and to update the number of deaths if the hero dies in the attack.
+        Refactor this method to use the new
+        defend method before updating the
+        hero's health. 
+
+        Update the number of deaths if the 
+        hero dies in the attack.
         '''
         pass
 
     def add_kill(self, num_kills):
         '''
-        This method should add the number of kills to self.kills
+        This method should add the number 
+        of kills to self.kills
         '''
         pass
 
     def fight(self, opponent):
         '''
-        Refactor this method to update the number of kills the hero has when the opponent dies.
+        Refactor this method to update the 
+        number of kills the hero has when 
+        the opponent dies.
         '''
         pass
 
@@ -76,22 +88,29 @@ class Team:
     # Keep all your current code, but add these methods
     def attack(self, other_team):
         '''
-        This function should randomly select a living hero from each team and have them fight until one or both teams have no surviving heroes.
+        This function should randomly select 
+        a living hero from each team and have 
+        them fight until one or both teams 
+        have no surviving heroes.
 
-        Hint: Use the fight method in the Hero class.
+        Hint: Use the fight method in the Hero 
+        class.
         '''
         pass
 
     def revive_heroes(self, health=100):
         '''
-        This method should reset all heroes health to their
+        This method should reset all heroes 
+        health to their
         original starting value.
         '''
         pass
     
     def stats(self):
         '''
-        This method should print the ratio of kills/deaths for each member of the team to the screen. 
+        This method should print the ratio of 
+        kills/deaths for each member of the 
+        team to the screen. 
 
         This data must be output to the console.
         '''
