@@ -128,5 +128,5 @@ In this section you can verify your code with the tests provided in [this](https
 You can run just the tests contained in this file by using the command:
 
 ```
-pytest -x battle_test.py
+pytest -x team_test.py
 ```
