@@ -6,6 +6,7 @@ slug: arena
 ## Update Hero Class
 We created a simple fight in the last section but didn't use some of the classes we built. Lets give our hero access to the rest of their equipment by adding these methods to the hero class.
 
+-
 ```python
 class Hero:
     # The code you have already written should be here.  
@@ -21,11 +22,12 @@ class Hero:
 
     def add_armor(self, armor):
         '''
-        This method will add the armor object that is passed in to the list of armor objects definied in the initializer as self.armors.
+        This method will add the armor object that is passed in to this method to the list of armor objects defined in the initializer as self.armors.
         '''
         pass
 
 ```
+
 
 Add the methods to your Hero class so that your heroes can use our newly created equipment.
 
@@ -38,9 +40,9 @@ Lets create some methods that we can call that will allow for code reuse.
 ```python
 class Arena:
     def __init__(self):
-        """
+        '''
         Declare variables
-        """
+        '''
         self.team_one = None
         self.team_two = None
     
@@ -85,33 +87,33 @@ class Arena:
         pass
 
     def build_team_one(self):
-        """
+        '''
         This method should allow a user to create team one.
         Prompt the user for the number of Heroes on team one and 
         call self.create_hero() for every hero that the user wants to add to team one. 
 
         Add the created hero to team one.
-        """
+        '''
         pass
 
     def build_team_two(self):
-        """
+        '''
         This method should allow a user to create team two.
         Prompt the user for the number of Heroes on team two and 
         call self.create_hero() for every hero that the user wants to add to team two. 
 
         Add the created hero to team two.
-        """
+        '''
         pass
 
     def team_battle(self):
-        """
+        '''
         This method should battle the teams together.
         Call the attack method that exists in your team objects to do that battle functionality.
-        """
+        '''
 
     def show_stats(self):
-        """
+        '''
         This method should print out battle statistics 
         including each team's average kill/death ratio.
 
@@ -119,7 +121,7 @@ class Arena:
         Declare winning team
         Show both teams average kill/death ratio.
         Show surviving heroes.
-        """
+        '''
 ```
 
 Implement the above methods. Use your favorite loops with the `input()` function to build teams based on user input. 

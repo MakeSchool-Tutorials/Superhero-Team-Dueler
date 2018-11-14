@@ -1,12 +1,11 @@
 import pytest
-import superheroes
-import random
 import io
 import sys
+import superheroes
+import math
+import random
 
-# Helper Functions
-
-
+# Helper Function
 def capture_console_output(function_body):
     # _io.StringIO object
     string_io = io.StringIO()
@@ -75,8 +74,58 @@ def create_ability():
     power = random.randint(45, 700000)
     return superheroes.Ability(name, power)
 
+def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
+    heroes = [
+        "Athena",
+        "Jodie Foster",
+        "Christina Aguilera",
+        "Gamora",
+        "Supergirl",
+        "Wonder Woman",
+        "Batgirl",
+        "Carmen Sandiego",
+        "Okoye",
+        "America Chavez",
+        "Cat Woman",
+        "White Canary",
+        "Nakia",
+        "Mera",
+        "Iris West",
+        "Quake",
+        "Wasp",
+        "Storm",
+        "Black Widow",
+        "San Luis Obispo",
+        "Ted Kennedy",
+        "San Francisco",
+        "Bananas"]    
+    
+    weapons = []
+    armors = []
 
-def create_hero(weapons=False, armors=False, health=False):
+    for _ in range(num_of_weapons):
+        weapons.append(create_weapon())
+    
+    for _ in range(num_of_armor):
+        armors.append(create_armor())
+    
+    for _ in range(num_of_abilities):
+        weapons.append(create_ability())
+
+    name = random.choice(heroes)
+    hero = superheroes.Hero(name)
+
+    for item in weapons:
+        hero.add_ability(item)
+    
+    for armor in armors:
+        hero.add_armor(armor)
+    
+    return hero
+
+
+
+def create_hero(max_strength=100, weapons=False, armors=False, health=False):
 
     heroes = [
         "Athena",
@@ -143,6 +192,7 @@ def create_team(heroes=[]):
         "Steelsmiths",
         "Boilermakers",
         "Nincompoops"]
+
     name = teams[random.randint(0, len(teams) - 1)]
     team = superheroes.Team(name)
     if len(heroes) > 0:
@@ -182,17 +232,17 @@ def test_armor():
 
 def test_hero_default_health():
     jodie = superheroes.Hero("Jodie Foster")
-    assert jodie.health == 100
+    assert jodie.current_health == 100
 
 
 def test_hero_init_new_health():
     hero = superheroes.Hero("Jodie Foster", 600)
-    assert hero.health == 600
+    assert hero.current_health == 600
 
 
 def test_hero_start_health():
     hero = superheroes.Hero("Jodie Foster", 300)
-    assert hero.start_health == 300
+    assert hero.starting_health == 300
 
 
 def test_hero_defense():
@@ -201,6 +251,26 @@ def test_hero_defense():
     jodie.add_armor(gauntlets)
     defense = jodie.defend()
     assert defense >= 0 and defense <= 30
+
+def test_hero_defense_mean_value():
+    athena = superheroes.Hero("Athena")
+    strength = random.randint(10, 30000)
+    big_strength = superheroes.Armor("Overwhelming Shield", strength)
+    athena.add_armor(big_strength)
+    calculated_mean = strength // 2
+    iterations = 8000
+    total_attack = 0
+    for _ in range(iterations): 
+        attack_value = athena.defend()
+        assert attack_value >= 0 and attack_value <= strength
+        total_attack += attack_value
+
+    actual_mean = total_attack / iterations
+    print("Max Allowed Damage: {}".format(strength))
+    print("Attacks Tested: {}".format(iterations))
+    print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 150, actual_mean + 150))
+    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
 
 
 def test_dead_hero_defense():
@@ -228,15 +298,6 @@ def test_hero_defend_multi_armor():
     assert defend <= 13000 and defend >= 0
 
 
-def test_hero_attack():
-    flash = superheroes.Hero("The Flash")
-    assert flash.attack() == 0
-    pesto = superheroes.Ability("Pesto Sauce", 8000)
-    flash.add_ability(pesto)
-    attack = flash.attack()
-    assert attack <= 8000 and attack >= 4000
-
-
 # Test Team
 
 
@@ -251,11 +312,11 @@ def test_team_attack():
     socks = superheroes.Armor("Socks", 10)
     athena.add_armor(socks)
     team_two.add_hero(athena)
-    assert team_two.heroes[0].health == 100
+    assert team_two.heroes[0].current_health == 100
 
     team_one.attack(team_two)
 
-    assert team_two.heroes[0].health <= 0
+    assert team_two.heroes[0].current_health <= 0
 
 
 def test_team_attack_kills():
@@ -289,36 +350,20 @@ def test_team_attack_deaths():
     team_one.attack(team_two)
     assert team_two.heroes[0].deaths == 1
 
-
-def test_team_defend():
-    heroes = []
-    for _ in range(0, 20):
-        heroes.append(create_hero(health=20))
-    team_one = superheroes.Team("One")
-    for hero in heroes:
-        team_one.add_hero(hero)
-
-    deaths = team_one.defend(100)
-    for hero in team_one.heroes:
-        assert hero.health == 15
-
-    assert deaths == 0
-
-    assert team_one.defend(400) == 20
-
-
 def test_revive_heroes():
     heroes = []
     for _ in range(0, 20):
-        heroes.append(create_hero(health=60))
+        heroes.append(build_hero(4, 4, 4))
 
     team_one = superheroes.Team("One")
     for hero in heroes:
         team_one.add_hero(hero)
 
-    team_one.defend(300)
+
+
     for hero in team_one.heroes:
-        assert hero.health == 45
+        hero.current_health == 12
     team_one.revive_heroes()
+
     for hero in team_one.heroes:
-        assert hero.health == 60
+        assert hero.current_health == 100

@@ -95,6 +95,7 @@ def test_hero_attack_ability():
     attack = athena.attack()
     assert attack <= 30000 and attack >= 0
 
+
 def test_hero_ability_attack_mean_value():
     athena = superheroes.Hero("Athena")
     strength = random.randint(10, 30000)
@@ -115,15 +116,19 @@ def test_hero_ability_attack_mean_value():
     
 
     actual_mean = total_attack / iterations
-    standard_dev = math.sqrt(sum_of_sqr/float(iterations))
     print("Max Allowed Damage: {}".format(strength))
     print("Attacks Tested: {}".format(iterations))
-    print("Standard Deviation: {}".format(standard_dev))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
     print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 150, actual_mean + 150))
     print("Tested Result: {}".format(actual_mean))
     assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
 
+def test_hero_weapon_equip():
+    sans = superheroes.Hero("Comic Sans")
+    weapon = superheroes.Weapon("Garlic Hot Sauce", 400)
+    sans.add_ability(weapon)
+    assert len(sans.abilities) == 1
+    assert sans.abilities[0].name == "Comic Sans"
 
 def test_hero_weapon_attack_mean_value():
     kkrunch = superheroes.Hero("Kaptain Krunch")
