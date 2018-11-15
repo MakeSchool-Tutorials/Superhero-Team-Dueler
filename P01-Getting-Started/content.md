@@ -4,7 +4,8 @@ slug: build-ability-and-hero-classes
 ---
 
 ## Build Ability and Hero classes
-Let's use what we've learned to build a couple classes in a file named `superheroes.py`.
+
+Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now. 
 
 Here is an overview of what you will build.
 
@@ -82,7 +83,7 @@ if __name__ == "__main__":
 ```
 
 ## Build the Hero Class
-Here we define what we want our `Hero` class to look like. Our hero should have a name and should be able to have several different abilities. Also our hero will need other attributes such as starting and current health. We'll need to set these at some starting value when we create our Hero in memory.
+Here we define what we want our `Hero` class to look like. Each hero should have a name and should be able to have several different abilities. Also a hero will need other attributes such as starting and current health. We'll need to set these at some starting value when we create each Hero in memory.
 
 Let's start with the constructor for `Hero`.
 
@@ -105,13 +106,13 @@ def add_ability(self, ability):
     # Append ability to self.abilities
 ```
 
-Our hero will need abilties. Later on we'll see exactly what those will entail. For now we can assume that there is a class called Ability. An instance of this class -- known as an object -- will be passed into this method. 
+Our hero will need abilties. Later you'll define a class for these. An instance of the Ability class -- known as an object -- is passed into this method. 
 
-Use the append method to add a new ability to our `abilities` list.
+Use the append method to add a new ability to your hero's `abilities` list.
 
 *Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial. This time we're not adding strings, instead we'll add ability objects.
 
-Finally we'll need to allow our hero to use their abilities. We need to be able to run the `attack` method that exists in every ability object that exists in our list.
+We need to allow our hero to use their abilities. A hero needs to be able to run the `attack` method that exists in every ability object in that hero's abilities list.
 
 ## Create the attack method
 
@@ -127,9 +128,13 @@ Finally we'll need to allow our hero to use their abilities. We need to be able 
         pass
 ```
 
-This method should iterate over our `abilities` list and call the `attack()` method on every ability. The method should total up the amount of every attack and return it at the end.
+This method should iterate over our `abilities` list and call the `attack()` method on every ability. Assume the attack method returns a number. This is the amount of damage done by the attack. The method should total the damage of each attack and return the total damage at the end of the function.
 
-It's easiest to use a Python `for` loop to iterate over the list of abilities. We've already seen how a `for` loop returns string values from a list of strings but it also works the same way with objects. The `for` loop will return our object that we can interact with just the way we would expect.
+It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list. 
+
+The `for` loop will return each object in the list, and you can call methods on those objects just like you would expect.  
+
+The code snippet below shows how you might iterate over a list of dogs with a for loop and call the `bark()` on each. 
 
 ```python
 class Dog:
@@ -154,9 +159,12 @@ Woof!
 
 ## Take Damage
 
-There are many ways that damage can be controlled. It's common practice to use a method to handle updating values within an object instead of just setting them directly. These are commonly referred to as getters and setters. They allow us to later on decide whether our hero will take the full damage amount or perhaps a different amount. 
+When a hero takes damage it's `self.current_health` is decreased. While you can set a property directly, it's common practice to call a method instead the job of this method is to make the change to the property. This system offers an advantage as it allows your software to react the change of the property. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health. 
 
-Right now though lets just update our hero's current health to reflect the damage amount passed in to this method.
+>[info]
+> Methods that handle changes in properties are called setters. Methods that return the value of a property are called setters. 
+
+Your job is to subtract the damage passed to `take_damage()` from the hero's `self.current_health`. 
 
 ```python
 def take_damage(self, damage):
@@ -166,9 +174,14 @@ def take_damage(self, damage):
     '''
     pass
 ```
-## Are You Alive?
-Let's create a function that will return a boolean value to this question.
-Create Hero.is_alive() and have it return true when the hero is alive and false when they are not.
+
+## Are You still conscious?
+
+Once a hero has been hit they might be knocked out! Or they might still be up, how will we know? 
+
+You'll use a function to decide. 
+
+Create a function that returns a boolean. It should return `True` when the hero's `current_health` is greater than 0, and false if not. 
 
 ```python
 def is_alive(self):  
@@ -182,7 +195,11 @@ def is_alive(self):
 
 ## Fight!
 
-It's time to get a one vs one battle happening! Create a method that will allow each hero to attack the other.
+It's time to get a one vs one battle happening! Your job is to create a method that will allow each hero to attack the other.
+
+The `fight()` method will take an `opponent` as a parameter. An `opponent` is another instance of `Hero`. 
+
+A single attack usually won't knock a hero out. The hero and oppoent will usually attack each other repeatedly before one of them is knocked! 
 
 Because we don't know how many times our hero will need to attack -- it's best to use a while loop to continue the attack until someone dies.
 
@@ -193,6 +210,7 @@ def fight(self, opponent):
     '''
     pass
 ```
+
 You'll need to use the methods that we just built to complete this. 
 This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage.
 
