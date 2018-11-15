@@ -47,4 +47,15 @@ class Dog:
   ...
 ```
 
+## Needs a story
+
+Adding some background story would help. Currently the tutorial says things like: 
+
+> Each hero should have a name and should be able to have several different abilities. 
+
+Inbstead it might be more engaging to inlcude a narrative:
+
+> Superman uses his super strength to save the world. You'll need to define this ability! 
+
+
 
