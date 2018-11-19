@@ -103,32 +103,52 @@ def test_hero_ability_attack_mean_value():
     athena.add_ability(big_strength)
     calculated_mean = strength // 2
     iterations = 6000
+    accepted_window = 400
 
-    sum_of_sqr = 0
     total_attack = 0
 
     for _ in range(iterations): 
         attack_value = athena.attack()
         assert attack_value >= 0 and attack_value <= strength
         total_attack += attack_value
-        deviation = attack_value - calculated_mean
-        sum_of_sqr += deviation * deviation
-    
 
     actual_mean = total_attack / iterations
     print("Max Allowed Damage: {}".format(strength))
     print("Attacks Tested: {}".format(iterations))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
-    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 150, actual_mean + 150))
-    print("Tested Result: {}".format(actual_mean))
-    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
+    print("Acceptable Distance from Mean: {} | Average distance from mean: {}".format(accepted_window, abs(calculated_mean - actual_mean)))
+    print("Acceptable min attack: {} | Acceptable max attack: {}".format(actual_mean - accepted_window, actual_mean + accepted_window))
+    assert actual_mean <= calculated_mean + accepted_window and actual_mean >= calculated_mean - accepted_window
 
+def test_hero_ability_attack_standard_deviation():
+    willow_waffle = superheroes.Hero("Willow Waffle")
+    strength = random.randint(400, 30000)
+    willow = superheroes.Ability("Willowness", strength)
+    willow_waffle.add_ability(willow)
+    attacks = list()
+    total_attack = 0
+    number_tests = 1000
+    for _ in range(number_tests):
+        cur_attack = willow_waffle.attack()
+        attacks.append(cur_attack)
+        total_attack += cur_attack
+    mean = total_attack / number_tests
+    
+    # Get Square Deviations
+    for index, value in enumerate(attacks):
+        attacks[index] = math.pow(value - mean, 2)
+    
+    standard_dev = math.sqrt(sum(attacks) / len(attacks))
+    print("Standard Deviation Cannot be 0.\nRandom Numbers not generated for attack.")
+    assert standard_dev != 0.0
+      
+    
 def test_hero_weapon_equip():
     sans = superheroes.Hero("Comic Sans")
     weapon = superheroes.Weapon("Garlic Hot Sauce", 400)
     sans.add_ability(weapon)
     assert len(sans.abilities) == 1
-    assert sans.abilities[0].name == "Comic Sans"
+    assert sans.abilities[0].name == "Garlic Hot Sauce"
 
 def test_hero_weapon_attack_mean_value():
     kkrunch = superheroes.Hero("Kaptain Krunch")
@@ -137,6 +157,7 @@ def test_hero_weapon_attack_mean_value():
     big_strength = superheroes.Weapon("Sword of Whimsy", strength)
     kkrunch.add_ability(big_strength)
     calculated_mean = (strength - min_attack) // 2 + min_attack
+    accepted_window = 400
     iterations = 6000
 
     sum_of_sqr = 0
@@ -150,15 +171,35 @@ def test_hero_weapon_attack_mean_value():
         sum_of_sqr += deviation * deviation
 
     actual_mean = total_attack / iterations
-    standard_dev = math.sqrt(sum_of_sqr/float(iterations))
     print("Max Allowed Damage: {}".format(strength))
     print("Attacks Tested: {}".format(iterations))
-    print("Standard Deviation: {}".format(standard_dev))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
-    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 300, actual_mean + 300))
+    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - accepted_window, actual_mean + accepted_window))
     print("Tested Result: {}".format(actual_mean))
-    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
+    assert actual_mean <= calculated_mean + accepted_window 
+    assert actual_mean >= calculated_mean - accepted_window
 
+def test_hero_attack_standard_deviation():
+    willow_waffle = superheroes.Hero("Willow Waffle")
+    strength = random.randint(400, 30000)
+    travel_agent = superheroes.Weapon("Travel Agents", strength)
+    willow_waffle.add_ability(travel_agent)
+    attacks = list()
+    total_attack = 0
+    number_tests = 1000
+    for _ in range(number_tests):
+        cur_attack = willow_waffle.attack()
+        attacks.append(cur_attack)
+        total_attack += cur_attack
+    mean = total_attack / number_tests
+    
+    # Get Square Deviations
+    for index, value in enumerate(attacks):
+        attacks[index] = math.pow(value - mean, 2)
+    
+    standard_dev = math.sqrt(sum(attacks) / len(attacks))
+    print("Standard Deviation Cannot be 0.\nRandom Numbers not generated for attack.")
+    assert standard_dev != 0.0
 
 def test_hero_attack_weapon():
     big_strength = superheroes.Ability("Overwhelming Strength", 200)
