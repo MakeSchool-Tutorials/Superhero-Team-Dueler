@@ -6,6 +6,8 @@ import math
 import random
 
 # Helper Function
+
+
 def capture_console_output(function_body):
     # _io.StringIO object
     string_io = io.StringIO()
@@ -74,6 +76,7 @@ def create_ability():
     power = random.randint(45, 700000)
     return superheroes.Ability(name, power)
 
+
 def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
     heroes = [
         "Athena",
@@ -98,17 +101,17 @@ def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
         "San Luis Obispo",
         "Ted Kennedy",
         "San Francisco",
-        "Bananas"]    
-    
+        "Bananas"]
+
     weapons = []
     armors = []
 
     for _ in range(num_of_weapons):
         weapons.append(create_weapon())
-    
+
     for _ in range(num_of_armor):
         armors.append(create_armor())
-    
+
     for _ in range(num_of_abilities):
         weapons.append(create_ability())
 
@@ -117,12 +120,11 @@ def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
 
     for item in weapons:
         hero.add_ability(item)
-    
+
     for armor in armors:
         hero.add_armor(armor)
-    
-    return hero
 
+    return hero
 
 
 def create_hero(max_strength=100, weapons=False, armors=False, health=False):
@@ -219,15 +221,11 @@ def create_set():
     return hero_set
 
 
-# Test Armor
 def test_armor():
     armor = superheroes.Hero("The Ring", 200)
     for _ in range(0, 500):
         defense = armor.defend()
         assert (defense <= 200 and defense >= 0)
-
-
-# Test Hero
 
 
 def test_hero_default_health():
@@ -252,25 +250,61 @@ def test_hero_defense():
     defense = jodie.defend()
     assert defense >= 0 and defense <= 30
 
+
 def test_hero_defense_mean_value():
     athena = superheroes.Hero("Athena")
-    strength = random.randint(10, 30000)
+    strength = random.randint(400, 30000)
     big_strength = superheroes.Armor("Overwhelming Shield", strength)
     athena.add_armor(big_strength)
     calculated_mean = strength // 2
     iterations = 8000
     total_attack = 0
-    for _ in range(iterations): 
+    accepted_window = 400
+    for _ in range(iterations):
         attack_value = athena.defend()
         assert attack_value >= 0 and attack_value <= strength
         total_attack += attack_value
 
     actual_mean = total_attack / iterations
-    print("Max Allowed Damage: {}".format(strength))
-    print("Attacks Tested: {}".format(iterations))
+    print("Max Allowed: {}".format(strength))
+    print("Defenses Tested: {}".format(iterations))
     print("Mean -- calculated: {} | actual: {}".format(calculated_mean, actual_mean))
-    print("Acceptable Min: {} | Acceptable Max: {}".format(actual_mean - 150, actual_mean + 150))
-    assert actual_mean <= calculated_mean + 150 and actual_mean >= calculated_mean - 150
+    print(
+        "Acceptable deviation from mean: {} | Current deviation from mean: {}".format(
+            accepted_window, abs(
+                calculated_mean - actual_mean)))
+    print(
+        "Acceptable Min: {} | Acceptable Max: {}".format(
+            actual_mean -
+            accepted_window,
+            actual_mean +
+            accepted_window))
+    assert actual_mean <= calculated_mean + \
+        accepted_window and actual_mean >= calculated_mean - accepted_window
+
+
+def test_hero_defense_standard_deviation():
+    willow_waffle = superheroes.Hero("Willow Waffle")
+    strength = random.randint(400, 30000)
+    willow = superheroes.Armor("Willowness", strength)
+    willow_waffle.add_armor(willow)
+    defenses = list()
+    total_defend = 0
+    number_tests = 100
+    for _ in range(number_tests):
+        defense = willow_waffle.defend()
+        defenses.append(defense)
+        total_defend += defense
+    mean = total_defend / number_tests
+
+    # Get Square Deviations
+    for index, value in enumerate(defenses):
+        defenses[index] = math.pow(value - mean, 2)
+
+    standard_dev = math.sqrt(sum(defenses) / len(defenses))
+    print("Hero Armor must block with random value.")
+    print("Standard Deviation Cannot be 0.")
+    assert standard_dev != 0.0
 
 
 def test_dead_hero_defense():
@@ -350,6 +384,7 @@ def test_team_attack_deaths():
     team_one.attack(team_two)
     assert team_two.heroes[0].deaths == 1
 
+
 def test_revive_heroes():
     heroes = []
     for _ in range(0, 20):
@@ -358,8 +393,6 @@ def test_revive_heroes():
     team_one = superheroes.Team("One")
     for hero in heroes:
         team_one.add_hero(hero)
-
-
 
     for hero in team_one.heroes:
         hero.current_health == 12
