@@ -1,5 +1,5 @@
 ---
-title: Object Oriented Programming: Dogs
+title: Object Oriented Programming Dogs
 slug: superhero-objects
 ---
 
