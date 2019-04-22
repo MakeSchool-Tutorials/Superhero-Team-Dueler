@@ -59,6 +59,7 @@ Now to use this **Class** or _blueprint_ of a dog, we have to run it, which save
 
 >[action]
 > Instantiate a dog instance:
+
 >```py
 class Dog:
     def __init__(self, name):
@@ -80,9 +81,11 @@ Now that we've defined the Class and then instantiated an instance of it we can 
 >```$ python3 dog.py```
 
 >What do you see?
-This will print:
 
-```bash
+>[solution]
+>This will print:
+
+>```bash
 <__main__.Dog object at 0x101488278> # The Dog Class
 Rex # your dog's name
 ```
