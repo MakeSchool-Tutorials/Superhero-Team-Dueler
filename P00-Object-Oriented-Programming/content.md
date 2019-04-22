@@ -47,11 +47,10 @@ Let's make a simple class called `Dog`.
 
 >```python
 # dog.py
-
 class Dog:
     def __init__(self, name):
         self.name = name
->```
+```
 
 # Make an Instance of the Dog Class
 
@@ -61,6 +60,7 @@ Now to use this **Class** or _blueprint_ of a dog, we have to run it, which save
 > Instantiate a dog instance:
 
 >```py
+# dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
