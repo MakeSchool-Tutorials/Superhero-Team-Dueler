@@ -82,6 +82,8 @@ Now that we've defined the Class and then instantiated an instance of it we can 
 
 >What do you see?
 
+Here's the solution:
+
 >[solution]
 >This will print:
 
@@ -97,6 +99,7 @@ We can extend the **Properties** of your `Dog` class two ways, either on the fly
 To add a new property on the fly, simply name it and attach it to a dog instance:
 
 ```py
+# dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
@@ -111,6 +114,7 @@ To add a property to the class upon **initialization** we update the `__init__` 
 >[action]
 >Here we go:
 >```
+# dog.py
 class Dog:
     def __init__(self, name, breed):
         self.name = name
@@ -139,8 +143,9 @@ What are some actions a dog can take? How about barking? What other actions can 
 Let's define our first method called `bark`. This will let us call something like this: `my_dog.bark()`. And then we can print "Woof!"
 
 ```python
+# dog.py
 class Dog:
-    # Properties are defined inside the __init__ method
+    # Required properties are defined inside the __init__ constructor method
     def __init__(self, name):
         self.name = name
     # Methods are defined as their own named functions inside the class
@@ -189,6 +194,7 @@ Let's import the Dog class into a new file were we'll make some instances of Dog
 >Make a new file called `my-dogs.py`. Inside there write the following code.
 
 >```python
+# my-dogs.py
 import dog
 ```
 
@@ -198,7 +204,6 @@ You'll notice that if you run `my-dogs.py` the following will display in the ter
 
 ```
 Woof!
-dog
 ```
 
 Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
@@ -230,6 +235,7 @@ When we call an **instance method** we can access the instance itself, inside it
 Read this example:
 
 ```python
+# dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
