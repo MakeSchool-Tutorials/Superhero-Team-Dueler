@@ -5,7 +5,7 @@ slug: build-ability-and-hero-classes
 
 ## Build Ability and Hero classes
 
-Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now. 
+Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now.
 
 Here is an overview of what you will build.
 
@@ -14,7 +14,7 @@ Each method below is labeled with a doc string that describes what it is suppose
 ```python
 class Hero:
     def __init__(self, name, starting_health=100):
-        ''' 
+        '''
         Initialize these values as instance variables:
         (Some of these values are passed in above, others will need to be set at a starting value.)
         abilities:List
@@ -30,27 +30,27 @@ class Hero:
         pass
 
     def attack(self):
-        ''' 
+        '''
         Calculates damage from list of abilities.
 
-        This method should call Ability.attack() 
+        This method should call Ability.attack()
         on every ability in self.abilities and
         return the total.
         '''
         pass
-    
+
     def take_damage(self, damage):
-        ''' 
-        This method should update self.current_health 
+        '''
+        This method should update self.current_health
         with the damage that is passed in.
         '''
         pass
 
     def is_alive(self):  
         '''
-        This function will 
-        return true if the hero is alive 
-        or false if they are not. 
+        This function will
+        return true if the hero is alive
+        or false if they are not.
         '''
         pass
 
@@ -62,22 +62,22 @@ class Hero:
 
 class Ability:
     def __init__(self, name, max_damage):
-        ''' 
-        Initialize the values passed into this 
+        '''
+        Initialize the values passed into this
         method as instance variables.
          '''
         pass
 
     def attack(self):
-        ''' 
-        Return a random attack value 
+        '''
+        Return a random attack value
         between 0 and max_damage.
         '''
         pass
 
 
 if __name__ == "__main__":
-    # If you run this file from the terminal 
+    # If you run this file from the terminal
     # this block is executed.
     pass
 ```
@@ -106,7 +106,7 @@ def add_ability(self, ability):
     # Append ability to self.abilities
 ```
 
-Our hero will need abilties. Later you'll define a class for these. An instance of the Ability class -- known as an object -- is passed into this method. 
+Our hero will need abilties. Later you'll define a class for these. An instance of the Ability class -- known as an object -- is passed into this method.
 
 Use the append method to add a new ability to your hero's `abilities` list.
 
@@ -118,10 +118,10 @@ We need to allow our hero to use their abilities. A hero needs to be able to run
 
 ```python
     def attack(self):
-        ''' 
+        '''
         Calculates damage from list of abilities.
 
-        This method should call Ability.attack() 
+        This method should call Ability.attack()
         on every ability in self.abilities and
         return the total.
         '''
@@ -130,11 +130,11 @@ We need to allow our hero to use their abilities. A hero needs to be able to run
 
 This method should iterate over our `abilities` list and call the `attack()` method on every ability. Assume the attack method returns a number. This is the amount of damage done by the attack. The method should total the damage of each attack and return the total damage at the end of the function.
 
-It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list. 
+It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list.
 
 The `for` loop will return each object in the list, and you can call methods on those objects just like you would expect.  
 
-The code snippet below shows how you might iterate over a list of dogs with a for loop and call the `bark()` on each. 
+The code snippet below shows how you might iterate over a list of dogs with a for loop and call the `bark()` on each.
 
 ```python
 class Dog:
@@ -159,17 +159,17 @@ Woof!
 
 ## Take Damage
 
-When a hero takes damage it's `self.current_health` is decreased. While you can set a property directly, it's common practice to call a method instead the job of this method is to make the change to the property. This system offers an advantage as it allows your software to react the change of the property. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health. 
+When a hero takes damage it's `self.current_health` is decreased. While you can set a property directly, it's common practice to call a method instead the job of this method is to make the change to the property. This system offers an advantage as it allows your software to react the change of the property. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health.
 
 >[info]
-> Methods that handle changes in properties are called setters. Methods that return the value of a property are called setters. 
+> Methods that handle changes in properties are called setters. Methods that return the value of a property are called setters.
 
-Your job is to subtract the damage passed to `take_damage()` from the hero's `self.current_health`. 
+Your job is to subtract the damage passed to `take_damage()` from the hero's `self.current_health`.
 
 ```python
 def take_damage(self, damage):
-    ''' 
-    This method should update self.current_health 
+    '''
+    This method should update self.current_health
     with the damage that is passed in.
     '''
     pass
@@ -177,18 +177,18 @@ def take_damage(self, damage):
 
 ## Are You still conscious?
 
-Once a hero has been hit they might be knocked out! Or they might still be up, how will we know? 
+Once a hero has been hit they might be knocked out! Or they might still be up, how will we know?
 
-You'll use a function to decide. 
+You'll use a function to decide.
 
-Create a function that returns a boolean. It should return `True` when the hero's `current_health` is greater than 0, and false if not. 
+Create a function that returns a boolean. It should return `True` when the hero's `current_health` is greater than 0, and false if not.
 
 ```python
 def is_alive(self):  
     '''
-    This function will 
-    return true if the hero is alive 
-    or false if they are not. 
+    This function will
+    return true if the hero is alive
+    or false if they are not.
     '''
     pass
 ```
@@ -197,9 +197,9 @@ def is_alive(self):
 
 It's time to get a one vs one battle happening! Your job is to create a method that will allow each hero to attack the other.
 
-The `fight()` method will take an `opponent` as a parameter. An `opponent` is another instance of `Hero`. 
+The `fight()` method will take an `opponent` as a parameter. An `opponent` is another instance of `Hero`.
 
-A single attack usually won't knock a hero out. The hero and oppoent will usually attack each other repeatedly before one of them is knocked! 
+A single attack usually won't knock a hero out. The hero and oppoent will usually attack each other repeatedly before one of them is knocked!
 
 Because we don't know how many times our hero will need to attack -- it's best to use a while loop to continue the attack until someone dies.
 
@@ -211,7 +211,7 @@ def fight(self, opponent):
     pass
 ```
 
-You'll need to use the methods that we just built to complete this. 
+You'll need to use the methods that we just built to complete this.
 This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage.
 
 When a hero dies print to the console.
@@ -221,7 +221,7 @@ HeroName died
 ```
 Where HeroName is the name of the hero that died.
 
-The core functionality for this method will come from calling methods that exist in the current instantiated object (using self) as well as calling methods on the object that is passed in. 
+The core functionality for this method will come from calling methods that exist in the current instantiated object (using self) as well as calling methods on the object that is passed in.
 
 
 ## Test it out
@@ -256,7 +256,7 @@ class Ability:
 
     def attack(self):
         '''
-         Return attack value 
+         Return attack value
          between 0 and the full attack.
          '''
         pass

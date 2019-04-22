@@ -47,7 +47,7 @@ class Dog:
 
 A class has really two parts: **properties** (data) that it needs to store, and **methods** (blocks of code) that should exist within an object along with any .
 
-Now to use this **Class** or _blueprint_ of a dog, we have to run it, which saves it into memory and allows us to use it, like this:
+Now to use this **Class** or _blueprint_ of a dog, we have to run it, which saves it into memory and allows us to use it to make instances of the dog class, called **instances**. The process of creating an object in memory from the class definition is called **instantiation**. We will make an instance of the Dog class called `my_dog`.
 
 >[action]
 > Instantiate a dog instance:
@@ -61,10 +61,17 @@ print(my_dog)
 print(my_dog.name)
 ```
 
->```bash
-$ python3 dog.py
-```
+>[info]
+>Properties of an instance are also called **instance variables**.
 
+Now that we've defined the Class and then instantiated an instance of it we can run the whole file to see the print statements.
+
+>[action]
+>Run the `dog.py` file
+
+>```$ python3 dog.py```
+
+>What do you see?
 This will print:
 
 ```bash
@@ -72,11 +79,59 @@ This will print:
 Rex # your dog's name
 ```
 
+# What is a Class?
+
+A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
+
+You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a construction company can produce many buildings from a single set of blueprints. At the same time each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color, model, make, date of production, previous owners etc).
+
 # Add a Breed to your Dog
 
-We can extend the **Properties** of your
+We can extend the **Properties** of your `Dog` class two ways, either on the fly, or upon **initialization**.
+
+To add a new property on the fly, simply name it and attach it to a dog instance:
+
+```py
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+my_dog = Dog("Rex")
+my_dog.breed = "SuperDog"
+print(my_dog.breed)
+```
+
+To add a property to the class upon **initialization** we update the `__init__` **constructor**. `__init__` is a special method called a **constructor**. It runs whenever a new instance of your class is created.
+
+>[action]
+>Here we go:
+>```
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+my_dog = Dog("Rex", "SuperDog")
+print(my_dog.breed)
+```
+
+>[warning]
+>**Watch Out** - if you add a property upon initialization, it is REQUIRED and you will get an error. So only put required properties into __init__.
+>```
+Traceback (most recent call last):
+  File "dog.py", line 6, in <module>
+    my_dog = Dog("Rex")
+TypeError: __init__() missing 1 required positional argument: 'breed'
+```
+>Can you produce this error yourself by removing the breed argument "SuperDog" from your `Dog("Rex", "SuperDog")` call?
 
 # Add an Instance Method
+
+Remember classes are groups of data and actions, data attached to classes are key-value pairs called **Properties**, and the actions that class can take are called **Methods**.
+
+What are some actions a dog can take? How about barking?
+
+Let's define our first method called `bark`. This will let us call something like this: `my_dog.bark()`. And then we can print "Woof!"
 
 ```python
 class Dog:
@@ -86,6 +141,9 @@ class Dog:
     # Methods are defined as their own named functions inside the class
     def bark(self):
         print("Woof!")
+
+Dog("Rex")
+my_dog.bark()
 ```
 
 Our `Dog` class has a method called `bark` that when called will print out `Woof!` to the terminal. The syntax is similar to the syntax that we've already seen when building functions but, there are some key differences.
@@ -97,26 +155,11 @@ Our `Dog` class has a method called `bark` that when called will print out `Woof
 
 >What do you see?
 
-
-### What is a Class?
-
-A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
-
-You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color).
-
-
-
-
-
-
-
-
 The `bark()` method is nested within in a class definition: `class Dog:`. This defines the `bark()` method as a member of the `Dog` class.
 
-We can't just call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Or maybe more accurately, asking the definition or blueprint of a dog to bark. That does't make sense! Instead we need to make an **Instance** of the `Dog` model and then ask that instance to bark. That is why methods defined in this way are called **Instance Methods**.
+We can't call this method on the class. We can't call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Or maybe more accurately, asking the blueprint of a dog to bark. That does't make sense! Instead we need to make an **Instance** of the `Dog` model and then ask that instance to bark. That is why methods defined in this way are called **Instance Methods**.
 
-
-### So Far... Procedural vs Object Oriented Programming
+# So Far... Procedural vs Object Oriented Programming
 
 So far most code you've written is probably **Procedural** meaning it is written as a **series of unconnected steps** executed by the computer.
 
@@ -127,65 +170,22 @@ We've learned how to use functions to create code that is re-usable and maintain
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world.
 
 
+# Writing Modular Code
 
+Well crafted code should always be modular, meaning each of its reusable parts is separated into its own file. Classes are very modular, since you can write a class in one file, and then use it anywhere using the Python keyword `import`. Let's make our code modular and separate the class code from the code that instantiates a dog and calls its methods.
 
+# Importing Your Class
 
+Let's import the Dog class into a new file were we'll make some instances of Dog.
 
+>[action]
+>Make a new file called `my-dogs.py`. Inside there write the following code.
 
-
-Instead, you just want to ask *your* dog, Spot, to bark. Wait, you don't have a dog named spot, you'll have to make one.
-
-You need to create an **instance** of your Dog class in memory before you can use it. The process of creating an object in memory from the class definition is called **instantiation**. The Dog class defines the instructions for Python to create an object, known as an **instance**, in memory.
-
-```python
-my_dog = Dog()
-```
-
-This line will take our class definition `Dog` and create an **instance** of it in memory. We can then refer to the object's memory address with the name `my_dog`.
-
-Try this code out in your own file named `dog.py`.
-
-```python
-class Dog:
-    def bark(self):
-        print("Woof!")
-
-
-my_dog = Dog()
-my_dog.bark()
-```
-
-If you run this file in the terminal you should see the following output.
-
-```
-Woof!
-```
-
-### Making Your Code Modular
-
-Typically you'll want your code to be modular. We should be able to import our code into other projects without any issues. Python gives us a way to check where our code is being run with the built-in variable `__name__`. This variable will come in handy later.
-
-At the bottom of your `dog.py` file add this line:
-
-```python
-print(__name__)
-```
-When run in the terminal this way `python ./dog.py` you should see
-
-```
-Woof!
-__main__
-```
-
-Inside a different file named `my-dogs.py` write the following code.
-
-```python
+>```python
 import dog
 ```
 
-The import statement allows us to "invoke the import machinery" according to the Python Software Foundation.
-
-Import simply looks for a file with the specified name that also ends with `.py`. Here we have `Dog` described in our `dog.py` file. We had to import it using `import dog` in order for it to work properly.
+Import simply looks for a file with the specified name that also ends with `.py`. So this import statement will run the file `dog.py` and put it into memory for us to use.
 
 You'll notice that if you run `my-dogs.py` the following will display in the terminal
 
@@ -194,56 +194,33 @@ Woof!
 dog
 ```
 
-Can you see what's going on?
+Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
 
-When we import our `dog.py` file, the value for `__name__` is `dog` — the filename in which it exists. Instead when we ran our `dog.py` file directly in the terminal the value for `__name__` was `__main__`.
-
-What is going on here?
-
-As you may have seen, importing the `dog` module immediately ran code that really shouldn't be run if we were going to use it as a proper module.
-
-This means that we should check to see if our code is being run as a module or not before executing statements the way we did.
-
-Think about it like this, you can use the file defining the `Dog` to hold the definition of `Dog` and create an instance named `my_dog` and tell it to bark. Other times, you may want to use the defintion of the Dog class in another project that doesn't want to create the instance `my_dog`.
-
-Add a check to your `dog.py` file to modularize it this way.
-
-```python
+```py
+# dog.py
 class Dog:
-    def bark(self):
-        print("Woof!")
-
-if __name__ == "__main__":
-    my_dog = Dog()
-    my_dog.bark()
+    def __init__(self, name):
+        self.name = name
 ```
 
-You'll notice if you run the `python ./dog.py` you'll see the familiar output
+```py
+# my-dogs.py
+import dog
 
+my_dog = Dog("Rex")
+print(my_dog.breed)
 ```
-Woof!
-```
 
-However, if you run `python ./my-dogs.py` there won't by any output.
+Now run `$ python3 my-dogs.py`. You should see no difference.
 
-We now have behavior the plays well with modularization.
+>[info]
+>You just **Refactored** your code. That means that you changed the way it was written to be cleaner and more modular, but it is functionally equivalent to before. Great work!
 
-> [info]
-> A module is a file containing Python definitions and statements.
+# Use self
 
-### Properties
+When we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
 
-We've seen how to instantiate a Dog object which can bark, but our dog is missing a key component -- a name. Our dog exists at a memory addess that we've labeled `my_dog` but that's not our dog's name. Our anonymous dog may need to own certain unique values called **properties** that should be accessible by that object.
-
-All properties must be assigned to an instance and should be set when the instance is created. For this purpose there is the **constructor** function.
-
-### Constructors
-
-Many languages give you the ability to specify your own method for instantiating a class as an object in memory. This special method is called a **constructor** because it constructs an object in memory. Specifying a constructor allows us to initialize our object with unique values at creation.
-
-We should use the python method `__init__` to set any initial values at the time our object is created in memory.  This allows you to specify any initial setup steps involved when Python creates your object. The most common task that will occur in the constructor is initiallizing instance variables.
-
-Add a constructor function to the Dog class like this:
+Read this example:
 
 ```python
 class Dog:
@@ -258,24 +235,20 @@ With a constructor we are able to specify a unique name for your dog and store i
 
 Test it for yourself.
 
-```python
-my_dog = Dog("Spot")
-print(my_dog.name)
-my_dog.bark()
-```
+1. Add `bark(self)` and update the print statement inside the `bark` method.
+1. Now test to see if your bark method includes your dog's name:
 
-This will output:
+Does it work?
 
-```
-Spot
-Spot says: woof!
-```
-
-in the terminal.
+# Make Another Dog
 
 If we want another dog we can create a new dog with the name Annie this way.
 
 ```python
+# my-dogs.py
+import dog
+...
+
 my_other_dog = Dog("Annie")
 print(my_other_dog.name)
 ```
@@ -286,44 +259,17 @@ If you run this you'll see the following.
 Annie
 ```
 
-### Class Variables
-
-Class variables are different from instance variables. Remember there is only one class, while you can make create any number of instacnes from that class. Class variables represent a value that is owned by the class itself and is not stored with each instance.
-
-Imagine that all dogs say "Woof!" when they bark. You might store this string with the class like this:
-
-```python
-class Dog:
-    greeting = "Woof!"
-
-    def __init__(self, name):
-        self.name = name
-
-    def bark(self):
-        print(self.name+" says:"+Dog.greeting)
-```
-
-Here the variable `greeting` is defined in the class block, and is accessed from the `Dog` class itself: `Dog.greeting`.
-
-Class varaibles are not as useful as instance variables, you will use them seldom. On the other hand, ervery class you create will use one or more instance variables.
-
-### Instance Variables
-
-Instance variables are stored with each instance, and each instance can have it's own unique values. Instance variables are also called properties.
-
-Instance variables should be defined in the constructor.
-
-### Compare instance variables with class variables
+# Dog Challenges & Review Questions
 
 You like dogs! Try these challenges:
 
-1. Make three more dogs
-1. Give each a new name
-1. Tell each of your dogs to bark
+1. Make three dogs with fun names and breeds
+1. Write two new methods to have the dogs sit and roll over (just print "<<DOG'S NAME>> sits", "<<DOG'S NAME>> rolls over").
+1. Have one dog bark, one sit, and one roll over.
 
-Notice how each dog displays it's unique name when you call the bark method. Why is this?
+Notice how each dog displays it's unique name when you call the bark method. Do you remember why this is?
 
-Notice how each dog makes the same sound "Woof!" whne it barks. Why is this?
+Notice how each dog makes the same sound "Woof!" when it barks. Why is this?
 
 Now try this:
 
@@ -331,3 +277,18 @@ Now try this:
 1. Now ask the dogs to bark again by calling the bark method on each instance.
 
 What happened?
+
+# What You Can Do Now
+
+After just this step you can do some awesome stuf with classes and their instances. We'll use all of this as we start to build our superhero dueler!
+
+You can...
+
+* Define a class
+* Define a class's properties
+* Use a `__init__` **Constructor** to specify the required properties of a class instance
+* Define a class's methods
+* Use the class instance inside its own methods
+* Import a python module into any file
+
+Great work! Let's make this superhero dueler!
