@@ -18,7 +18,7 @@ In this tutorial you will learn how to:
 1. Use a **Object Oriented Programming** pattern to manage a more complex piece of software
 1. Define classes and instances of classes
 1. Define static methods on those classes
-1. Use **inheritance** to define super and sub classes and
+1. Use **inheritance** to define superclasses and subclasses
 
 # Taking a Step Back: Dogs
 
@@ -30,6 +30,12 @@ Dogs are great. And we can use them as a simple example of Classes.
 
 # Make a Dog Class & Dog Instance
 
+A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
+
+You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a construction company can produce many buildings from a single set of blueprints. At the same time each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color, model, make, date of production, previous owners etc).
+
+### Make a Dog Class
+
 Let's make a simple class called `Dog`.
 
 >[action]
@@ -37,15 +43,17 @@ Let's make a simple class called `Dog`.
 
 >```$ touch dog.py```
 
-Now define a class using the `class` keyword in Python, and we're going to already add one **Method** called `bark`:
+> Now define a class using the `class` keyword in Python, and we're going to already add one **Method** called `bark`:
 
-```python
+>```python
+# dog.py
+
 class Dog:
     def __init__(self, name):
         self.name = name
 ```
 
-A class has really two parts: **properties** (data) that it needs to store, and **methods** (blocks of code) that should exist within an object along with any .
+# Make an Instance of the Dog Class
 
 Now to use this **Class** or _blueprint_ of a dog, we have to run it, which saves it into memory and allows us to use it to make instances of the dog class, called **instances**. The process of creating an object in memory from the class definition is called **instantiation**. We will make an instance of the Dog class called `my_dog`.
 
@@ -78,12 +86,6 @@ This will print:
 <__main__.Dog object at 0x101488278> # The Dog Class
 Rex # your dog's name
 ```
-
-# What is a Class?
-
-A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
-
-You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a construction company can produce many buildings from a single set of blueprints. At the same time each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color, model, make, date of production, previous owners etc).
 
 # Add a Breed to your Dog
 
@@ -127,9 +129,9 @@ TypeError: __init__() missing 1 required positional argument: 'breed'
 
 # Add an Instance Method
 
-Remember classes are groups of data and actions, data attached to classes are key-value pairs called **Properties**, and the actions that class can take are called **Methods**.
+A class has really two parts: **properties** (data) which you've seen, and **methods** (actions) that that an instance of that class can do.
 
-What are some actions a dog can take? How about barking?
+What are some actions a dog can take? How about barking? What other actions can a dog do?
 
 Let's define our first method called `bark`. This will let us call something like this: `my_dog.bark()`. And then we can print "Woof!"
 
@@ -159,6 +161,9 @@ The `bark()` method is nested within in a class definition: `class Dog:`. This d
 
 We can't call this method on the class. We can't call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Or maybe more accurately, asking the blueprint of a dog to bark. That does't make sense! Instead we need to make an **Instance** of the `Dog` model and then ask that instance to bark. That is why methods defined in this way are called **Instance Methods**.
 
+>[info]
+>Remember classes are groups of data and actions, data attached to classes are key-value pairs called **Properties**, and the actions that class can take are called **Methods**.
+
 # So Far... Procedural vs Object Oriented Programming
 
 So far most code you've written is probably **Procedural** meaning it is written as a **series of unconnected steps** executed by the computer.
@@ -169,12 +174,11 @@ We've learned how to use functions to create code that is re-usable and maintain
 
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world.
 
+# Importing Your Class Module
 
-# Writing Modular Code
+Well crafted code should always be modular, meaning each of its reusable parts is separated into its own file.
 
-Well crafted code should always be modular, meaning each of its reusable parts is separated into its own file. Classes are very modular, since you can write a class in one file, and then use it anywhere using the Python keyword `import`. Let's make our code modular and separate the class code from the code that instantiates a dog and calls its methods.
-
-# Importing Your Class
+Classes are very modular, since you can write a class in one file, and then use it anywhere using the Python keyword `import`. Let's make our code modular and separate the class code from the code that instantiates a dog and calls its methods.
 
 Let's import the Dog class into a new file were we'll make some instances of Dog.
 
