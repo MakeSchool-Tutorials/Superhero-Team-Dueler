@@ -51,7 +51,7 @@ Let's make a simple class called `Dog`.
 class Dog:
     def __init__(self, name):
         self.name = name
-```
+>```
 
 # Make an Instance of the Dog Class
 
