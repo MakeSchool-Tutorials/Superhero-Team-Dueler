@@ -1,0 +1,18 @@
+# Dog Object vs. Dog Class
+
+We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data (called **properties**) and code (called **methods**). Both properties and methods are similar to the **variables** and **functions** that we've already seen and written. The difference is that properties and methods are localized to the **scope** of their object.
+
+```python
+dogs = list()
+dogs.append("German Shepherd")
+dogs.append("Poodle")
+print(dogs)
+```
+
+If you run this you'll see the output:
+
+```
+['German Shepherd', 'Poodle']
+```
+
+Here we have a `list` object that Python gives us. The `list` class contains methods such as `append()` that we can run to manipulate our list object.

@@ -3,7 +3,7 @@ title: Object Oriented Programming: Dogs
 slug: superhero-objects
 ---
 
-## Superhero Team Dueling
+## Superhero Dueler
 
 ![](superhero-clipart.jpg)
 
@@ -13,61 +13,125 @@ There are times when the powers of good and evil come together in a mighty clash
 
 Our task is to create a superhero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **Object Oriented Programming** to build our applications instead of relying completely on functions.
 
-### Procedural vs Object Oriented Programming
+In this tutorial you will learn how to:
+
+1. Use a **Object Oriented Programming** pattern to manage a more complex piece of software
+1. Define classes and instances of classes
+1. Define static methods on those classes
+1. Use **inheritance** to define super and sub classes and
+
+# Taking a Step Back: Dogs
+
+Building a superhero dueler is going to get kinda complex, so let's start by exploring how **Classes** and **Object Oriented Programming** works using a simpler idea: Dogs.
+
+![](dog.jpg)
+
+Dogs are great. And we can use them as a simple example of Classes.
+
+# Make a Dog Class & Dog Instance
+
+Let's make a simple class called `Dog`.
+
+>[action]
+>Make the file `dog.py`
+
+>```$ touch dog.py```
+
+Now define a class using the `class` keyword in Python, and we're going to already add one **Method** called `bark`:
+
+```python
+class Dog:
+    def __init__(self, name):
+        self.name = name
+```
+
+A class has really two parts: **properties** (data) that it needs to store, and **methods** (blocks of code) that should exist within an object along with any .
+
+Now to use this **Class** or _blueprint_ of a dog, we have to run it, which saves it into memory and allows us to use it, like this:
+
+>[action]
+> Instantiate a dog instance:
+>```py
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+my_dog = Dog.("Rex")
+print(my_dog)
+print(my_dog.name)
+```
+
+>```bash
+$ python3 dog.py
+```
+
+This will print:
+
+```bash
+<__main__.Dog object at 0x101488278> # The Dog Class
+Rex # your dog's name
+```
+
+# Add a Breed to your Dog
+
+We can extend the **Properties** of your
+
+# Add an Instance Method
+
+```python
+class Dog:
+    # Properties are defined inside the __init__ method
+    def __init__(self, name):
+        self.name = name
+    # Methods are defined as their own named functions inside the class
+    def bark(self):
+        print("Woof!")
+```
+
+Our `Dog` class has a method called `bark` that when called will print out `Woof!` to the terminal. The syntax is similar to the syntax that we've already seen when building functions but, there are some key differences.
+
+>[action]
+>Run the `dog.py` file
+
+>```$ python3 dog.py```
+
+>What do you see?
+
+
+### What is a Class?
+
+A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
+
+You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color).
+
+
+
+
+
+
+
+
+The `bark()` method is nested within in a class definition: `class Dog:`. This defines the `bark()` method as a member of the `Dog` class.
+
+We can't just call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Or maybe more accurately, asking the definition or blueprint of a dog to bark. That does't make sense! Instead we need to make an **Instance** of the `Dog` model and then ask that instance to bark. That is why methods defined in this way are called **Instance Methods**.
+
+
+### So Far... Procedural vs Object Oriented Programming
+
+So far most code you've written is probably **Procedural** meaning it is written as a **series of unconnected steps** executed by the computer.
+
+When software becomes very complex, procedural programming can becoming too difficult to organize and track how a program is working. As a solution to this complexity, software engineers looked for logical and intuitive ways to **group together various data and actions**. There are multiple ways to accomplish this, but the most popular is **Object Oriented Programming** or **OOP**, which you will encounter again and again in your career as a software engineer.
 
 We've learned how to use functions to create code that is re-usable and maintainable. We have already benefitted from some of the power that objects give us but haven't explored the depths that are available to us.
 
 Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world.
 
-# Dog Object vs. Dog Class
-
-We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data (called **properties**) and code (called **methods**). Both properties and methods are similar to the **variables** and **functions** that we've already seen and written. The difference is that properties and methods are localized to the **scope** of their object.
-
-```python
-dogs = list()
-dogs.append("German Shepherd")
-dogs.append("Poodle")
-print(dogs)
-```
-
-If you run this you'll see the output:
-
-```
-['German Shepherd', 'Poodle']
-```
-
-Here we have a `list` object that Python gives us. The `list` class contains methods such as `append()` that we can run to manipulate our list object.
-
-> ## What is an Object?
-
->An object is a collection of data (properties) and code (methods) somewhere in memory.
-
->Above, our memory address is referred by the name `dogs`.
-
->Through that memory address you can access the properties and methods within the object.
-
-# Define a Dog Class
-
-```python
-class Dog:
-    def bark(self):
-        print("Woof!")
-```
-
-Here's an example of how to make a simple class. Our Dog class has a method called `bark` that when called will print out `Woof!` to the terminal. The syntax is similar to the syntax that we've already seen when building functions but, there are some key differences.
-
-> ## What is a Class?
-
->A **class** on the other hand is simply the specification that tells the computer what our object needs. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
-
->You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a factory can produce many cars from a single set of specifications. Each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color).
-
->A class describes the **methods** (blocks of code) that should exist within an object along with any **properties** (data) that it needs to store.
 
 
-The `bark()` method is nested within in a class definition: `class Dog:`. This defines the `bark()` method as a member of the `Dog` class.
 
-We can't just call `Dog.bark()` and expect something to happen. That would be like asking all dogs to bark. Or maybe more accurately, asking the defintition/description or blueprint of a dog to bark! Rather than asking one of the dogs created from that blueprint to bark.
+
+
+
 
 Instead, you just want to ask *your* dog, Spot, to bark. Wait, you don't have a dog named spot, you'll have to make one.
 
