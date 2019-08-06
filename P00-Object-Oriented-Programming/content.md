@@ -132,6 +132,7 @@ Traceback (most recent call last):
     my_dog = Dog("Rex")
 TypeError: __init__() missing 1 required positional argument: 'breed'
 ```
+
 >Can you produce this error yourself by removing the breed argument "SuperDog" from your `Dog("Rex", "SuperDog")` call?
 
 # Add an Instance Method
