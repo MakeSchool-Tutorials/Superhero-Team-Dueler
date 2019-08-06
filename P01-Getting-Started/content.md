@@ -548,4 +548,8 @@ In order to maintain code clarity and to comply with industry best practises we 
 
 >Always use `self` for the first argument to instance methods.
 
-So even though it's not enforced by the language it's still important to be consistent and always use `self` the way the style guide suggests. This will allow your code to be clear and consistent across multiple projects and will match the work done by other Python developers as well.
+So even though it's not enforced by the language it's still important to be consistent and always use `self` the way the style guide suggests. This will allow your code to be clear and consistent across multiple projects and it will match the work done by other Python developers as well.
+
+## Move to the Next Section
+
+Now that you have the basic attack functionality for a single hero, lets move on to the team functionality.
