@@ -29,7 +29,6 @@ class Hero:
          '''
          pass
 
-
     def add_ability(self, ability):
         ''' Add ability to abilities list '''
         pass
@@ -439,6 +438,7 @@ if __name__ == "__main__":
     hero1.add_ability(ability2)
     hero2.add_ability(ability3)
     hero2.add_ability(ability4)
+    hero1.fight(hero2)
 ```
 
 You should see an output similar to:
