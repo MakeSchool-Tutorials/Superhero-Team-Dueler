@@ -30,11 +30,13 @@ How does a dog help us with programming?
 
 ## Describing a Dog as an Object
 
-Object oriented programming seeks to represent code as **objects** somewhere in your computer's memory. Before you can get an object however you need to create a **class** -- or the blueprint from which that object is constructed by the computer.
+We've seen and used objects in Python already. A Python list for example is an object that we've already encountered. Objects hold data (called **properties**) and code (called **methods**). Both properties and methods are similar to the **variables** and **functions** that we've already seen and written. The difference is that properties and methods are localized to the **scope** of their object.
+
+Object oriented programming seeks to represent code similarly to the way you think of objects in the real world by describing the features - such as color, or breed, and actions such as bark and eat -- that are associated with the object. Before we can build an object however we need to create a **class** -- or the blueprint from which that object is constructed by the computer.
 
 A **class** is like a set of instructions that tells the computer how to create your object in memory. A class describes the methods (functions) and properties (variables) that will exist in the object when it's created (or **instantiated**) in memory.
 
-The class allows you to create many objects from a single class just as a factory can produce many toy cars from a single set of designs. At the same time each object can store unique values associated with it just as each car from a factory can have different options (for example, its color, number of doors, and other features).
+The `class` allows many objects to be created from a single definition just as a factory can produce many toy cars from a single set of designs. At the same time each object can store unique values associated with it just as each car from a factory can have different options (for example, its color, number of doors, and other features).
 
 ### Make a Dog Class
 
@@ -115,6 +117,7 @@ To add a property to the class upon **initialization** we update the `__init__` 
 
 >[action]
 >Here we go:
+
 >```
 # dog.py
 class Dog:
@@ -229,11 +232,54 @@ Now run `$ python3 my-dogs.py`. You should see no difference.
 >[info]
 >You just **Refactored** your code. That means that you changed the way it was written to be cleaner and more modular, but it is functionally equivalent to before. Great work!
 
+## A Note on Scope and Encapsulation
+
+Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
+
+In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that the former "Benevolent Dictator of Python for Life", Guido Van Rossum, had decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth.
+
+Scope and encapsulation can be thought as useful features that allow us to compartmentalise code instead of providing a measure of security.
+
+```python
+def greeting():
+    message = "Hello World!"
+    return message
+
+print(message)
+
+```
+
+If you were to run the above block of code separately you will encounter the error:
+
+```
+NameError: name 'message' is not defined
+```
+
+This is because `message` is declared inside our function `greeting`. Our function greeting has a 'lexical scope' which means the values are only available from within that function.
+
+We can however flip it around like this.
+
+```python
+message = "Hello World!"
+
+def greeting():
+    print(message)
+
+greeting()
+```
+
+This bit of code will output:
+
+```
+Hello World!
+```
+
+In this example we have declared our message variable in a 'global scope'. That means that any functions we declare will also have access to the 'global scope'. The variables that exist within the function however have a 'local scope' that is not available in the global context.
+
 # Using self
 
-So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. Its easy to think that
-
-When we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
+So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. It's easy to think that
+when we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
 
 Read this example:
 
