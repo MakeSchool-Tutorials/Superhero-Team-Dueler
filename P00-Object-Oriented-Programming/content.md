@@ -22,7 +22,7 @@ In this tutorial you will learn how to:
 
 ## Taking a Step Back: Dogs
 
-Every hero needs some help along their journey. We're going to enlist the help of humanity's greatest friend to help us understand the concepts behind **Object Oriented Programming**. 
+Every hero needs some help along their journey. We're going to enlist the help of humanity's greatest friend to help us understand the concepts behind **Object Oriented Programming**.
 
 ![](dog.jpg)
 
@@ -60,13 +60,13 @@ Now to use this **Class** or _blueprint_ of a dog, we have to run it, which save
 
 >[action]
 > Instantiate a dog instance:
-
+>
 >```py
 # dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
-
+>
 my_dog = Dog.("Rex")
 print(my_dog)
 print(my_dog.name)
@@ -100,7 +100,7 @@ We can extend the **Properties** of your `Dog` class two ways, either on the fly
 
 To add a new property on the fly, simply name it and attach it to a dog instance:
 
-```py
+```python
 # dog.py
 class Dog:
     def __init__(self, name):
@@ -121,7 +121,7 @@ class Dog:
     def __init__(self, name, breed):
         self.name = name
         self.breed = breed
-
+>
 my_dog = Dog("Rex", "SuperDog")
 print(my_dog.breed)
 ```
@@ -231,7 +231,7 @@ Now run `$ python3 my-dogs.py`. You should see no difference.
 
 # Using self
 
-So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. Its easy to think that 
+So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. Its easy to think that
 
 When we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
 
