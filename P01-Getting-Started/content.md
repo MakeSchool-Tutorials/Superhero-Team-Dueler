@@ -19,7 +19,7 @@ class Hero:
         '''
         Initialize these values as instance variables:
 
-        (Some of these values are passed in above, 
+        (Some of these values are passed in above,
         others will need to be set at a starting value.)
 
         abilities:List
@@ -163,7 +163,7 @@ if __name__ == "__main__":
     print(ability.attack())
 ```
 
-If your code is written correctly you should see a number between 0 and 20 appear in the terminal if you use this example to test with. 
+If your code is written correctly you should see a number between 0 and 20 appear in the terminal if you use this example to test with.
 
 My code gives me the following:
 
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     print(hero.abilities)
 ```
 
-You should see output similar to the following: 
+You should see output similar to the following:
 
 ```
 [<__main__.Ability object at 0x7f8debceeb00>]
@@ -263,12 +263,12 @@ Our hero has abilites, but can't yet use them. Build an `attack` method that wil
         Calculates damage from list of abilities.
 
         This method should call Ability.attack()
-        on every ability in self.abilities and return the total of all attacks. 
+        on every ability in self.abilities and return the total of all attacks.
         '''
         pass
 ```
 
-This method should iterate over our `abilities` list and call the `attack()` method on every ability. Remember that our abilites return a random value so we have to total all those values up to get the total attack strength of all abilities. This is the total amount of damage done by the attack. 
+This method should iterate over our `abilities` list and call the `attack()` method on every ability. Remember that our abilites return a random value so we have to total all those values up to get the total attack strength of all abilities. This is the total amount of damage done by the attack.
 
 It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list.
 
@@ -449,107 +449,6 @@ Dumbledore died
 
 This is because the values of Wonder Woman's attack are much greater than Dumbledore's. Try changing the values and see what happens.
 
-## A Note on Scope and Encapsulation
-
-Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
-
-In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that the former "Benevolent Dictator of Python for Life", Guido Van Rossum, had decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth.
-
-Scope and encapsulation can be thought as useful features that allow us to compartmentalise code instead of providing a measure of security.
-
-```python
-def greeting():
-    message = "Hello World!"
-    return message
-
-print(message)
-
-```
-
-If you were to run the above block of code separately you will encounter the error:
-
-```
-NameError: name 'message' is not defined
-```
-
-This is because `message` is declared inside our function `greeting`. Our function greeting has a 'lexical scope' which means the values are only available from within that function. 
-
-We can however flip it around like this.
-
-```python
-message = "Hello World!"
-
-def greeting():
-    print(message)
-
-greeting()
-```
-
-This bit of code will output:
-
-```
-Hello World!
-```
-
-In this example we have declared our message variable in a 'global scope'. That means that any functions we declare will also have access to the 'global scope'. The variables that exist within the function however have a 'local scope' that is not available in the global context.
-
-
-### The `self` Argument
-You may be seeing `self` places in our code and wonder why on earth is it necessary? You may be able to deduce that `self` allows us access to things outside of a particular method. We can get some clue about what's going on if we leave it out and see what happens.
-
-```python
-class Dog:
-    def bark():
-        print("Woof")
-
-mydog = Dog()
-mydog.bark()
-```
-
-You'll see an error when the bark method is run.
-
-```
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: bark() takes 0 positional arguments but 1 was given
-```
-
-What is this error saying? Here is the clue:
-
-```
-bark() takes 0 positional arguments but 1 was given
-```
-
-When we run a method, `bark()` in this case, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. This allows us to access anything else inside our object.
-
-Here our `bark` method doesn't accept any parameters so it fails when Python tries to pass in the instantiated object.
-
-Many languages take care of passing a reference to the parent invisibly by using a reserved keyword such as `this`. The Python philosophy of "explicit is better than implicit" is one of the reasons that `self` is not handled automatically behind the scenes. By explicitly passing a reference to the instantiated object, Python bypasses the issue of what `this` refers to.
-
-In Python the word `self` is not **reserved** like the word `this` is in other languages. Not only will Python allow you to use self anywhere you like, but it doesn't even require the first parameter to be named `self`.
-
-```python
-class Dog:
-    def bark(object):
-        print("Woof")
-
-if __name__ == "__main__":
-    my_dog = Dog()
-    my_dog.bark()
-```
-
-As you can see instead of `self` this block of code uses the word `object`. If you run this you'll see that the output will be:
-
-```
-Woof
-```
-
-In order to maintain code clarity and to comply with industry best practises we follow the PEP8 style guide. In this case our style guide is clear:
-
->Always use `self` for the first argument to instance methods.
-
-So even though it's not enforced by the language it's still important to be consistent and always use `self` the way the style guide suggests. This will allow your code to be clear and consistent across multiple projects and it will match the work done by other Python developers as well.
-
 ## Move to the Next Section
 
-Now that you have the basic attack functionality for a single hero, lets move on to the team functionality.
+Now that we have the basic functionality that allows our heros to duel each other, we can begin to move to the next important feature of object oriented programming -- inheritance.
