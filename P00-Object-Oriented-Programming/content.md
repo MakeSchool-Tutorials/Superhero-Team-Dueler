@@ -15,24 +15,26 @@ Our task is to create a superhero team dueling application so we can be sure we'
 
 In this tutorial you will learn how to:
 
-1. Use a **Object Oriented Programming** pattern to manage a more complex piece of software
+1. Use an **Object Oriented Programming** pattern to manage a more complex piece of software
 1. Define classes and instances of classes
 1. Define static methods on those classes
 1. Use **inheritance** to define superclasses and subclasses
 
-# Taking a Step Back: Dogs
+## Taking a Step Back: Dogs
 
-Building a superhero dueler is going to get kinda complex, so let's start by exploring how **Classes** and **Object Oriented Programming** works using a simpler idea: Dogs.
+Every hero needs some help along their journey. We're going to enlist the help of humanity's greatest friend to help us understand the concepts behind **Object Oriented Programming**. 
 
 ![](dog.jpg)
 
-Dogs are great. And we can use them as a simple example of Classes.
+How does a dog help us with programming?
 
-# Make a Dog Class & Dog Instance
+## Describing a Dog as an Object
 
-A **class** is like a blueprint or an object. A class describes the methods and properties that will exist in the object and the computer uses that specification to create (or **instantiate**) an object in memory.
+Object oriented programming seeks to represent code as **objects** somewhere in your computer's memory. Before you can get an object however you need to create a **class** -- or the blueprint from which that object is constructed by the computer.
 
-You can think of a class as the blueprint for the object that will exist in memory. You can create many objects from a single class just as a construction company can produce many buildings from a single set of blueprints. At the same time each object can store unique values in it's properties just as each car from a factory can have different options (for example, its color, model, make, date of production, previous owners etc).
+A **class** is like a set of instructions that tells the computer how to create your object in memory. A class describes the methods (functions) and properties (variables) that will exist in the object when it's created (or **instantiated**) in memory.
+
+The class allows you to create many objects from a single class just as a factory can produce many toy cars from a single set of designs. At the same time each object can store unique values associated with it just as each car from a factory can have different options (for example, its color, number of doors, and other features).
 
 ### Make a Dog Class
 
@@ -40,9 +42,9 @@ Let's make a simple class called `Dog`.
 
 >[action]
 >Make the file `dog.py`
-
+>
 >```$ touch dog.py```
-
+>
 > Now define a class using the `class` keyword in Python, and we're going to already add one **Method** called `bark`:
 
 >```python
@@ -177,17 +179,15 @@ We can't call this method on the class. We can't call `Dog.bark()` and expect so
 
 So far most code you've written is probably **Procedural** meaning it is written as a **series of unconnected steps** executed by the computer.
 
-When software becomes very complex, procedural programming can becoming too difficult to organize and track how a program is working. As a solution to this complexity, software engineers looked for logical and intuitive ways to **group together various data and actions**. There are multiple ways to accomplish this, but the most popular is **Object Oriented Programming** or **OOP**, which you will encounter again and again in your career as a software engineer.
+When software becomes very complex, procedural programming can become too cumbersome. As a solution to this complexity, software engineers looked for logical and intuitive ways to **group together various data and actions**. There are multiple ways to accomplish this, but the most popular is **Object Oriented Programming** or **OOP**, which you will encounter again and again in your career as a software engineer.
 
-We've learned how to use functions to create code that is re-usable and maintainable. We have already benefitted from some of the power that objects give us but haven't explored the depths that are available to us.
-
-Procedural programming has its uses but it can be limiting in certain ways. **Object oriented programming** -- known as **OOP** -- seeks to develop strategies for organizing data loosely based on how we think of objects in the real world.
+We've learned how to use functions to create code that is re-usable and maintainable. We also have already benefitted from some of the power that objects give us but haven't explored the depths that are available to us.
 
 # Importing Your Class Module
 
 Well crafted code should always be modular, meaning each of its reusable parts is separated into its own file.
 
-Classes are very modular, since you can write a class in one file, and then use it anywhere using the Python keyword `import`. Let's make our code modular and separate the class code from the code that instantiates a dog and calls its methods.
+Classes are very modular, since you can write a class in one file, and then use it elsewhere using the Python keyword `import`. Let's make our code modular and separate the class code from the code that instantiates a dog and calls its methods.
 
 Let's import the Dog class into a new file were we'll make some instances of Dog.
 
@@ -209,14 +209,14 @@ Woof!
 
 Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
 
-```py
+```python
 # dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
 ```
 
-```py
+```python
 # my-dogs.py
 import dog
 
@@ -229,7 +229,9 @@ Now run `$ python3 my-dogs.py`. You should see no difference.
 >[info]
 >You just **Refactored** your code. That means that you changed the way it was written to be cleaner and more modular, but it is functionally equivalent to before. Great work!
 
-# Use self
+# Using self
+
+So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. Its easy to think that 
 
 When we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
 
