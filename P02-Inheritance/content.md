@@ -4,7 +4,7 @@ slug: inheritance
 ---
 
 ## Inheritance
-One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in useful because it allows for additional ways to reuse code.
+One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in handy because it allows for additional ways to reuse code.
 
 Here is a simple demonstration of inheritance at work.
 
@@ -102,7 +102,7 @@ This is called **method overriding** and allows you to specify a different funct
 
 Everything else that was created in the `Ability` class will work the same.
 
-Create a new implementation of attack that returns a random value between the full attack power and half of the full attack power. 
+Create a new implementation of attack that returns a random value between the full attack power and half of the full attack power.
 
 If for example the maximum attack value is 80 then this attack method should return a value between 40 and 80.
 
@@ -204,7 +204,7 @@ For additional `pytest` options see their documentation [here](https://docs.pyte
 Make sure all the tests in the `hero_test.py` file pass.
 
 ## A Note About Python 2 vs Python 3
-One of the exciting features about python3 is that it supports unicode! This is great but it can cause compatibility issues when running python2. 
+One of the exciting features about python3 is that it supports unicode! This is great but it can cause compatibility issues when running python2.
 
 If you receive an error saying that there's a unicode error you'll need to force pytest to use python3 this way.
 
