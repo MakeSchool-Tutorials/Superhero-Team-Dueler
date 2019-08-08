@@ -3,7 +3,7 @@ title: Inheritance
 slug: inheritance
 ---
 
-## Inheritance
+# Inheritance and Polymorphism
 One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in handy because it allows for additional ways to reuse code.
 
 Here is a simple demonstration of inheritance at work.
@@ -77,9 +77,41 @@ You can see that we didn't have to create another sleep method again in order to
 
 In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
 
+
+>[action]
+>Create the file `animal.py` file
+
+>```$ touch animal.py```
+
+>Create a `class` named `Animal` which has the methods `eat` and `drink` as well
+>as the property `name`.
+>
+>The eat method should print the animal's name and "is eating"
+>
+>The drink method should print the animal's name and "is drinking"
+
+Here's the solution:
+
+>[solution]
+>This will print:
+
+>```bash
+class Animal:
+  def __init__(self, name):
+    self.name = name
+>
+  def eat(self):
+    print('{} is eating'.format(self.name))
+>
+  def drink(self):
+    print('{} is drinking'.format(self.name))
+```
 Lets use what we learned here to give our superheroes more options for attack.
 
-## Weapon Class
+# Weapon Class
+
+TODO:Blurb about polymorphism
+
 We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
 We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
@@ -108,7 +140,7 @@ If for example the maximum attack value is 80 then this attack method should ret
 
 Make sure to use integer division ( Using the `//` operator) to be certain that you return an integer.
 
-## Build Team class
+# Build Team class
 Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
 Implement the following methods using everything we've learned so far.
@@ -116,7 +148,7 @@ Implement the following methods using everything we've learned so far.
 ```python
 class Team:
     def __init__(self, team_name):
-        '''Instantiate resources.'''
+        '''Create a new team of heroes with the given name.'''
         self.name = team_name
         self.heroes = list()
 
@@ -141,7 +173,7 @@ These are some of the methods you'll need to implement.
 
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
-## Test Driven Development
+# Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way.
 
 Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform before we even write the program.
@@ -171,7 +203,7 @@ You should see something similar to this output.
 This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packages/pytest.py
 ```
 
-## Pass Your First Test
+# Pass Your First Test
 Tests have been provided to help you with this assignment.
 
 You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as heroperoes.py
