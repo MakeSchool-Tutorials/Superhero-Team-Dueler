@@ -110,7 +110,9 @@ Lets use what we learned here to give our superheroes more options for attack.
 
 # Weapon Class
 
-TODO:Blurb about polymorphism
+One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
+
+Polymorphism basically allows us use a different implementation of a method that better suits our needs.
 
 We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
@@ -121,11 +123,11 @@ Here are the methods that you'll need to write for our new `Weapon` class.
 ```python
 class Weapon(Ability):
     def attack(self):
-        """
-        This method should should return a random value
+        """  This method returns a random value
         between one half to the full attack power of the weapon.
-        Hint: The attack power is inherited.
         """
+        # TODO: Use what you learned to complete this method.
+        pass
 ```
 
 Here we've re-defined a method that already exists in our inherited `Ability` class.
@@ -146,32 +148,57 @@ Superheroes should be team players, so lets create a team class that can manage 
 Implement the following methods using everything we've learned so far.
 
 ```python
-class Team:
-    def __init__(self, team_name):
-        '''Create a new team of heroes with the given name.'''
-        self.name = team_name
-        self.heroes = list()
-
-    def add_hero(self, hero):
-        '''Add Hero object to heroes list.'''
-        pass
-
-    def remove_hero(self, name):
+* Team:
+ 1. __init__: Paramaters: team_name: String
+        '''Creates a new team of heroes with the given name.
+            Properties:
+              name: String
+              heroes: List[Hero] (List of Hero Objects)
         '''
-        Remove hero from heroes list.
-        If Hero isn't found return 0.
-        '''
-        pass
+        # TODO: Set the required instance variables
 
-    def view_all_heroes(self):
-        '''Print out all heroes to the console.'''
-        pass
+  2. add_hero: Parameters: hero:Hero
+      '''Add Hero object to heroes list.'''
+      # TODO: Add the Hero object that is passed in to the list of heroes in
+      # self.heroes
+      pass
+
+  3. remove_hero: Parameters: name:String
+      '''Remove hero from heroes list.
+      If Hero isn't found return 0.
+      '''
+      # TODO: Create this function to the specifications listed in the
+      # listed in the docstring
+      pass
+
+  4. view_all_heroes: Parameters: None
+      '''Print out all heroes to the console.'''
+      # TODO: Create a function that will print a list of all the teams
+      # Heroes to the terminal.
+      pass
 
 ```
 
-These are some of the methods you'll need to implement.
+These are the methods you'll need to implement.
 
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
+
+
+# Build the Constructor
+
+We need to initialize the values that our team needs to start at.
+Use the method docstrings to create the constructor.
+
+```python
+def __init__(self, team_name):
+'''Creates a new team of heroes with the given name.
+    Properties:
+      name: String
+      heroes: List[Hero] (List of Hero Objects)
+'''
+# TODO: Set the required instance variables
+```
+
 
 # Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way.
