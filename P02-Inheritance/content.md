@@ -3,8 +3,8 @@ title: Inheritance
 slug: inheritance
 ---
 
-## Inheritance
-One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in useful because it allows for additional ways to reuse code.
+# Inheritance and Polymorphism
+One of the great features of object oriented programming is the idea of **inheritance**. Inheritance comes in handy because it allows for additional ways to reuse code.
 
 Here is a simple demonstration of inheritance at work.
 
@@ -77,10 +77,44 @@ You can see that we didn't have to create another sleep method again in order to
 
 In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
 
+
+>[action]
+>Create the file `animal.py` file
+
+>```$ touch animal.py```
+
+>Create a `class` named `Animal` which has the methods `eat` and `drink` as well
+>as the property `name`.
+>
+>The eat method should print the animal's name and "is eating"
+>
+>The drink method should print the animal's name and "is drinking"
+
+Here's the solution:
+
+>[solution]
+>This will print:
+
+>```bash
+class Animal:
+  def __init__(self, name):
+    self.name = name
+>
+  def eat(self):
+    print('{} is eating'.format(self.name))
+>
+  def drink(self):
+    print('{} is drinking'.format(self.name))
+```
 Lets use what we learned here to give our superheroes more options for attack.
 
-## Weapon Class
-We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
+# Weapon Class
+
+One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
+
+Polymorphism basically allows us to use different implementations of the same method.
+
+For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
 We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
 
@@ -89,26 +123,26 @@ Here are the methods that you'll need to write for our new `Weapon` class.
 ```python
 class Weapon(Ability):
     def attack(self):
-        """
-        This method should should return a random value
+        """  This method returns a random value
         between one half to the full attack power of the weapon.
-        Hint: The attack power is inherited.
         """
+        # TODO: Use what you learned to complete this method.
+        pass
 ```
 
 Here we've re-defined a method that already exists in our inherited `Ability` class.
 
-This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
+This is called **method overriding** and it is a form of **Polymorphism**. It basically allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
 Everything else that was created in the `Ability` class will work the same.
 
-Create a new implementation of attack that returns a random value between the full attack power and half of the full attack power. 
+Create a new implementation of attack that returns a random value between the full attack power and half of the full attack power.
 
 If for example the maximum attack value is 80 then this attack method should return a value between 40 and 80.
 
 Make sure to use integer division ( Using the `//` operator) to be certain that you return an integer.
 
-## Build Team class
+# Build Team class
 Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
 Here's an overview of the methods we'll need.
@@ -119,9 +153,6 @@ Here's an overview of the methods we'll need.
     2. add_hero: Parameters: hero:String
     3. remove_hero: Parameters name: String
     4. view_all_heroes: Parameters: None
-
-
-
 
 These are some of the methods you'll need to implement.
 
@@ -178,7 +209,7 @@ def view_all_heroes(self):
 This method should print a list of all the teams heroes to the terminal.
 
 
-## Test Driven Development
+# Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way.
 
 Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform before we even write the program.
@@ -208,7 +239,7 @@ You should see something similar to this output.
 This is pytest version 3.2.1, imported from /anaconda3/lib/python3.6/site-packages/pytest.py
 ```
 
-## Pass Your First Test
+# Pass Your First Test
 Tests have been provided to help you with this assignment.
 
 You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as heroperoes.py
@@ -241,7 +272,7 @@ For additional `pytest` options see their documentation [here](https://docs.pyte
 Make sure all the tests in the `hero_test.py` file pass.
 
 ## A Note About Python 2 vs Python 3
-One of the exciting features about python3 is that it supports unicode! This is great but it can cause compatibility issues when running python2. 
+One of the exciting features about python3 is that it supports unicode! This is great but it can cause compatibility issues when running python2.
 
 If you receive an error saying that there's a unicode error you'll need to force pytest to use python3 this way.
 
