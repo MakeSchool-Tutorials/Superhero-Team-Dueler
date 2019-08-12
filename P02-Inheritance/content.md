@@ -112,9 +112,9 @@ Lets use what we learned here to give our superheroes more options for attack.
 
 One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
 
-Polymorphism basically allows us use a different implementation of a method that better suits our needs.
+Polymorphism basically allows us to use different implementations of the same method.
 
-We've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
+For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
 We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
 
@@ -132,7 +132,7 @@ class Weapon(Ability):
 
 Here we've re-defined a method that already exists in our inherited `Ability` class.
 
-This is called **method overriding** and allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
+This is called **method overriding** and it is a form of **Polymorphism**. It basically allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
 
 Everything else that was created in the `Ability` class will work the same.
 
