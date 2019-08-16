@@ -147,35 +147,16 @@ Superheroes should be team players, so lets create a team class that can manage 
 
 Implement the following methods using everything we've learned so far.
 
+* Team
+  1. __init__:
+
+
 ```python
 * Team:
- 1. __init__: Paramaters: team_name: String
-        '''Creates a new team of heroes with the given name.
-            Properties:
-              name: String
-              heroes: List[Hero] (List of Hero Objects)
-        '''
-        # TODO: Set the required instance variables
-
-  2. add_hero: Parameters: hero:Hero
-      '''Add Hero object to heroes list.'''
-      # TODO: Add the Hero object that is passed in to the list of heroes in
-      # self.heroes
-      pass
-
-  3. remove_hero: Parameters: name:String
-      '''Remove hero from heroes list.
-      If Hero isn't found return 0.
-      '''
-      # TODO: Create this function to the specifications listed in the
-      # listed in the docstring
-      pass
-
-  4. view_all_heroes: Parameters: None
-      '''Print out all heroes to the console.'''
-      # TODO: Create a function that will print a list of all the teams
-      # Heroes to the terminal.
-      pass
+ 1. __init__: Parameters: team_name: String
+ 2. add_hero: Parameters: hero:Hero
+ 3. remove_hero: Parameters: name:String
+ 4. view_all_heroes: Parameters: None
 
 ```
 
@@ -199,6 +180,40 @@ def __init__(self, team_name):
 # TODO: Set the required instance variables
 ```
 
+# Add Hero to Team
+We need to add heroes to our team. Lets create a method to do that. This will be similar to the methods we already wrote when adding armors to our hero.
+
+```python
+def add_hero(self, hero)
+  '''Add Hero object to self.heroes.'''
+  # TODO: Add the Hero object that is passed in to the list of heroes in
+  # self.heroes
+  pass
+```
+
+# Remove Hero from Team
+Sometimes mistakes happen, and sometimes heroes just retire. We need a way to remove a hero from our list. Let's create this functionality.
+
+```python
+def remove_hero(self, hero_name):
+  '''Remove hero from heroes list.
+      hero_name: String
+  '''
+  # TODO: This function should search through our heroes and remove the one
+  # with the given name
+  pass
+```
+
+# View All Heroes
+We need a way to see who's in our team. Create a method that does this.
+
+```python
+def view_all_heroes(self):
+  '''Print out all heroes to the console.'''
+  # TODO: Create a function that will print a list of all the team's
+  # Heroes to the terminal.
+  pass
+```
 
 # Test Driven Development
 Previously we've used user stories to visualize what our finished application should look like before we began to build it. Here instead of user stories we'll use automated tests in much the same way.
