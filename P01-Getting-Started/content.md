@@ -13,6 +13,14 @@ Each method below is labeled with a doc string that describes what it is suppose
 
 The basic overview of the file we'll be writing:
 
+* Ability Class
+  1. `__init__`: Parameters: name: String, max_damage: Integer
+  2. `attack`: No Parameters
+
+* Armor Class
+  1. `__init__`: Parameters: name: String, max_block: Integer
+  2. `block`: Parameters: None
+
 * Hero Class
   1. `__init__`: Parameters: name:String, starting_health:Int (default value: 100)
   2. `add_ability`: Parameters: ability:Ability Object
@@ -22,14 +30,12 @@ The basic overview of the file we'll be writing:
   6. `is_alive`: No Parameters
   7. `fight`: Parameters: opponent: Hero Class  
 
-* Ability Class
-  1. `__init__`: Parameters: name: String, max_damage: Integer
-  2. `attack`: No Parameters
-
 
 # Every Hero Needs an Ability
 
-Our hero will need an ability to be able to save the world. Lets start by creating the `Ability` class that our hero can use.
+Instead of tackling our `Hero` class first, lets start with the classes our `Hero` class will need to use.
+
+Our hero will need an ability to be able to save the world. Lets start by creating a class named `Ability` that our hero can use.
 
 Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 
@@ -108,8 +114,39 @@ Debugging Ability
 
 But your values may be different since we're using a random number generator.
 
-Once your code works, push your code to GitHub.
+Once your code works, push it code to GitHub.
 
+# Add Armors
+You can't go into battle unprepared. We need to give our heroes armor that they can use to defend themselves.
+
+Create a new class called `Armor` that contains two methods: `__init__` and `block`.
+
+The block method should return an integer between 0 and the max_block strength.
+
+## Build the Constructor
+
+```python
+    def __init__(self, name, max_block):
+        '''Instantiate instance properties.
+            name: String
+            max_block: Integer
+        '''
+        # TODO: Create instance variables for the values passed in.
+        pass
+
+```
+
+## Block with Armors
+
+Let's create a method that we can call that will calculate the amount we will block with.
+```python
+def block(self):
+    '''
+    Return a random value between 0 and the
+    initialized max_block strength.
+    '''
+    pass
+```
 # Build out the Hero Class
 Here we define what we want our `Hero` class to look like. Each hero should have a name and should be able to have several different abilities. Also a hero will need other attributes such as starting and current health. Let's set these as some starting value when we create each Hero in memory.
 
@@ -120,7 +157,8 @@ The constructor should start like this:
 ```python
 def __init__(self, name, starting_health=100):
   '''Instance properties:
-      abilities:List
+      abilities: List
+      armors: List
       name: String
       starting_health: Integer
       current_health: Integer
@@ -128,6 +166,7 @@ def __init__(self, name, starting_health=100):
    # TODO: Initialize instance variables values as instance variables
    # (Some of these values are passed in above,
    # others will need to be set at a starting value.)
+   # abilities and armors are lists that will contain objects that we can use
    pass
 ```
 
@@ -256,20 +295,35 @@ if __name__ == "__main__":
 
 You should see a value between 0 and 140 in the terminal.
 
+# Add Armor
+Lets create a method that allows us to add armor.
+
+```python
+def add_armor(self, armor):
+  '''Add armor to self.armors
+    Armor: Armor Object
+  '''
+  # TODO: Add armor object that is passed in to `self.armors`
+```
+This method should receive an armor object that should be added to the list `self.armors` that was instantiated in the constructor.
+
 # Defend Youself
-Our hero needs to be able to block. This function will create a random value between 0 and the total damage amount passed in.
+Our hero needs to be able to block. This function will use our armors to defend against any attacks.
 
 ```python
 def defend(self, damage_amt):
-  '''Return random value between 0 and damage_amt.'''
-  # TODO: Create this function using the same
+  '''Runs `block` method on each armor.
+      Returns sum of all blocks
+  '''
+  # TODO: This method should run the block method on each armor in self.armors
 ```
+Make sure to take into account that there may not be any armor objects in the list.
 
 # Take Damage
 
-When a hero takes damage, their `self.current_health` should be decreased. While you can change a property directly, it's common practice to use a method to change this value instead. This is called a "setter" in software design. The job of a setter is to be in charge of updating the value of a specific property.  This allows for value verification and additional housekeeping that may be required everytime the value is changed. This system offers the advantage of allowing your software to react to the changes of specific properties. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health.
+When a hero takes damage, their `self.current_health` should be decreased. While you can change a property directly, it's common practice to use a method to change this value instead. This is called a "setter" in software design. The job of a setter is to be in charge of updating the value of a specific property.  This allows for value verification and additional housekeeping that may be required every time the value is changed. This system offers the advantage of allowing your software to react to the changes of specific properties. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health.
 
-In our case we want to call the defend method and change our hero's health based on the defense that was rolled.
+In our case we want to call the defend method and change our hero's health based on the number and type of armors that our hero has.
 
 >[info]
 > Methods that handle changes in properties are called setters. Methods that return the value of a property are called getters.
