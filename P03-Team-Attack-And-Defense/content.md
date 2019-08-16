@@ -2,80 +2,14 @@
 title: Team Attack and Defense
 slug: attack-defend
 ---
-## Add Armors
-We've got most everything together but we don't have the ability for our heroes to defend against attacks. We'll need another class and a few more properties in order to get this functionality. Because this is a game we will make our hero's block randomly generated every time it's called. 
+# Adding to the Hero class
+Add additional properties and methods that will allow us to track fight statistics.
 
-The block method should return an integer between 0 and the max_block strength.
+Here are the methods we will work on in the `Hero` class.
 
-```python
-class Armor:
-    def __init__(self, name, max_block):
-        '''Instantiate name and defense strength.'''
-        self.name = name
-        self.max_block = max_block
-        pass
-
-    def block(self):
-        '''
-        Return a random value between 0 and the 
-        initialized max_block strength.
-        '''
-        pass
-```
-
-### Adding to the Hero class
-Add additional properties to the hero class that will allow for equipping our hero's armor and also for saving fight statistics.
-
-```python
-class Hero:
-    def __init__(self, name, health=100)
-        # The code you have already written goes here.
-        # ...
-        self.armors = list()
-        self.deaths = 0
-        self.kills = 0
-
-    def add_armor(self, armor):
-        ''' Add armor to armors list.'''
-    
-    def defend(self):
-        '''
-        This method should run the block 
-        method on each piece of armor and 
-        calculate the total defense. 
-        
-        If the hero's health is 0
-        return 0 
-        '''
-        pass
-
-    def take_damage(self, damage_amt):
-        ''' 
-        Refactor this method to use the new
-        defend method before updating the
-        hero's health. 
-
-        Update the number of deaths if the 
-        hero dies in the attack.
-        '''
-        pass
-
-    def add_kill(self, num_kills):
-        '''
-        This method should add the number 
-        of kills to self.kills
-        '''
-        pass
-
-    def fight(self, opponent):
-        '''
-        Refactor this method to update the 
-        number of kills the hero has when 
-        the opponent dies.
-        '''
-        pass
-
-```
+* `__init__` : We will need to add a couple new properties - `deaths`, and `kills` to track our statistics.
+* `add_kill` : create a setter for new properties
+* `fight` : Refactor this method to update the our statistics when things happen.
 
 We will also track some statistics with the hero, specifically the number of kills and deaths. So these values will be initialized in our constructor and updated as they change.
 
@@ -83,39 +17,67 @@ There are also some new methods to implement in our Hero class that will calcula
 
 Any methods that already exist in your code simply need to be refactored to add the additional functionality instead of rewriting the entire method.
 
-## Update Team Class With These Methods
+# Add properties to Hero method
+
+Lets start by adding a way to track statistics. Create these new properties in the constructor to allow us to do this.
+
+```python
+def __init__(self, name, health=100)
+    # The code you have already written goes here.
+    # ...
+    self.deaths = 0
+    self.kills = 0
+```
+
+# Add Kill statistics
+Create this method that will act as a setter for `self.kills`.
+
+```python
+def add_kill(self, num_kills):
+    ''' Update kills with num_kills'''
+    # TODO: This method should add the number of kills to self.kills
+    pass
+```
+
+# Update Fight method
+We want our fight method to update our statistics when things happen. Let's update `fight` to reflect what's happening during the battle.
+
+```python
+    def fight(self, opponent):
+        #... The code you already wrote should be here ...
+
+        #TODO: Refactor this method to update the
+        # number of kills the hero has when the opponent dies.
+        pass
+```
+
+# Update Team Class With These Methods
+We need to do some work to get our teams to battle each other.
+
+
 
 ```python
 class Team:
     # Keep all your current code, but add these methods
     def attack(self, other_team):
-        '''
-        This function should randomly select 
-        a living hero from each team and have 
-        them fight until one or both teams 
-        have no surviving heroes.
-
-        Hint: Use the fight method in the Hero 
-        class.
-        '''
+        ''' Battle each team against each other.'''
+        # TODO: Randomly select a living hero from each team and have
+        # them fight until one or both teams have no surviving heroes.
+        # Hint: Use the fight method in the Hero class.
         pass
 
     def revive_heroes(self, health=100):
-        '''
-        This method should reset all heroes 
-        health to their
-        original starting value.
-        '''
+        ''' Reset all heroes health to starting_health'''
+        # TODO: This method should reset all heroes health to their
+        # original starting value.
         pass
-    
-    def stats(self):
-        '''
-        This method should print the ratio of 
-        kills/deaths for each member of the 
-        team to the screen. 
 
-        This data must be output to the console.
-        '''
+    def stats(self):
+        '''Print team statistics'''
+        # TODO: This method should print the ratio of kills/deaths for each
+        # member of the team to the screen.
+        # This data must be output to the console.
+        # Hint: Use the information stored in each hero.
         pass
 ```
 
@@ -123,7 +85,7 @@ We have a way now for our teams to attack and defend. Now we just need a way for
 
 ## Helpful tests
 
-In this section you can verify your code with the tests provided in [this](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/team_test.py) file. You'll want to make sure the file exists in the same folder as your `superheroes.py` file. 
+In this section you can verify your code with the tests provided in [this](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/team_test.py) file. You'll want to make sure the file exists in the same folder as your `superheroes.py` file.
 
 You can run just the tests contained in this file by using the command:
 
