@@ -147,18 +147,12 @@ Superheroes should be team players, so lets create a team class that can manage 
 
 Implement the following methods using everything we've learned so far.
 
-* Team
-  1. __init__:
-
-
-```python
-* Team:
+Team class methods:
  1. __init__: Parameters: team_name: String
  2. add_hero: Parameters: hero:Hero
  3. remove_hero: Parameters: name:String
  4. view_all_heroes: Parameters: None
 
-```
 
 These are the methods you'll need to implement.
 
