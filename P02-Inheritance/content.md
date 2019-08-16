@@ -145,7 +145,20 @@ Make sure to use integer division ( Using the `//` operator) to be certain that 
 # Build Team class
 Superheroes should be team players, so lets create a team class that can manage all of our superheroes.
 
-Implement the following methods using everything we've learned so far.
+Here's an overview of the methods we'll need.
+
+
+• Team Class
+    1. __init__: Parameters: team_name: String
+    2. add_hero: Parameters: hero:String
+    3. remove_hero: Parameters name: String
+    4. view_all_heroes: Parameters: None
+
+These are some of the methods you'll need to implement.
+
+You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
+
+# Build the Constructor
 
 Team class methods:
  1. __init__: Parameters: team_name: String
@@ -154,25 +167,31 @@ Team class methods:
  4. view_all_heroes: Parameters: None
 
 
-These are the methods you'll need to implement.
+This method needs to be able to find and remove a Hero from the list of Heroes.
 
-You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
+After your done, run your method the way that was shown in the last section to make sure that your code is working properly.
 
-
-# Build the Constructor
-
-We need to initialize the values that our team needs to start at.
-Use the method docstrings to create the constructor.
+# Remove a Hero from the Team
 
 ```python
-def __init__(self, team_name):
-'''Creates a new team of heroes with the given name.
-    Properties:
-      name: String
-      heroes: List[Hero] (List of Hero Objects)
-'''
-# TODO: Set the required instance variables
+    def remove_hero(self, name):
+        '''Remove hero from heroes list.
+        If Hero isn't found return 0.
+        '''
+        # TODO: Implement this method to remove the hero from the list given their name.
+        pass
 ```
+This method should find a Hero by its name and remove them from the team's list of Heroes.
+
+# View the teams heroes
+
+```python
+def view_all_heroes(self):
+        '''Prints out all heroes to the console.'''
+        # TODO: Loop over the list of heroes and print their names to the terminal.
+        pass
+```
+This method should print a list of all the teams heroes to the terminal.
 
 # Add Hero to Team
 We need to add heroes to our team. Lets create a method to do that. This will be similar to the methods we already wrote when adding armors to our hero.
@@ -219,9 +238,9 @@ By writing the test first you focus on functionality first instead of implementa
 ## Install `pytest`
 We'll use the automated testing tool **pytest** to verify the code.
 
-Pytest must be installed into your system first before you can use it.
+Pytest must be installed into your system first before you can use it. While you don't need pytest to run the tests included in this project, pytest gives a lot of additional helpful tools and loggin.
 
-To install, open your terminal and type:
+To install, simply open your terminal and type:
 
 ```
 pip install pytest

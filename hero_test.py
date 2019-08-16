@@ -54,9 +54,8 @@ def test_weapon_attack():
         attack = big_stick.attack()
         assert attack <= 200 and attack >= 100
 
+
 # Test Heroes Class
-
-
 def test_hero_instance():
     Athena = superheroes.Hero("Athena")
     assert Athena
@@ -150,6 +149,8 @@ def test_hero_weapon_equip():
     assert len(sans.abilities) == 1
     assert sans.abilities[0].name == "Garlic Hot Sauce"
 
+# This tests if the average of all attacks is correct.
+# This test will faile if the random range of values is not correct. 
 def test_hero_weapon_attack_mean_value():
     kkrunch = superheroes.Hero("Kaptain Krunch")
     strength = random.randint(10, 30000)
@@ -179,6 +180,8 @@ def test_hero_weapon_attack_mean_value():
     assert actual_mean <= calculated_mean + accepted_window 
     assert actual_mean >= calculated_mean - accepted_window
 
+# This method uses statistics to check that a random value is given.
+# This test will only fail if the same value is returned over the course of 1000 runs.
 def test_hero_attack_standard_deviation():
     willow_waffle = superheroes.Hero("Willow Waffle")
     strength = random.randint(400, 30000)
@@ -198,7 +201,7 @@ def test_hero_attack_standard_deviation():
         attacks[index] = math.pow(value - mean, 2)
     
     standard_dev = math.sqrt(sum(attacks) / len(attacks))
-    print("Standard Deviation Cannot be 0.\nRandom Numbers not generated for attack.")
+    print("Random values not given. Please make sure you're not returning the same value every time.")
     assert standard_dev != 0.0
 
 def test_hero_attack_weapon():
