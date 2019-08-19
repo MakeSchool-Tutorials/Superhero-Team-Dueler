@@ -5,7 +5,7 @@ slug: superhero-objects
 
 ## Superhero Dueler
 
-![](superhero-clipart.jpg)
+![superhero](superhero-clipart.jpg)
 
 ### Wonders and Perils Await
 
@@ -13,18 +13,19 @@ There are times when the powers of good and evil come together in a mighty clash
 
 Our task is to create a superhero team dueling application so we can be sure we've got the best people to fight evil with. This time we're going to use **Object Oriented Programming** to build our applications instead of relying completely on functions.
 
-In this tutorial you will learn how to:
+## Learning Outcomes
+By the end of this tutorial, you should be able to...
 
 1. Use an **Object Oriented Programming** pattern to manage a more complex piece of software
 1. Define classes and instances of classes
 1. Define static methods on those classes
 1. Use **inheritance** to define superclasses and subclasses
 
-## Taking a Step Back: Dogs
+# Taking a Step Back: Dogs
 
 Every hero needs some help along their journey. We're going to enlist the help of humanity's greatest friend to help us understand the concepts behind **Object Oriented Programming**.
 
-![](dog.jpg)
+![dog](dog.jpg)
 
 How does a dog help us with programming?
 
@@ -38,7 +39,7 @@ A **class** is like a set of instructions that tells the computer how to create 
 
 The `class` allows many objects to be created from a single definition just as a factory can produce many toy cars from a single set of designs. At the same time each object can store unique values associated with it just as each car from a factory can have different options (for example, its color, number of doors, and other features).
 
-### Make a Dog Class
+# Make a Dog Class
 
 Let's make a simple class called `Dog`.
 
@@ -47,9 +48,9 @@ Let's make a simple class called `Dog`.
 >
 >```$ touch dog.py```
 >
-> Now define a class using the `class` keyword in Python, and we're going to already add one **Method** called `bark`:
+> Now define a class using the `class` keyword in Python, and we're going to add one **property** to the Dog class called `name`:
 
->```python
+```python
 # dog.py
 class Dog:
     def __init__(self, name):
@@ -63,18 +64,21 @@ Now to use this **Class** or _blueprint_ of a dog, we have to run it, which save
 >[action]
 > Instantiate a dog instance:
 >
->```py
+```python
 # dog.py
 class Dog:
     def __init__(self, name):
         self.name = name
 >
-my_dog = Dog.("Rex")
+my_dog = Dog("Rex")
 print(my_dog)
 print(my_dog.name)
 ```
 
+<!-- -->
+
 >[info]
+>
 >Properties of an instance are also called **instance variables**.
 
 Now that we've defined the Class and then instantiated an instance of it we can run the whole file to see the print statements.
@@ -117,8 +121,8 @@ To add a property to the class upon **initialization** we update the `__init__` 
 
 >[action]
 >Here we go:
-
->```
+>
+```python
 # dog.py
 class Dog:
     def __init__(self, name, breed):
@@ -128,10 +132,10 @@ class Dog:
 my_dog = Dog("Rex", "SuperDog")
 print(my_dog.breed)
 ```
-
->[warning]
+>
 >**Watch Out** - if you add a property upon initialization, it is REQUIRED and you will get an error. So only put required properties into __init__.
->```
+>
+```
 Traceback (most recent call last):
   File "dog.py", line 6, in <module>
     my_dog = Dog("Rex")
@@ -146,19 +150,22 @@ A class has really two parts: **properties** (data) which you've seen, and **met
 
 What are some actions a dog can take? How about barking? What other actions can a dog do?
 
-Let's define our first method called `bark`. This will let us call something like this: `my_dog.bark()`. And then we can print "Woof!"
-
+> [action]
+>
+> Let's define our first method called `bark`. This will let us call something like this: `my_dog.bark()`. And then we can print "Woof!"
+>
 ```python
 # dog.py
 class Dog:
     # Required properties are defined inside the __init__ constructor method
-    def __init__(self, name):
+    def __init__(self, name, breed):
         self.name = name
+        self.breed = breed
     # Methods are defined as their own named functions inside the class
     def bark(self):
         print("Woof!")
-
-Dog("Rex")
+>
+my_dog = Dog("Rex", "SuperDog")
 my_dog.bark()
 ```
 
@@ -196,8 +203,8 @@ Let's import the Dog class into a new file were we'll make some instances of Dog
 
 >[action]
 >Make a new file called `my-dogs.py`. Inside there write the following code.
-
->```python
+>
+```python
 # my-dogs.py
 import dog
 ```
@@ -210,24 +217,36 @@ You'll notice that if you run `my-dogs.py` the following will display in the ter
 Woof!
 ```
 
-Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
-
+> [action]
+>
+> Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
+>
 ```python
 # dog.py
 class Dog:
-    def __init__(self, name):
+    def __init__(self, name, breed):
         self.name = name
-```
-
-```python
+        self.breed = breed
+>
+    def bark(self):
+        print("Woof!")
+>
 # my-dogs.py
-import dog
-
-my_dog = Dog("Rex")
-print(my_dog.breed)
+import dog # we need to specify exactly what we want
+>
+my_dog = dog.Dog("Rex", "SuperDog")
+my_dog.bark()
 ```
 
 Now run `$ python3 my-dogs.py`. You should see no difference.
+
+> [challenge]
+>
+> How could we clean this up?
+>
+> **hint:** use [from](https://realpython.com/absolute-vs-relative-python-imports/#syntax-of-import-statements)
+
+<!-- -->
 
 >[info]
 >You just **Refactored** your code. That means that you changed the way it was written to be cleaner and more modular, but it is functionally equivalent to before. Great work!
@@ -276,31 +295,6 @@ Hello World!
 
 In this example we have declared our message variable in a 'global scope'. That means that any functions we declare will also have access to the 'global scope'. The variables that exist within the function however have a 'local scope' that is not available in the global context.
 
-# Using self
-
-So a `class` is a blueprint that creates an `object` in memory. That object has methods and properties that can be unique to it's own instance. It's easy to think that
-when we call an **instance method** we can access the instance itself, inside its method, using the Python keyword `self`.
-
-Read this example:
-
-```python
-# dog.py
-class Dog:
-    def __init__(self, name):
-        self.name = name
-
-    def bark(self):
-        print(self.name+" says: woof!")
-```
-
-With a constructor we are able to specify a unique name for your dog and store it in an instance variable. Instance variables, also called properties, store data that is unique to each object.
-
-Test it for yourself.
-
-1. Add `bark(self)` and update the print statement inside the `bark` method.
-1. Now test to see if your bark method includes your dog's name:
-
-Does it work?
 
 # Make Another Dog
 
@@ -311,7 +305,7 @@ If we want another dog we can create a new dog with the name Annie this way.
 import dog
 ...
 
-my_other_dog = Dog("Annie")
+my_other_dog = dog.Dog("Annie", "SuperDog")
 print(my_other_dog.name)
 ```
 
@@ -320,25 +314,6 @@ If you run this you'll see the following.
 ```
 Annie
 ```
-
-# Dog Challenges & Review Questions
-
-You like dogs! Try these challenges:
-
-1. Make three dogs with fun names and breeds
-1. Write two new methods to have the dogs sit and roll over (just print "<<DOG'S NAME>> sits", "<<DOG'S NAME>> rolls over").
-1. Have one dog bark, one sit, and one roll over.
-
-Notice how each dog displays it's unique name when you call the bark method. Do you remember why this is?
-
-Notice how each dog makes the same sound "Woof!" when it barks. Why is this?
-
-Now try this:
-
-1. Add this line of code at the bottom: `Dog.greeting = "Woah"`
-1. Now ask the dogs to bark again by calling the bark method on each instance.
-
-What happened?
 
 # What You Can Do Now
 
@@ -354,3 +329,26 @@ You can...
 * Import a python module into any file
 
 Great work! Let's make this superhero dueler!
+
+# Dog Stretch Challenges & Review Questions
+
+Want more practice? Complete the following to sharpen your skills in this chapter!
+
+> [challenge]
+>
+> You like dogs! Try these challenges:
+>
+> 1. Make three dogs with fun names and breeds
+> 1. Write two new methods to have the dogs sit and roll over (just print "<<DOG'S NAME>> sits", "<<DOG'S NAME>> rolls over").
+> 1. Have one dog bark, one sit, and one roll over.
+>
+> Notice how each dog displays it's unique name when you call the bark method. Do you remember why this is?
+>
+> Notice how each dog makes the same sound "Woof!" when it barks. Why is this?
+>
+> Now try this:
+>
+> 1. Add this line of code at the bottom: `Dog.greeting = "Woah"`
+> 1. Now ask the dogs to bark again by calling the bark method on each instance.
+>
+> What happened?
