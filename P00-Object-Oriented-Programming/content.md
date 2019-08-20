@@ -16,10 +16,10 @@ Our task is to create a superhero team dueling application so we can be sure we'
 ## Learning Outcomes
 By the end of this tutorial, you should be able to...
 
-1. Use an **Object Oriented Programming** pattern to manage a more complex piece of software
+1. Use an Object Oriented Programming pattern to manage a more complex piece of software
 1. Define classes and instances of classes
 1. Define static methods on those classes
-1. Use **inheritance** to define superclasses and subclasses
+1. Use inheritance and polymorphism to define superclasses and subclasses
 
 # Taking a Step Back: Dogs
 
