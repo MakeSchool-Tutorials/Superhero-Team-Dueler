@@ -33,9 +33,9 @@ The basic overview of the file we'll be writing:
 
 # Every Hero Needs an Ability
 
-Instead of tackling our `Hero` class first, lets start with the classes our `Hero` class will need to use.
+Instead of tackling our `Hero` class first, let's start with the classes our `Hero` class will need to use.
 
-Our hero will need an ability to be able to save the world. Lets start by creating a class named `Ability` that our hero can use.
+Our hero will need an ability to be able to save the world. let's start by creating a class named `Ability` that our hero can use.
 
 Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 
@@ -260,7 +260,7 @@ You should see output similar to the following:
 [<__main__.Ability object at 0x7f8debceeb00>]
 ```
 
-This output may look confusing at first, but lets break it down.
+This output may look confusing at first, but let's break it down.
 
 Python uses brackets `[]` to denote a list. Our output is showing us that hero.abilities is a list with a single item. This item is an object with the class name Ability.
 
@@ -337,7 +337,7 @@ You should see a value between 0 and 140 in the terminal.
 
 # Add Armor
 
-Lets create a method that allows us to add armor.
+let's create a method that allows us to add armor.
 
 This method should receive an armor object that should be added to the list `self.armors` that was instantiated in the constructor.
 

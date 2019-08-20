@@ -4,7 +4,7 @@ slug: arena
 ---
 
 ## Update Hero Class
-We created a simple fight in the last section but didn't use some of the classes we built. Lets give our hero access to the rest of their equipment by adding these methods to the hero class.
+We created a simple fight in the last section but didn't use some of the classes we built. let's give our hero access to the rest of their equipment by adding these methods to the hero class.
 
 
 ```python
@@ -34,9 +34,9 @@ Add the methods to your Hero class so that your heroes can use our newly created
 
 
 # Creating the Battle Arena
-Our heroes need somewhere to battle. Lets have our user create our heroes with all of their respective gear and abilities. Our arena will take care of creating heroes and adding them to their respective teams.
+Our heroes need somewhere to battle. let's have our user create our heroes with all of their respective gear and abilities. Our arena will take care of creating heroes and adding them to their respective teams.
 
-Lets create some methods that we can call that will allow for code reuse.
+let's create some methods that we can call that will allow for code reuse.
 
 ```python
 class Arena:

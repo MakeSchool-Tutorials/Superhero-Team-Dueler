@@ -20,7 +20,7 @@ class Animal:
                 self.sleep_time))
 ```
 
-Lets say we have the above `Animal` class. We can instantiate a new animal object the same way we've already seen it done.
+let's say we have the above `Animal` class. We can instantiate a new animal object the same way we've already seen it done.
 
 ```python
 dog = Animal("Sophie", 12)
@@ -37,7 +37,7 @@ Our dog here is simply an instance of our `Animal` class, but what if we want sp
 
 We don't want to put a bark method in `Animal` because not every animal barks. We also don't want to have to duplicate every method that dogs and animals have in common.
 
-Lets use inheritance to make a `Dog` class that allows us to bark.
+let's use inheritance to make a `Dog` class that allows us to bark.
 
 ```python
 class Animal:
@@ -116,7 +116,7 @@ Polymorphism basically allows us to use different implementations of the same me
 
 For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
-We can reuse the functionality in `Ability` so that we can prevent code duplication. Lets say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. Lets make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
+We can reuse the functionality in `Ability` so that we can prevent code duplication. let's say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. let's make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
 
 If for example the maximum attack value is 80 then this attack method should return a value between 40 and 80.
 

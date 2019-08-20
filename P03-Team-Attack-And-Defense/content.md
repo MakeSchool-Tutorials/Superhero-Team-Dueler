@@ -2,8 +2,10 @@
 title: Team Attack and Defense
 slug: attack-defend
 ---
-# Adding to the Hero class
-Add additional properties and methods that will allow us to track fight statistics.
+
+## Adding to the Hero class
+
+Now we want to add additional properties and methods that will allow us to track fight statistics.
 
 Here are the methods we will work on in the `Hero` class.
 
@@ -19,10 +21,10 @@ Any methods that already exist in your code simply need to be refactored to add 
 
 # Add properties to Hero method
 
-Lets start by adding a way to track statistics. Create these new properties in the constructor to allow us to do this.
+let's start by adding a way to track statistics. Create these new properties in the constructor to allow us to do this.
 
 ```python
-def __init__(self, name, health=100)
+def __init__(self, name, health=100):
     # The code you have already written goes here.
     # ...
     self.deaths = 0
@@ -30,6 +32,7 @@ def __init__(self, name, health=100)
 ```
 
 # Add Kill statistics
+
 Create this method that will act as a setter for `self.kills`.
 
 ```python

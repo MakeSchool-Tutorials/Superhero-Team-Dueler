@@ -219,7 +219,7 @@ Woof!
 
 > [action]
 >
-> Next lets move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
+> Next let's move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
 >
 ```python
 # dog.py
