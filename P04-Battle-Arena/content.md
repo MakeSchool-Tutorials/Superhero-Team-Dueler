@@ -5,9 +5,9 @@ slug: arena
 
 This chapter will not walk you through as much as the previous chapters. Use what you've learned the last four chapters to finish out strong here!
 
-## Update Hero Class
+# Add Weapons for Heroes
 
-We created a simple fight in the last section but didn't use some of the classes we built. let's give our hero access to the rest of their equipment by adding these methods to the hero class.
+We created a simple fight in the last section but didn't use some of the classes we built. let's give our hero access to the rest of their equipment by adding two more methods to the hero class.
 
 > [action]
 >
@@ -16,7 +16,7 @@ We created a simple fight in the last section but didn't use some of the classes
 ```python
 class Hero:
     # The code you have already written should be here.  
-    # Add the following methods to your hero class...
+    # Add the following method to your hero class...
 >
     def add_weapon(self, weapon):
         '''Add weapon to self.abilities'''
@@ -25,23 +25,40 @@ class Hero:
         # This means that self.abilities will be a list of
         # abilities and weapons.
         pass
+    ....
+```
+
+# Add Armor for Heroes
+
+We need to make sure they can add armor too in addition to their weapons:
+
+> [action]
 >
-    def add_armor(self, armor):
-        '''Add Armor to self.armors
-            armor: Armor Object
-        '''
-        # TODO: This method will add the armor object that is passed in to
-        # the list of armor objects defined in the constructor: `self.armors`.
-        pass
+> Add the following to the Hero class:
+>
+```python
+class Hero:
+    # The code you have already written should be here.  
+    # Add the following method to your hero class...
+>
+def add_armor(self, armor):
+    '''Add Armor to self.armors
+        armor: Armor Object
+    '''
+    # TODO: This method will add the armor object that is passed in to
+    # the list of armor objects defined in the constructor: `self.armors`.
+    pass
+...
 ```
 
 # Creating the Battle Arena
 
 Our heroes need somewhere to battle. let's have our user create our heroes with all of their respective gear and abilities. Our arena will take care of creating heroes and adding them to their respective teams.
 
+Let's create some methods in an Arena class that we can call that will allow for code reuse. Use your favorite loops with the `input()` function to build teams based on user input.
+
 > [action]
->
-> Let's create some methods in an Arena class that we can call that will allow for code reuse. Use your favorite loops with the `input()` function to build teams based on user input.
+> Start by making an `init` method for your Arena class:
 >
 ```python
 class Arena:
@@ -52,7 +69,17 @@ class Arena:
         '''
         # TODO: create instance variables named team_one and team_two that
         # will hold our teams.
+```
+
+# Prompting for Ability information
+
+Create this method that will allow users to create an ability for any hero:
+
+> [action]
 >
+> Build the `create_ability` function for your Arena class
+>
+```python
     def create_ability(self):
         '''Prompt for Ability information.
             return Ability with values from user Input
@@ -61,7 +88,17 @@ class Arena:
         # Prompt the user for the necessary information to create a new ability object.
         # return the new ability object.
         pass
+```
+
+# Prompting for Weapon information
+
+Create this method that will allow users to create a weapon for any hero:
+
+> [action]
 >
+> Build the `create_weapon` function for your Arena class
+>
+```python
     def create_weapon(self):
         '''Prompt user for Weapon information
             return Weapon with values from user input.
@@ -70,7 +107,16 @@ class Arena:
         # Prompt the user for the necessary information to create a new weapon object.
         # return the new weapon object.
         pass
+```
+
+# Prompting for Armor information
+Create this method that will allow users to create armor for any hero:
+
+> [action]
 >
+> Build the `create_armor` function for your Arena class
+>
+```python
     def create_armor(self):
         '''Prompt user for Armor information
           return Armor with values from user input.
@@ -81,7 +127,16 @@ class Arena:
         #
         #  return the new armor object with values set by user.
         pass
+```
+
+# Create a Hero for your Arena
+Create this method that will allow users to create heroes for their arena:
+
+> [action]
 >
+> Build the `create_hero` function for your Arena class
+>
+```py
     def create_hero(self):
         '''Prompt user for Hero information
           return Hero with values from user input.
@@ -94,7 +149,16 @@ class Arena:
         #
         # return the new hero object
         pass
+```
+
+# Create Teams for your Arena
+Create this method that will allow users to add heroes to Team One and Team Two for their arena:
+
+> [action]
 >
+> Build the `build_team_one` and `build_team_two` functions for your Arena class
+>
+```py
     def build_team_one(self):
         '''Prompt the user to build team_one '''
         # TODO: This method should allow a user to create team one.
@@ -112,14 +176,32 @@ class Arena:
         #
         # Add the created hero to team two.
         pass
+```
+
+# Arena Battle
+Create this method that will allow teams to battle it out in your arena!
+
+> [action]
 >
+> Build the `team_battle` function for your Arena class
+>
+```py
     def team_battle(self):
         '''Battle team_one and team_two together.'''
         # TODO: This method should battle the teams together.
         # Call the attack method that exists in your team objects
         # for that battle functionality.
         pass
+```
+
+# Get Battle Stats
+You may want to get statistics on how your battle went. Let's build that out now!
+
+> [action]
 >
+> Build the `show_stats` function for your Arena class
+>
+```py
     def show_stats(self):
         '''Prints team statistics to terminal.'''
         # TODO: This method should print out battle statistics
@@ -131,8 +213,12 @@ class Arena:
         pass
 ```
 
-Test your functions by either creating a new test file and using pytest, or by calling your methods this way:
+# Testing Arena
 
+> [action]
+>
+> Test your functions by either creating a new test file and using pytest, or by calling your methods this way:
+>
 ```python
 if __name__ == "__main__":
     arena = Arena()
@@ -165,31 +251,33 @@ Our terminal game isn't really your typical game so our game loop will be a bit 
 
 Since our game doesn't rely on quickly rendering complicated scenes to the screen we're not so concerned with frame rate and by extension the time between calling our render function. Our program instead will pause for user input and take actions depending on that.
 
-You can create a simple game loop in your `superheroes.py` file this way:
-
-This code snippet will get you started with your game loop. Here on every loop we battle our teams, show the battle outcome, and check whether we want to loop again.
-
+> [action]
+>
+> You can create a simple game loop in your `superheroes.py` file this way:
+>
+> This code snippet will get you started with your game loop. Here on every loop we battle our teams, show the battle outcome, and check whether we want to loop again.
+>
 ```python
 if __name__ == "__main__":
     game_is_running = True
-
+>
     # Instantiate Game Arena
     arena = Arena()
-
+>
     #Build Teams
     arena.build_team_one()
     arena.build_team_two()
-
+>
     while game_is_running:
-
+>
         arena.team_battle()
         arena.show_stats()
         play_again = input("Play Again? Y or N: ")
-
+>
         #Check for Player Input
         if play_again.lower() == "n":
             game_is_running = False
-
+>
         else:
             #Revive heroes to play again
             arena.team_one.revive_heroes()
