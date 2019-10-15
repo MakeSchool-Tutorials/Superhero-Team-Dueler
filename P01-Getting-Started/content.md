@@ -7,11 +7,13 @@ slug: build-ability-and-hero-classes
 >
 > Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now.
 
-Here is an overview of what you will build.
+Before we get started, it's important to know how we will build out this file:
 
-Each method below is labeled with a doc string that describes what it is supposed to do. Use this as a template and replace `pass` with your own code.
+- Some classes we will give you the code to use. Be sure to read through it and reference the comments so that you know what it is doing. This is important because...
+- Other classes we will _NOT_ give you the code, and will only give you a docstring that describes what the code is supposed to do. Use this as a template and replace `pass` with your own code.
+    - Use your prior learnings and the code we gave you to help build out the code needed for these classes
 
-The basic overview of the file we'll be writing:
+Here is an overview of what you will build in this chapter:
 
 * Ability Class
   1. `__init__`: Parameters: name: String, max_damage: Integer
@@ -48,13 +50,15 @@ Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 ```python
 class Ability:
     def __init__(self, name, attack_strength):
-      '''Create Instance Variables:
-          name:String
-          max_damage: Integer
-       '''
-       # TODO: Instantiate the variables listed in the docstring with then
-       # values passed in
-      pass
+        '''
+       Initialize the values passed into this
+       method as instance variables.
+        '''
+>
+        # Assign the "name" and "max_damage"
+        # for a specific instance of the Ability class
+        self.name = name
+        self.max_damage = max_damage
 ```
 
 Our next task is to write the `attack` method. To make it more interesting we don't want our Hero to have the same attack value every time. We want to have some range of values that are possible when our Hero attacks. We'll use the random module for this functionality
@@ -84,28 +88,24 @@ This will return back to you some value between and including 2 and 7.
 ```python
 class Ability:
 >
+# code for __init__ method
 ...
 >
   def attack(self):
       ''' Return a value between 0 and the value set by self.max_damage.'''
-      # TODO: Use random.randint(a, b) to select a random attack value.
-      # Return an attack value between 0 and the full attack.
-      # Hint: The constructor initializes the maximum attack value.
-      pass
+>
+      # Pick a random value between 0 and self.max_damage
+      random_value = random.randint(0,self.max_damage)
+      return random_value
 ```
-
-Complete this function using the techniques you've learned so far.
 
 ## Test your code out
-You don't want to write a bunch of code without testing to see if it runs. Write code that will run the methods you created after the line
 
-```python
-if __name__ == "__main__":
-```
+You don't want to write a bunch of code without testing to see if it runs.
 
 > [action]
 >
-> When you finish the `Ability` class, you can test your work by calling your new methods at the end of the file like this.
+> When you finish the `Ability` class, you can test your work by calling your new methods at the end of the file like this:
 >
 ```python
 import random
@@ -133,9 +133,8 @@ Debugging Ability
 
 But your values may be different since we're using a random number generator.
 
-Once your code works, push it code to GitHub.
-
 # Add Armors
+
 You can't go into battle unprepared. We need to give our heroes armor that they can use to defend themselves.
 
 > [action]
@@ -143,6 +142,8 @@ You can't go into battle unprepared. We need to give our heroes armor that they 
 > Create a new class called `Armor` that contains two methods: `__init__` and `block`.
 
 The block method should return an integer between 0 and the max_block strength.
+
+For this class, we will _not_ give you the code. Take your learnings from making the `Ability` class and apply them here, there are a lot of similarities. Remember to remove the `pass` line
 
 > [action]
 >
@@ -164,6 +165,7 @@ Let's create a method that we can call that will calculate the amount we will bl
 > [action]
 >
 > Build the `block` method for the Armor class
+>
 ```python
 def block(self):
     '''
@@ -171,6 +173,30 @@ def block(self):
     initialized max_block strength.
     '''
     pass
+```
+
+When you're done, add to the test code you wrote earlier to check your answer:
+
+> [action]
+>
+> Create an instance of `Armor` and check that your properties and methods work correctly:
+>
+```python
+if __name__ == "__main__":
+    # If you run this file from the terminal
+    # this block is executed.
+    armor = Armor("Debugging Shield", 10)
+    print(armor.name)
+    print(armor.block())
+```
+
+If your code is written correctly you should see a number between 0 and 10 appear in the terminal if you use this example to test with.
+
+My code gives me the following:
+
+```
+Debugging Shield
+7
 ```
 
 # Build out the Hero Class
@@ -184,6 +210,8 @@ Let's walk through each method and smoke test them as we go.
 >
 ```python
 class Hero:
+    # We want our hero to have a default "starting_health",
+    # so we can set that in the function header.
     def __init__(self, name, starting_health=100):
       '''Instance properties:
           abilities: List
@@ -192,18 +220,23 @@ class Hero:
           starting_health: Integer
           current_health: Integer
       '''
-       # TODO: Initialize instance variables values as instance variables
-       # (Some of these values are passed in above,
-       # others will need to be set at a starting value)
-       # abilities and armors are lists that will contain objects that we can use
-       pass
+>
+        # abilities and armors don't have starting values,
+        # and are set to empty lists on initialization
+        self.abilities = list()
+        self.armors = list()
+        # we know the name of our hero, so we assign it here
+        self.name = name
+        # similarly, our starting health is passed in, just like name
+        self.starting_health = starting_health
+        # when a hero is created, their current health is
+        # always the same as their starting health (no damage taken yet!)
+        self.current_health = starting_health
 ```
 
-The constructor needs to setup the object with the initial values that are described in the docstring. We want our hero to have a default `starting_health`, so we can set that in the function header.
+Ok, we can initialize a hero! Now let's test it:
 
 > [action]
->
-> Create the required instance properties: abilities, name, starting_health, and current_health the same as you did in the constructor for the Abilities class.
 >
 > After completing the method, add a call to your newly created constructor at the bottom of the file. This will let you test what you just did.
 >
@@ -225,6 +258,8 @@ Grace Hopper
 200
 ```
 
+Note that we can still provide a value for `starting_health` which replaces the default value of 100 that we gave in the `__init__` method! If when we instantiated our hero we had just put `Hero("Grace Hopper")`, then their `current_health` would've been 100!
+
 # Create an add_ability method
 
 We have abilities and Heroes, but our Heroes can't yet use abilities. Let's give our heroes abilities they can use.
@@ -233,13 +268,14 @@ We have abilities and Heroes, but our Heroes can't yet use abilities. Let's give
 >
 > Use the append method to add a new ability to your hero's `abilities` list.
 >
-> **Hint**: We used the append method to add strings to a list in the Rainbow Checklist tutorial. This time we're not adding strings, instead we'll add ability objects.
->
 ```python
 def add_ability(self, ability):
-  ''' Add ability to abilities list '''
-  # TODO: Add ability object to abilities:List
-  pass
+    ''' Add ability to abilities list '''
+>
+    # We used the append method to add strings to a list
+    # in the Rainbow Checklist tutorial. This time,
+    # we're not adding strings, instead we'll add ability objects.
+    self.abilities.append(ability)
 ```
 
 When your `add_ability` method is complete test it out this way:
@@ -262,9 +298,11 @@ You should see output similar to the following:
 
 This output may look confusing at first, but let's break it down.
 
-Python uses brackets `[]` to denote a list. Our output is showing us that hero.abilities is a list with a single item. This item is an object with the class name Ability.
+Python uses brackets `[]` to denote a list. Our output is showing us that `hero.abilities` is a list with a single item. This item is an object with the class name Ability.
 
-Try adding a second ability and see how it looks when you print it to the terminal.
+> [action]
+>
+> Try adding a second ability and see how it looks when you print it to the terminal.
 
 # Create the attack method
 
@@ -272,9 +310,9 @@ Our hero has abilities, but can't yet use them.
 
 Build an `attack` method in the Hero class that will use your hero's abilities.
 
-This method should iterate over our `abilities` list and call the `attack()` method on every ability. Remember that our abilites return a random value so we have to total all those values up to get the total attack strength of all abilities. This is the total amount of damage done by the attack.
+This method should iterate over our `abilities` list and call the `attack()` method on every ability. Remember that our abilities return a random value so we have to total all those values up to get the total attack strength of all abilities. This is the total amount of damage done by the attack.
 
-It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list.
+It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings. Here you will be returning ability objects from the abilities list.
 
 The `for` loop will return each object in the list, and you can call methods on those objects just like you would expect.  
 
@@ -308,11 +346,17 @@ Woof!
 ```python
     def attack(self):
       '''Calculate the total damage from all ability attacks.
-          return: total:Int
+          return: total_damage:Int
       '''
-      # TODO: This method should run Ability.attack() on every ability
-      # in self.abilities and returns the total as an integer.
-      pass
+>
+      # start our total out at 0
+      total_damage = 0
+        # loop through all of our hero's abilities
+        for ability in self.abilities:
+            # add the damage of each attack to our running total
+            total_damage += ability.attack()
+        # return the total damage
+        return total_damage
 ```
 
 When you're ready, let's test it!
@@ -341,6 +385,8 @@ let's create a method that allows us to add armor.
 
 This method should receive an armor object that should be added to the list `self.armors` that was instantiated in the constructor.
 
+This time, you'll need to write the code!
+
 > [action]
 >
 > Create the `add_armor` method in the Hero class:
@@ -354,18 +400,19 @@ def add_armor(self, armor):
 ```
 
 # Defend Yourself
+
 Our hero needs to be able to block. This function will use our armors to defend against any attacks.
 
 Make sure to take into account that there may not be any armor objects in the list.
 
 > [action]
 >
-> Build the `defend` method in the Hero class:
+> Build the `defend` method in the Hero class. How is it similar/different to the `attack` method?:
 >
 ```python
 def defend(self, damage_amt):
-  '''Runs `block` method on each armor.
-      Returns sum of all blocks
+  '''Calculate the total block amount from all armor blocks.
+     return: total_block:Int
   '''
   # TODO: This method should run the block method on each armor in self.armors
 ```
@@ -380,11 +427,10 @@ In our case we want to call the defend method and change our hero's health based
 >
 > Methods that handle changes in properties are called setters. Methods that return the value of a property are called **getters.**
 
-Your job is to subtract the damage passed to `take_damage` from the hero's `self.current_health` after subtracting the value received from calling `self.defend`.
-
 Before we update `self.current_health` we need to call `self.defend` with the amount of damage that is being passed in. We can then subtract the defense from the amount coming in and subtract that number from the hero's health.
 
-- For instance:
+Let's walk through an example to make it clear:
+
   - If `take_damage` receives 50 damage units coming in.
   - If calling `self.defend(50)` returns 10.
   - 40 points should be subtracted from `self.current_health`.
@@ -399,7 +445,8 @@ def take_damage(self, damage):
   '''
   # TODO: Create a method that updates self.current_health to the current
   # minus the the amount returned from calling self.defend(damage).
-  pass
+    defense = self.defend()    
+    self.current_health -= damage - defense
 
 ```
 
@@ -433,13 +480,15 @@ Finish the `is_alive` method. This methods should check to see if the hero is st
 
 > [action]
 >
-> Finish the `is_alive` method for the Hero Class:
+> Write the `is_alive` method for the Hero Class on your own:
 >
 ```python
 def is_alive(self):  
   '''Return True or False depending on whether the hero is alive or not.
   '''
-  # TODO: Check whether the hero is alive and return true or false
+  # TODO: Check the current_health of the hero.
+  # if it is <= 0, then return False. Otherwise, they still have health
+  # and are therefore alive, so return True
   pass
 ```
 
@@ -472,33 +521,35 @@ The `fight()` method will take an `opponent` as a parameter. An `opponent` is an
 
 A single attack usually won't knock a hero out. The hero and opponent will usually attack each other repeatedly before one of them is knocked!
 
-Because we don't know how many times our hero will need to attack -- it's best to use a `while` loop to continue the attack until someone dies.
+Keep the following in mind when building this method:
 
-You'll need to use the methods that we just built to complete this.
-
-This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage.
-
-Use an `if` statement and check if to see that at least one hero has an ability. If no abilities exist print out "Draw"
-
-When a hero wins print to the console.
+- Because we don't know how many times our hero will need to attack -- it's best to use a `while` loop to continue the attack until someone dies.
+- You'll need to use the methods that we just built to complete this.
+- _This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage._
+- Use an `if` statement and check if to see that at least one hero has an ability. If no abilities exist print out "Draw"
+- When a hero wins, print the following, replacing "HeroName" with the actual name of the hero who won the fight:
 
 ```
 HeroName won!
 ```
-Where HeroName is the name of the hero that died.
 
-The core functionality for this method will come from calling methods that exist in the current instantiated object (using `self`) as well as calling methods on the object that is passed in as a parameter.
+The core functionality for this method will come from calling methods that exist in the current instantiated object (using `self`) as well as calling methods on the `opponent` object that is passed in as a parameter.
 
 > [action]
 >
-> Build the `fight` method for the Hero class!
+> Build the `fight` method for the Hero class! Take everything you've learned so far in this chapter and apply it to creating this method!
 >
 ```python
 def fight(self, opponent):  
   ''' Current Hero will take turns fighting the opponent hero passed in.
   '''
   # TODO: Fight each hero until a victor emerges.
-  # Print the victor's name to the screen.
+  # Phases to implement:
+  # 0) check if at least one hero has abilities. If no hero has abilities, print "Draw"
+  # 1) else, start the fighting loop until a hero has won
+  # 2) the hero (self) and their opponent must attack each other and each must take damage from the other's attack
+  # 3) After each attack, check if either the hero (self) or the opponent is alive
+  # 4) if one of them has died, print "HeroName won!" replacing HeroName with the name of the hero, and end the fight loop
   pass
 ```
 
@@ -534,4 +585,4 @@ This is because the values of Wonder Woman's attack are much greater than Dumble
 
 # Move to the Next Section
 
-Now that we have the basic functionality that allows our heroes to duel each other, we can begin to move to the next important feature of object oriented programming -- **inheritance**.
+Great work on building out your first few classes! Now that we have the basic functionality that allows our heroes to duel each other, we can begin to move to the next important feature of object oriented programming -- **inheritance**.
