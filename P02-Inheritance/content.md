@@ -51,7 +51,7 @@ class Animal:
                 self.name,
                 self.sleep_duration))
 
-
+# Note that the class Dog takes in Animal as a parameter!
 class Dog(Animal):
     def bark(self):
         print("Woof! Woof!")
@@ -72,10 +72,15 @@ Sophie sleeps for 12 hours
 Woof! Woof!
 ```
 
-You can see that we didn't have to create another sleep method again in order to use it. We have **inherited** this method from our **superclass** `Animal`.
+**You can see that we didn't have to create another sleep method again in order to use it.** Our `Dog` class **inherited** this method from our **superclass** `Animal`.
 
-In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`.
+In this example `Dog` is our **subclass** and it will inherit everything from its superclass. This allows us to write specific functionality for `Dog` while keeping all the original functionality that was already given to us in `Animal`. This is also why we did _not_ need to write an `__init__` method for `Dog`: it just uses the same one as `Animal`!
 
+> [info]
+>
+> Note the comment in the previous code snippet. Our `Dog` class takes in `Animal` as its parameter, which signals that `Dog` is a subclass of `Animal`, as all `Dogs` are created from `Animals`, and not just plain `objects`
+
+Let's try this out ourselves now:
 
 >[action]
 >Create the file `animal.py` file
@@ -89,6 +94,10 @@ $ touch animal.py
 > The eat method should print the animal's name and "is eating"
 >
 > The drink method should print the animal's name and "is drinking"
+>
+> Once you do that, in the same file, create the `Frog` class, which is a subclass of `Animal`, and has the method `jump`, which prints the frog's name and "is jumping"
+>
+> Finally, test your code by instantiating one `Animal` and one `Frog`, and making sure that your `Frog` object can eat, drink, and jump, and that your `Animal` can eat and drink.
 
 Here's the solution:
 
@@ -104,9 +113,13 @@ class Animal:
 >
   def drink(self):
     print('{} is drinking'.format(self.name))
+>
+class Frog(Animal):
+    def jump(self):
+        print('{} is jumping'.format(self.name))
 ```
 
-Let's use what we learned here to give our superheroes more options for attack.
+Let's use what we learned here to give our superheroes more options for attacking.
 
 # Weapon Class
 
@@ -116,15 +129,15 @@ Polymorphism basically allows us to use different implementations of the same me
 
 For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
 
-We can reuse the functionality in `Ability` so that we can prevent code duplication. let's say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. let's make our weapons attack power range between 0 ( a miss ) to the full attack value of the weapon.
+We can reuse the functionality in `Ability` so that we can prevent code duplication. let's say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. let's make our weapons attack power range between half of the `max_damage` value, to the full `max_damage` value of the weapon.
 
-If for example the maximum attack value is 80 then this attack method should return a value between 40 and 80.
+For example, if the Weapon has a `max_damage` value of 80, then the Weapon's attack method should return a value between 40 and 80.
 
-Make sure to use integer division ( Using the `//` operator) to be certain that you return an integer.
+**NOTE:** Make sure to use integer division ( Using the `//` operator) to be certain that you return an integer. This way if the `max_damage` value was 57, it will return 28 instead of 28.5
 
 > [action]
 >
-> Here are the methods that you'll need to write for our new `Weapon` class.
+> Write the `attack` method for our new `Weapon` class. Use what you learned for the `attack` method in the `Ability` class if you get stuck.
 >
 ```python
 class Weapon(Ability):
@@ -132,26 +145,43 @@ class Weapon(Ability):
         """  This method returns a random value
         between one half to the full attack power of the weapon.
         """
-        # TODO: Use what you learned to complete this method.
+        # TODO: Use integer division to find half of the max_damage value
+        # then return a random integer between half of max_damage and max_damage
         pass
 ```
 
-Here we've re-defined a method that already exists in our inherited `Ability` class.
+Use these tests to make sure you implemented `Weapon` correctly:
 
-This is called **method overriding** and it is a form of **Polymorphism**. It basically allows you to specify a different functionality for methods that are inherited from the superclass. When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
+> [action]
+>
+> Test out your code using these method calls at the bottom of your file.
+>
+```python
+if __name__ == "__main__":
+    # If you run this file from the terminal
+    # this block is executed.
+    hero = Hero("Wonder Woman")
+    weapon = Weapon("Lasso of Truth", 90)
+    hero.add_ability(weapon)
+    print(hero.attack())
+```
 
-# Build Team class
+Your output should be a number between 45 and 90.
+
+Congrats, you've re-defined a method that already exists in our inherited `Ability` class!
+
+This is called **method overriding** and it is a form of **Polymorphism. It allows you to specify a different functionality for methods that are inherited from the superclass.** When we call `attack()` on our `Weapon` object it will run the `attack` method specified in the `Weapon` class and not the one in `Ability`.
+
+# Build A Team class
 
 Superheroes should be team players, so let's create a team class that can manage all of our superheroes.
 
 Here's an overview of some of the methods we'll need.
 
-
-• Team Class
-    1. __init__: Parameters: name: String
-    2. add_hero: Parameters: hero:String
-    3. remove_hero: Parameters name: String
-    4. view_all_heroes: Parameters: None
+1. `__init__`: Parameters: name: String
+1. `add_hero`: Parameters: hero:String
+1. `remove_hero`: Parameters name: String
+1. `view_all_heroes`: Parameters: None
 
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
@@ -162,32 +192,44 @@ You'll need to use methods that exist in the built-in Python list (`self.heroes`
 > Build the constructor for the Team class:
 >
 ```py
-def __init__(self, name):
-    ''' Initialize your team with its team name
-    '''
-    # TODO: Implement this constructor by assigning the name and heroes, which should be an empty list
-    pass
+class Team:
+    def __init__(self, name):
+        ''' Initialize your team with its team name and an empty list of heroes
+        '''
+        self.name = name
+        self.heroes = list()
 ````
 
 # Remove a Hero from the Team
-This method should find a Hero by its name and remove them from the team's list of Heroes.
+
+This method should find a Hero by its name and remove them from the team's list of Heroes. If you cannot find a hero, return 0
 
 > [action]
 >
 > Build the `remove_hero` method for the Team class:
 >
 ```python
-    def remove_hero(self, name):
-        '''Remove hero from heroes list.
-        If Hero isn't found return 0.
-        '''
-        # TODO: Implement this method to remove the hero from the list given their name.
-        pass
+def remove_hero(self, name):
+    '''Remove hero from heroes list.
+    If Hero isn't found return 0.
+    '''
+    foundHero = False
+    # loop through each hero in our list
+    for hero in self.heroes:
+        # if we find them, remove them from the list
+        if hero.name == name:
+            self.heroes.remove(hero)
+            # set our indicator to True
+            foundHero = True
+    # if we looped through our list and did not find our hero,
+    # the indicator would have never changed, so return 0
+    if not foundHero:
+        return 0
 ```
 
 # View the teams heroes
 
-This method should print a list of all the teams heroes to the terminal.
+You'll build this one on your own. This method should print a list of all the teams heroes to the terminal.
 
 > [action]
 >
@@ -196,13 +238,13 @@ This method should print a list of all the teams heroes to the terminal.
 ```python
 def view_all_heroes(self):
         '''Prints out all heroes to the console.'''
-        # TODO: Loop over the list of heroes and print their names to the terminal.
+        # TODO: Loop over the list of heroes and print their names to the terminal one by one.
         pass
 ```
 
 # Add Hero to Team
 
-We need to add heroes to our team. Let's create a method to do that. This will be similar to the methods we already wrote when adding armors to our hero.
+You will build this one on your own as well. We need to add heroes to our team. Let's create a method to do that. This will be similar to the methods we already wrote when adding armors to our hero.
 
 > [action]
 >
@@ -222,11 +264,11 @@ Previously we've used user stories to visualize what our finished application sh
 
 Test Driven Development (commonly abbreviated as **TDD**) is another way of imagining the end result before you dive into coding. However, instead of writing narratives, with TDD we actually write *code* that verifies the behavior we want our program to perform before we even write the program.
 
-By writing the test first you focus on functionality first instead of implementation. In the spirit of TDD you'll be provided with tests that your class methods must pass.
+By writing the test first you focus on functionality first instead of implementation. In the spirit of TDD, we wrote some tests already for you to use, which your class methods must pass.
 
 ## Install `pytest`
 
-We'll use the automated testing tool **pytest** to verify the code.
+We'll use the automated testing tool [pytest](https://docs.pytest.org/en/latest/) to verify the code.
 
 Pytest must be installed into your system first before you can use it. While you don't need pytest to run the tests included in this project, pytest gives a lot of additional helpful tools and loggin.
 
@@ -253,12 +295,12 @@ This is pytest version 5.1.0, imported from /usr/local/lib/python3.7/site-packag
 # Pass Your First Test
 Tests have been provided to help you with this assignment.
 
-You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as heroperoes.py
+You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as `superheroes.py`
 
 To run the provided tests `cd` into to the project directory in the terminal
 
 ```
-cd Super-Hero-Battle
+cd name-of-project-dir
 ```
 
  then run
