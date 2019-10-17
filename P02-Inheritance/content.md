@@ -150,6 +150,27 @@ class Weapon(Ability):
         pass
 ```
 
+Now that we have a weapon, we need to allow heroes to add a weapon for them to use. You will do this one on your own as well, refer to your other `add` methods for guidance.
+
+> [action]
+>
+> Add the following to the Hero class:
+>
+```python
+class Hero:
+    # The code you have already written should be here.  
+    # Add the following method to your hero class...
+>
+    def add_weapon(self, weapon):
+        '''Add weapon to self.abilities'''
+        # TODO: This method will append the weapon object passed in as an
+        # argument to self.abilities.
+        # This means that self.abilities will be a list of
+        # abilities and weapons.
+        pass
+    ....
+```
+
 Use these tests to make sure you implemented `Weapon` correctly:
 
 > [action]
@@ -162,7 +183,7 @@ if __name__ == "__main__":
     # this block is executed.
     hero = Hero("Wonder Woman")
     weapon = Weapon("Lasso of Truth", 90)
-    hero.add_ability(weapon)
+    hero.add_weapon(weapon)
     print(hero.attack())
 ```
 
