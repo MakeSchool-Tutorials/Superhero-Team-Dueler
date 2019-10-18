@@ -3,62 +3,21 @@ title: Create the Arena
 slug: arena
 ---
 
-This chapter will not walk you through as much as the previous chapters. Use what you've learned the last four chapters to finish out strong here!
+We need a place for our heroes to duke it out, otherwise who's gonna pay for all that damage to the cities?
 
-# Add Weapons for Heroes
+This chapter will have you doing a bit more of the coding on your own than the previous ones have. However, you'll be using a lot of your existing code here to build out the Arena class.
 
-We created a simple fight in the last section but didn't use some of the classes we built. let's give our hero access to the rest of their equipment by adding two more methods to the hero class.
-
-> [action]
->
-> Add the following to the Hero class:
->
-```python
-class Hero:
-    # The code you have already written should be here.  
-    # Add the following method to your hero class...
->
-    def add_weapon(self, weapon):
-        '''Add weapon to self.abilities'''
-        # TODO: This method will append the weapon object passed in as an
-        # argument to self.abilities.
-        # This means that self.abilities will be a list of
-        # abilities and weapons.
-        pass
-    ....
-```
-
-# Add Armor for Heroes
-
-We need to make sure they can add armor too in addition to their weapons:
-
-> [action]
->
-> Add the following to the Hero class:
->
-```python
-class Hero:
-    # The code you have already written should be here.  
-    # Add the following method to your hero class...
->
-def add_armor(self, armor):
-    '''Add Armor to self.armors
-        armor: Armor Object
-    '''
-    # TODO: This method will add the armor object that is passed in to
-    # the list of armor objects defined in the constructor: `self.armors`.
-    pass
-...
-```
+Let's build out the last phase of our superhero team dueler project!
 
 # Creating the Battle Arena
 
 Our heroes need somewhere to battle. let's have our user create our heroes with all of their respective gear and abilities. Our arena will take care of creating heroes and adding them to their respective teams.
 
-Let's create some methods in an Arena class that we can call that will allow for code reuse. Use your favorite loops with the `input()` function to build teams based on user input.
+Let's create some methods in an Arena class that  will allow for code reuse. Use your favorite loops with the `input()` function to build teams based on user input.
 
 > [action]
-> Start by making an `init` method for your Arena class:
+>
+> Start by making an `init` method for your Arena class. Follow the TODO comment, you shouldn't be adding more than 2 lines of code here:
 >
 ```python
 class Arena:
@@ -84,15 +43,16 @@ Create this method that will allow users to create an ability for any hero:
         '''Prompt for Ability information.
             return Ability with values from user Input
         '''
-        # TODO: This method will allow a user to create an ability.
-        # Prompt the user for the necessary information to create a new ability object.
-        # return the new ability object.
-        pass
+        name = input("What is the ability name?  ")
+        max_damage = input(
+            "What is the max damage of the ability?  ")
+>
+        return Ability(name, max_damage)
 ```
 
 # Prompting for Weapon information
 
-Create this method that will allow users to create a weapon for any hero:
+You will do this one on your own. Create this method that will allow users to create a weapon for any hero:
 
 > [action]
 >
@@ -110,7 +70,8 @@ Create this method that will allow users to create a weapon for any hero:
 ```
 
 # Prompting for Armor information
-Create this method that will allow users to create armor for any hero:
+
+You will do this one on your own. Create this method that will allow users to create armor for any hero:
 
 > [action]
 >
@@ -122,15 +83,14 @@ Create this method that will allow users to create armor for any hero:
           return Armor with values from user input.
         '''
         # TODO:This method will allow a user to create a piece of armor.
-        #  Prompt the user for the necessary information to create a new armor
-        #  object.
-        #
+        #  Prompt the user for the necessary information to create a new armor object.
         #  return the new armor object with values set by user.
         pass
 ```
 
 # Create a Hero for your Arena
-Create this method that will allow users to create heroes for their arena:
+
+Create this method that will allow users to create heroes for their arena. One of our students, Tasfia Addirita, helped us out here by partially implementing this method. You'll need to fill in the rest:
 
 > [action]
 >
@@ -141,18 +101,23 @@ Create this method that will allow users to create heroes for their arena:
         '''Prompt user for Hero information
           return Hero with values from user input.
         '''
-        # TODO: This method should allow a user to create a hero.
-        # User should be able to specify if they want armors, weapons, and
-        # abilities.
-        # Call the methods you made above and use the return values to build
-        # your hero.
-        #
-        # return the new hero object
-        pass
+        hero_name = input("Hero's name: ")
+        hero = Hero(hero_name)
+        add_item = None
+        while add_item != "4":
+           add_item = input("[1] Add ability\n[2] Add weapon\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
+           if add_item == "1":
+               #TODO add an ability to the hero
+           elif add_item == "2":
+               #TODO add a weapon to the hero
+           elif add_item == "3":
+               #TODO add an armor to the hero
+        return hero
 ```
 
 # Create Teams for your Arena
-Create this method that will allow users to add heroes to Team One and Team Two for their arena:
+
+You will build these methods on your own (though they are almost identical). Create these methods that will allow users to add heroes to Team One and Team Two for their arena:
 
 > [action]
 >
@@ -162,24 +127,31 @@ Create this method that will allow users to add heroes to Team One and Team Two 
     def build_team_one(self):
         '''Prompt the user to build team_one '''
         # TODO: This method should allow a user to create team one.
-        # Prompt the user for the number of Heroes on team one
-        # call self.create_hero() for every hero that the user wants to add to team one.
-        #
-        # Add the created hero to team one.
+        # 1) Prompt the user for the name of the team
+        # 2) Prompt the user for the number of Heroes on the team
+        # 3) Instantiate a new Team object,
+        # using the team name obtained from user input
+        # 4) use a loop to call self.create_hero() for the number
+        # of heroes the user specified the team should have,
+        # and then add the heroes to the team.
         pass
 >
     def build_team_two(self):
         '''Prompt the user to build team_two'''
         # TODO: This method should allow a user to create team two.
-        # Prompt the user for the number of Heroes on team two
-        # call self.create_hero() for every hero that the user wants to add to team two.
-        #
-        # Add the created hero to team two.
+        # 1) Prompt the user for the name of the team
+        # 2) Prompt the user for the number of Heroes on the team
+        # 3) Instantiate a new Team object,
+        # using the team name obtained from user input
+        # 4) use a loop to call self.create_hero() for the number
+        # of heroes the user specified the team should have,
+        # and then add the heroes to the team.
         pass
 ```
 
 # Arena Battle
-Create this method that will allow teams to battle it out in your arena!
+
+Create this method that will allow teams to battle it out in your arena! Don't overthink this one, you've already written everything you need for it.
 
 > [action]
 >
@@ -207,11 +179,29 @@ You may want to get statistics on how your battle went. Let's build that out now
         # TODO: This method should print out battle statistics
         # including each team's average kill/death ratio.
         # Required Stats:
+        #     Show surviving heroes.
         #     Declare winning team
         #     Show both teams average kill/death ratio.
-        #     Show surviving heroes.
+        # Some help on how to achieve these tasks:
+        # TODO: for each team, loop through all of their heroes,
+        # and use the is_alive() method to check for alive heroes,
+        # printing their names and increasing the count if they're alive.
+        #
+        # TODO: based off of your count of alive heroes,
+        # you can see which team has more alive heroes, and therefore,
+        # declare which team is the winning team
+        #
+        # TODO for each team, calculate the total kills and deaths for each hero,
+        # find the average kills and deaths by dividing the totals by the number of heroes.
+        # finally, divide the average number of kills by the average number of deaths for each team
         pass
 ```
+
+<!-- -->
+
+> [challenge]
+>
+> that `show_stats` function is pretty big. Break it up into smaller helper functions to make the function less bloated and practice good code quality.
 
 # Testing Arena
 
