@@ -91,6 +91,7 @@ class Dog:
         self.name = name
         print("dog initialized!")
 >
+# instantiation call that creates a Dog object:
 Dog("Rex")
 ```
 
@@ -119,7 +120,9 @@ Here's the solution:
 dog initialized!
 ```
 
-Awesome! Our dog has been initialized, but how do we do anything with it? How do we access its name? In order to do this, **we have to save our instance to a variable!** Remember that variables are just like empty boxes, all they do is hold stuff for us. In this case, we want the `my_dog` variable to hold an instance of our `Dog` class. Without saving the instance to a variable, the instance just lives in memory, but we won't be able to reference or access it.
+Awesome! Our dog has been initialized, but how do we do anything with it? How do we access its name? In order to do this, **we have to save our instance to a variable!**
+
+Remember that variables are just like empty boxes, all they do is hold stuff for us. In this case, we want the `my_dog` variable to hold an instance of our `Dog` class. Without saving the instance to a variable, the instance just lives in memory, but we won't be able to reference or access it.
 
 > [action]
 >
@@ -132,6 +135,8 @@ class Dog:
         self.name = name
         print("dog initialized!")
 >
+# the same instantiation call that creates a Dog object,
+# but now we've assigned it to the value of the my_dog variable
 my_dog = Dog("Rex")
 print(my_dog)
 print(my_dog.name)
