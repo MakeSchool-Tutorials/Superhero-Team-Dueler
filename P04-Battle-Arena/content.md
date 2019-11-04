@@ -30,6 +30,12 @@ class Arena:
         # will hold our teams.
 ```
 
+<!-- -->
+
+> [info]
+>
+> Remember the difference between aggregation and inheritance here! An `Arena` has `Team` objects, it _does not inherit_ from `Team`, and `Team` _does not inherit_ from `Arena`
+
 # Prompting for Ability information
 
 Create this method that will allow users to create an ability for any hero:

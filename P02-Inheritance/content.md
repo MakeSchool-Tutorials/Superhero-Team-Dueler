@@ -211,7 +211,23 @@ Here's an overview of some of the methods we'll need.
 
 You'll need to use methods that exist in the built-in Python list (`self.heroes`) to add and remove heroes to the team. This code is going to be very similar to the code that you wrote in Rainbow Checklist except that instead of adding strings to our list, we want to add `Hero` objects.
 
-## Build the Constructor
+## Aggregation Vs Inheritance
+
+Before we move forward, let's review what we just said about the `Team` class: it will contain a list of `Hero` objects. An important distinction here is that **`Team` does not inherit from the `Hero` class, and `Hero` does not inherit from the `Team` class.**
+
+Rather, the `Team` class **contains** `Hero` objects (using a list), see below for a visualized example:
+
+![hero_team](assets/hero_visual.png)
+
+In a similar manner, your `Hero` has a list of abilities and armors. This does not mean your `Hero` has `Ability` or `Armor` methods or properties, but that the `Hero` can contain `Ability` or `Armor` objects that have their own methods/properties, and can only be used/accessed by the `Ability` or `Armor` objects
+
+> [info]
+>
+> This concept is known as **Aggregation** in OOP. Another way to think about it is that inheritance vs aggregation is "isa" vs. "hasa".
+>
+>For example, a `Weapon` "is a(n)" `Ability`, whereas a `Team` "has a" list of `Hero` objects
+
+# Build the Constructor
 
 > [action]
 >
