@@ -99,11 +99,12 @@ $ touch animal.py
 >
 > Finally, test your code by instantiating one `Animal` and one `Frog`, and making sure that your `Frog` object can eat, drink, and jump, and that your `Animal` can eat and drink.
 
-Here's the solution:
+Once you've tried it, check your code against the provided solution below:
 
 >[solution]
 >
 ```py
+#animal.py
 class Animal:
   def __init__(self, name):
     self.name = name
@@ -122,6 +123,10 @@ class Frog(Animal):
 Let's use what we learned here to give our superheroes more options for attacking.
 
 # Weapon Class
+
+> [action]
+>
+> Re-open your `superheroes.py` file, we'll be using this for the remainder of this tutorial.
 
 One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
 

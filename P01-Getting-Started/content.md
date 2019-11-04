@@ -5,7 +5,7 @@ slug: build-ability-and-hero-classes
 
 > [action]
 >
-> Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now.
+> Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now. **Unless otherwise specified, you will be using this file to write the code for the remainder of this tutorial!**
 
 Before we get started, it's important to know how we will build out this file:
 

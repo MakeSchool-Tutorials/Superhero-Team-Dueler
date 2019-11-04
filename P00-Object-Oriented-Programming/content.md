@@ -270,16 +270,16 @@ Classes are very modular, since you can write a class in one file, and then use 
 Let's import the Dog class into a new file were we'll make some instances of Dog.
 
 >[action]
->Make a new file called `my-dogs.py`. Inside there write the following code.
+>Make a new file called `my_dogs.py`. Inside there write the following code:
 >
 ```python
-# my-dogs.py
+# my_dogs.py
 import dog
 ```
 
 Import simply looks for a file with the specified name that also ends with `.py`. So this import statement will run the file `dog.py` and put it into memory for us to use.
 
-You'll notice that if you run `my-dogs.py` the following will display in the terminal
+You'll notice that if you run `my_dogs.py` the following will display in the terminal
 
 ```
 Woof!
@@ -287,7 +287,21 @@ Woof!
 
 > [action]
 >
-> Next let's move our code that calls the Dog class out of the `dog.py` file and into the `my-dogs.py` file.
+> Next let's move our code that calls the Dog class out of the `dog.py` file and into the `my_dogs.py` file.
+>
+```python
+# my_dogs.py
+import dog # we need to specify exactly what we want
+>
+my_dog = dog.Dog("Rex", "SuperDog")
+my_dog.bark()
+```
+
+Now that we've moved the instantiation and call to the `bark` method into `my_dogs.py`, we can remove this code from `dog.py`:
+
+> [action]
+>
+> Refactor `dog.py` to remove the lines you just put in `my_dogs.py`:
 >
 ```python
 # dog.py
@@ -299,15 +313,9 @@ class Dog:
 >
     def bark(self):
         print("Woof!")
->
-# my-dogs.py
-import dog # we need to specify exactly what we want
->
-my_dog = dog.Dog("Rex", "SuperDog")
-my_dog.bark()
 ```
 
-Now run `$ python3 my-dogs.py`. You should see no difference.
+Now run `$ python3 my_dogs.py`. You should see no difference.
 
 > [challenge]
 >
@@ -361,18 +369,20 @@ Hello World!
 
 In this example we have declared our message variable in a 'global scope'. That means that any functions we declare will also have access to the 'global scope'. The variables that exist within the function however have a 'local scope' that is not available in the global context.
 
-**This same principle is why if in `my-dogs.py` we tried to call `print(name)` or `bark()`, we would get an error. Both `name` and `bark()` only exist within the scope of a `Dog` object!**
+**This same principle is why if in `my_dogs.py` we tried to call `print(name)` or `bark()`, we would get an error. Both `name` and `bark()` only exist within the scope of a `Dog` object!**
 
 
 # Make Another Dog
 
-If we want another dog we can create a new dog with the name Annie this way.
-
+> [action]
+>
+> If we want another dog we can create a new dog with the name Annie this way.
+>
 ```python
-# my-dogs.py
+# my_dogs.py
 import dog
 ...
-
+>
 my_other_dog = dog.Dog("Annie", "SuperDog")
 print(my_other_dog.name)
 ```
