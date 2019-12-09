@@ -49,7 +49,7 @@ Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 >
 ```python
 class Ability:
-    def __init__(self, name, attack_strength):
+    def __init__(self, name, max_damage):
         '''
        Initialize the values passed into this
        method as instance variables.
