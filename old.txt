@@ -16,3 +16,85 @@ If you run this you'll see the output:
 ```
 
 Here we have a `list` object that Python gives us. The `list` class contains methods such as `append()` that we can run to manipulate our list object.
+
+
+
+# __name__
+
+>[action]
+Python gives us a way to check where our code is being run with the built-in variable `__name__`. This variable will come in handy later.
+
+> At the bottom of your `dog.py` file add this line:
+
+>```python
+print(__name__)
+```
+>When run in the terminal this way `python ./dog.py` you should see
+
+>```
+Woof!
+__main__
+```
+
+
+Why did our `__name__` statement print "dog" instead of  "__main__" like before?
+
+When we import our `dog.py` file, the value for `__name__` is `dog` — the filename in which it exists. Instead when we ran our `dog.py` file directly in the terminal the value for `__name__` was `__main__`.
+
+What is going on here?
+
+As you may have seen, importing the `dog` module immediately ran code that really shouldn't be run if we were going to use it as a proper module.
+
+This means that we should check to see if our code is being run as a module or not before executing statements the way we did.
+
+Think about it like this, you can use the file defining the `Dog` to hold the definition of `Dog` and create an instance named `my_dog` and tell it to bark. Other times, you may want to use the definition of the Dog class in another project that doesn't want to create the instance `my_dog`.
+
+Add a check to your `dog.py` file to modularize it this way.
+
+```python
+class Dog:
+    def bark(self):
+        print("Woof!")
+
+if __name__ == "__main__":
+    my_dog = Dog()
+    my_dog.bark()
+```
+
+You'll notice if you run the `python ./dog.py` you'll see the familiar output
+
+```
+Woof!
+```
+
+However, if you run `python ./my-dogs.py` there won't by any output.
+
+We now have behavior the plays well with modularization.
+
+> [info]
+> A module is a file containing Python definitions and statements.
+
+
+
+### Using a Class Variables
+
+Class variables are different from instance variables. Remember there is only one class, while you can make create any number of instances from that class. Class variables represent a value that is owned by the class itself and is not stored with each instance.
+
+Imagine that all dogs say "Woof!" when they bark. You might store this string with the class like this:
+
+```python
+class Dog:
+    greeting = "Woof!"
+
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        print(self.name+" says:"+Dog.greeting)
+```
+
+Here the variable `greeting` is defined in the class block, and is accessed from the `Dog` class itself: `Dog.greeting`.
+
+Class variables are not as useful as instance variables, you will use them seldom. On the other hand, ervery class you create will use one or more instance variables.
+
+# Compare instance variables with class variables

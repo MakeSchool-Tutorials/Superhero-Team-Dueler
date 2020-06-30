@@ -1,465 +1,127 @@
 ---
-title: Build Ability and Hero Classes
-slug: build-ability-and-hero-classes
+title: Build Hero Class
+slug: build-hero-class
 ---
 
-## Build Ability and Hero classes
+> [action]
+>
+> Let's use what we've learned to build the hero class in a file named `hero.py`. Create that file right now. **Not all of the code for this tutorial will be contained in this file!**
 
-Let's use what we've learned to build a couple classes in a file named `superheroes.py`. Create that file right now. 
+Before we get started, it's important to know how we will build out this file:
 
-Here is an overview of what you will build.
+- Some classes we will give you the code to use. Be sure to read through it and reference the comments so that you know what it is doing. This is important because...
+- Other classes we will _NOT_ give you the code, and will only give you a docstring that describes what the code is supposed to do. Use this as a template and replace `pass` with your own code.
+    - Use your prior learnings and the code we gave you to help build out the code needed for these classes
 
-Each method below is labeled with a doc string that describes what it is supposed to do. Use this as a template and replace `pass` with your own code.
+Here is an overview of what you will build in this chapter:
 
+* Hero Class
+  1. `__init__`: Parameters: name:String, starting_health:Int (default value: 100)
+  2. `fight`: Parameters: opponent: Hero Class  
+
+
+# Build out the Hero Class
+Here we define what we want our `Hero` class to look like. Each hero will need attributes such as starting and current health. Let's set these as some starting value when we create each Hero in memory.
+
+Let's walk through each method and smoke test them as we go.
+
+> [action]
+>
+> Build out the Hero class constructor:
+>
 ```python
 class Hero:
+    # We want our hero to have a default "starting_health",
+    # so we can set that in the function header.
     def __init__(self, name, starting_health=100):
-        ''' 
-        Initialize these values as instance variables:
-        (Some of these values are passed in above, others will need to be set at a starting value.)
-        abilities:List
-        name:
-        starting_health:
-        current_health:
-         '''
-         pass
-
-
-    def add_ability(self, ability):
-        ''' Add ability to abilities list '''
-        pass
-
-    def attack(self):
-        ''' 
-        Calculates damage from list of abilities.
-
-        This method should call Ability.attack() 
-        on every ability in self.abilities and
-        return the total.
+        '''Instance properties:
+          name: String
+          starting_health: Integer
+          current_health: Integer
         '''
-        pass
-    
-    def take_damage(self, damage):
-        ''' 
-        This method should update self.current_health 
-        with the damage that is passed in.
-        '''
-        pass
-
-    def is_alive(self):  
-        '''
-        This function will 
-        return true if the hero is alive 
-        or false if they are not. 
-        '''
-        pass
-
-    def fight(self, opponent):  
-        '''
-        Runs a loop to attack the opponent until someone dies.
-        '''
-        pass
-
-class Ability:
-    def __init__(self, name, max_damage):
-        ''' 
-        Initialize the values passed into this 
-        method as instance variables.
-         '''
-        pass
-
-    def attack(self):
-        ''' 
-        Return a random attack value 
-        between 0 and max_damage.
-        '''
-        pass
-
-
-if __name__ == "__main__":
-    # If you run this file from the terminal 
-    # this block is executed.
-    pass
-```
-
-## Build the Hero Class
-Here we define what we want our `Hero` class to look like. Each hero should have a name and should be able to have several different abilities. Also a hero will need other attributes such as starting and current health. We'll need to set these at some starting value when we create each Hero in memory.
-
-Let's start with the constructor for `Hero`.
-
-The constructor for `Hero` should look like this:
-
-```python
-def __init__(self, name, starting_health=100):
+>
+    # we know the name of our hero, so we assign it here
     self.name = name
+    # similarly, our starting health is passed in, just like name
     self.starting_health = starting_health
+    # when a hero is created, their current health is
+    # always the same as their starting health (no damage taken yet!)
     self.current_health = starting_health
-    self.abilities = list()
-```
+    ```
 
-In addition to creating our initial values, we create a new empty list that will store our heroes' multiple abilities.
+Ok, we can initialize a hero! Now let's test it:
 
-## Create an add_ability method
-
+> [action]
+>
+> After completing the method, add a call to your newly created constructor at the bottom of the file. This will let you test what you just did.
+>
+> **Hint:** The bottom of your file should look like this:
+>
 ```python
-def add_ability(self, ability):
-    # Append ability to self.abilities
+if __name__ == "__main__":
+    # If you run this file from the terminal
+    # this block is executed.
+    my_hero = Hero("Grace Hopper", 200)
+    print(my_hero.name)
+    print(my_hero.current_health)
 ```
 
-Our hero will need abilties. Later you'll define a class for these. An instance of the Ability class -- known as an object -- is passed into this method. 
-
-Use the append method to add a new ability to your hero's `abilities` list.
-
-*Hint*: We used the append method to add strings to a list in the Rainbow Checklist tutorial. This time we're not adding strings, instead we'll add ability objects.
-
-We need to allow our hero to use their abilities. A hero needs to be able to run the `attack` method that exists in every ability object in that hero's abilities list.
-
-## Create the attack method
-
-```python
-    def attack(self):
-        ''' 
-        Calculates damage from list of abilities.
-
-        This method should call Ability.attack() 
-        on every ability in self.abilities and
-        return the total.
-        '''
-        pass
-```
-
-This method should iterate over our `abilities` list and call the `attack()` method on every ability. Assume the attack method returns a number. This is the amount of damage done by the attack. The method should total the damage of each attack and return the total damage at the end of the function.
-
-It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings here you will be returning ability objects from the abilities list. 
-
-The `for` loop will return each object in the list, and you can call methods on those objects just like you would expect.  
-
-The code snippet below shows how you might iterate over a list of dogs with a for loop and call the `bark()` on each. 
-
-```python
-class Dog:
-    def bark(self):
-        print("Woof!")
-
-my_dogs = list()
-
-my_dogs.append(Dog())
-my_dogs.append(Dog())
-
-for dog in my_dogs:
-    dog.bark()
-```
-
-You'll see the output in this code snippet is:
+If you've done it correctly you should be able to set the values and see them in the terminal when running the file:
 
 ```
-Woof!
-Woof!
+Grace Hopper
+200
 ```
 
-## Take Damage
+Note that we can still provide a value for `starting_health` which replaces the default value of 100 that we gave in the `__init__` method! If when we instantiated our hero we had just put `Hero("Grace Hopper")`, then their `current_health` would've been 100!
 
-When a hero takes damage it's `self.current_health` is decreased. While you can set a property directly, it's common practice to call a method instead the job of this method is to make the change to the property. This system offers an advantage as it allows your software to react the change of the property. For example, a hero might take less damage if they have a force field, or they might say "Ouch!" if they get hit harder, or they might fall over over if they run out of health. 
 
->[info]
-> Methods that handle changes in properties are called setters. Methods that return the value of a property are called setters. 
-
-Your job is to subtract the damage passed to `take_damage()` from the hero's `self.current_health`. 
-
-```python
-def take_damage(self, damage):
-    ''' 
-    This method should update self.current_health 
-    with the damage that is passed in.
-    '''
-    pass
-```
-
-## Are You still conscious?
-
-Once a hero has been hit they might be knocked out! Or they might still be up, how will we know? 
-
-You'll use a function to decide. 
-
-Create a function that returns a boolean. It should return `True` when the hero's `current_health` is greater than 0, and false if not. 
-
-```python
-def is_alive(self):  
-    '''
-    This function will 
-    return true if the hero is alive 
-    or false if they are not. 
-    '''
-    pass
-```
-
-## Fight!
+# Fight!
 
 It's time to get a one vs one battle happening! Your job is to create a method that will allow each hero to attack the other.
 
-The `fight()` method will take an `opponent` as a parameter. An `opponent` is another instance of `Hero`. 
+The `fight()` method will take an `opponent` as a parameter. An `opponent` is another instance of `Hero`.
 
-A single attack usually won't knock a hero out. The hero and oppoent will usually attack each other repeatedly before one of them is knocked! 
+Since we haven't added abilities and armor to our heroes, we'll start by randomly choosing a winner.
 
-Because we don't know how many times our hero will need to attack -- it's best to use a while loop to continue the attack until someone dies.
 
+The core functionality for this method will come from calling methods that exist in the current instantiated object (using `self`) as well as calling methods on the `opponent` object that is passed in as a parameter.
+
+> [action]
+>
+> Build the `fight` method for the Hero class! Take everything you've learned so far in this chapter and apply it to creating this method!
+>
 ```python
-def fight(self, opponent):  
-    '''
-    Runs a loop to attack opponent until someone dies.
-    '''
-    pass
+def fight(self, opponent):
+  ''' Current Hero will take turns fighting the opponent hero passed in.
+  '''
+  # TODO: Fight each hero until a victor emerges.
+  # Phases to implement:
+  #1) randomly choose winner
 ```
-
-You'll need to use the methods that we just built to complete this. 
-This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage.
-
-When a hero dies print to the console.
-
-```
-HeroName died
-```
-Where HeroName is the name of the hero that died.
-
-The core functionality for this method will come from calling methods that exist in the current instantiated object (using self) as well as calling methods on the object that is passed in. 
-
-
-## Test it out
-You don't want to write a bunch of code without testing to see if it runs. Write code that will run the methods you create after the line
-
-```python
-if __name__ == "__main__":
-```
-
-You can test out whether your `Hero` class is working properly by adding these tests to your file:
-
-```python
-    hero = Hero("Wonder Woman")
-    print(hero.attack())
-```
-This should give you:
-
-```
-0
-```
-
-Create the ability class and don't be afraid to add as many calls to your methods as necessary to make sure that your code is functioning.
-
-### Ability Class
-Let's give our `Ability` class three simple methods at first.
-
-```python
-class Ability:
-    def __init__(self, name, attack_strength):
-        ''' Initialize starting values '''
-        pass
-
-    def attack(self):
-        '''
-         Return attack value 
-         between 0 and the full attack.
-         '''
-        pass
-```
-
-Use a constructor to set the name and attack strength for our `Ability` just like you did above with `name` in our `Dog` class.
-
-```python
-def __init__(self, name, attack_strength):
-    # Set Ability name
-    # Set attack strength
-    pass
-```
-
-Our next task is to write the `attack` method.
-
-Import `random` at the very top of your file using
-
-```python
-import random
-```
-
-The `random` module has a method called `randint()` that takes two values, a minimum and maximum value. It will return some random value between the two.
-
-You'll need to use the module name in order to use this method properly.
-
-```random.randint(2, 7)```
-
-Will return back to you some value between and including 2 and 7.
-
-
-
-```python
-def attack(self):
-    """
-    Use random.randint(a, b) to select a random attack value.
-    Return an attack value between 0 and the full attack.
-    Hint: The constructor initializes the maximum attack value.
-    """
-    pass
-```
-
-Complete this function using the techniques you've learned so far.
-
-You'll need to work with values that were instantiated in the constructor earlier.
-
 
 ## Continue To Test it out
+
 You can test out whether your `Hero` class is working properly by adding these tests to your file:
 
 ```python
-    hero = Hero("Wonder Woman")
-    print(hero.attack())
-    ability = Ability("Divine Speed", 300)
-    hero.add_ability(ability)
-    print(hero.attack())
-    new_ability = Ability("Super Human Strength", 800)
-    hero.add_ability(new_ability)
-    print(hero.attack())
-```
-
-These lines should be added after checking `__name__` this way:
-
-```python
-import random
-
-class Hero:
-    '''
-    Methods not shown here for clarity
-    '''
-    pass
-
-
-class Ability:
-    '''
-    Methods not shown here for clarity
-    '''
-    pass
-
-
 if __name__ == "__main__":
-    hero = Hero("Wonder Woman")
-    print(hero.attack())
-    ability = Ability("Divine Speed", 20)
-    hero.add_ability(ability)
-    print(hero.attack())
-    new_ability = Ability("Super Human Strength", 30)
-    hero.add_ability(new_ability)
-    print(hero.attack())
-    hero2 = Hero("Jodie Foster")
-    ability2 = Ability("Science", 800)
-    hero2.add_ability(ability2)
-    hero.fight(hero2)
-```
+    # If you run this file from the terminal
+    # this block is executed.
+    hero1 = Hero("Wonder Woman")
+    hero2 = Hero("Dumbledore")
 
-**Note:** Don't replace your code with this block, it should only serve as a guide.
+    hero1.fight(hero2)
+```
 
 You should see an output similar to:
 
 ```
-0
-12
-39
-Wonder Woman died
+Wonder Woman won!
 ```
 
-## A Note on Scope and Encapsulation
+Since we randomly chose a winner, either hero has an equal likelihood to win. In later chapters, we'll add armor and abilities to the heroes to make the battle much more interesting!
 
-Many languages allow you to enforce access restrictions to various properties and methods of your object in memory. This allows the developer to prevent people from trying to access areas of memory that shouldn't be accessed or edited arbitrarily.
+# Move to the Next Section
 
-In Python this functionality is not present. Since Python code can be read by anyone, trying to protect areas of memory from modification becomes an exercise in futility since anyone can read and edit the code before running it. This is one of the reasons that the former "Benevolent Dictator of Python for Life", Guido Van Rossum, had decided that creating a way to restrict access to variables and methods in an interpreted language creates more problems than it's worth.
-
-Scope and encapsulation can be thought as useful features that allow us to compartmentalise code instead of providing a measure of security.
-
-```python
-def greeting():
-    message = "Hello World!"
-    return message
-
-print(message)
-
-```
-
-If you were to run the above block of code separately you will encounter the error:
-
-```
-NameError: name 'message' is not defined
-```
-
-This is because `message` is declared inside our function `greeting`. It can only be accessed from within our function `greeting` because of **scope**. Our function `greeting` has a **local scope** that can't be accessed from outside.
-
-We can however flip it around like this.
-
-```python
-message = "Hello World!"
-
-def greeting():
-    print(message)
-
-greeting()
-```
-
-This bit of code will output:
-
-```
-Hello World!
-```
-
-In this example we have declared our message variable in the **global scope**. That means we have access to them inside our functions.
-
-
-### The `self` Argument
-You may be seeing `self` places in our code and wonder why on earth is it necessary? You may be able to deduce that `self` allows us access to things outside of a particular method. We can get some clue about what's going on if we leave it out and see what happens.
-
-```python
-class Dog:
-    def bark():
-        print("Woof")
-
-mydog = Dog()
-mydog.bark()
-```
-
-You'll see an error when the bark method is run.
-
-```
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: bark() takes 0 positional arguments but 1 was given
-```
-
-What is this error saying? Here is the clue:
-
-```
-bark() takes 0 positional arguments but 1 was given
-```
-
-When we run a method, `bark()` in this case, Python will automatically pass in a reference to the instantiated object as the first parameter to the method. This allows us to access anything else inside our object.
-
-Here our `bark` method doesn't accept any parameters so it fails when Python tries to pass in the instantiated object.
-
-Many languages take care of passing a reference to the parent invisibly by using a reserved keyword such as `this`. The Python philosophy of "explicit is better than implicit" is one of the reasons that `self` is not handled automatically behind the scenes. By explicitly passing a reference to the instantiated object, Python bypasses the issue of what `this` refers to.
-
-In Python the word `self` is not **reserved** like the word `this` is in other languages. Not only will Python allow you to use self anywhere you like, but it doesn't even require the first parameter to be named `self`.
-
-```python
-class Dog:
-    def bark(object):
-        print("Woof")
-
-if __name__ == "__main__":
-    my_dog = Dog()
-    my_dog.bark()
-```
-
-As you can see instead of `self` this block of code uses the word `object`. If you run this you'll see that the output will be:
-
-```
-Woof
-```
-
-In order to maintain code clarity and to comply with industry best practises we follow the PEP8 style guide. In this case our style guide is clear:
-
->Always use `self` for the first argument to instance methods.
-
-So even though it's not enforced by the language it's still important to be consistent and always use `self` the way the style guide suggests. This will allow your code to be clear and consistent across multiple projects and will match the work done by other Python developers as well.
+Great work on building out your first few classes! Now that we have the basic functionality that allows our heroes to duel each other, we can expand on this to make our Superhero Dueler much more complex.
