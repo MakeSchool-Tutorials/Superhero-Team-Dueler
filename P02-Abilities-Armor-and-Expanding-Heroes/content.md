@@ -3,9 +3,6 @@ title: Build Ability and Armor Classes
 slug: build-ability-and-armor-classes
 ---
 
-> [action]
->
-
 In this chapter we are going to make classes for Armor and Abilities so each of our heroes is unique and each battle has the potential to have a different outcome.
 
 - Some classes we will give you the code to use. Be sure to read through it and reference the comments so that you know what it is doing. This is important because...
@@ -42,8 +39,9 @@ Our hero will need an ability to be able to save the world. let's start by creat
 
 Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 
-**First, in your project directory, make a file named 'ability.py' to contain all the code for the Ability class**
-
+> [action]
+>First, in your project directory, make a file named 'ability.py' to contain all the code for the Ability class
+>
 ## Set initial values with a constructor
 
 > [action]
@@ -137,8 +135,10 @@ Debugging Ability
 But your values may be different since we're using a random number generator.
 
 # Add Armors
+> [action]
+>
+>In your project directory make a file named 'armor.py' and placing the Armor class inside of it
 
-**In your project directory make a file named 'armor.py' and placing the Armor class inside of it**
 
 You can't go into battle unprepared. We need to give our heroes armor that they can use to defend themselves.
 
@@ -218,6 +218,7 @@ from ability import Ability
 from armor import Armor
 
 class Hero:
+>
     # We want our hero to have a default "starting_health",
     # so we can set that in the function header.
     def __init__(self, name, starting_health=100):
@@ -275,6 +276,7 @@ We have abilities and Heroes, but our Heroes can't yet use abilities. Let's give
 > [action]
 >
 > Use the append method to add a new ability to your hero's `abilities` list.
+
 >
 ```python
 def add_ability(self, ability):
@@ -453,8 +455,6 @@ def take_damage(self, damage):
   '''
   # TODO: Create a method that updates self.current_health to the current
   # minus the the amount returned from calling self.defend(damage).
-    defense = self.defend()    
-    self.current_health -= damage - defense
 
 ```
 

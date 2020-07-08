@@ -15,7 +15,9 @@ Our heroes need somewhere to battle. let's have our user create our heroes with 
 
 Let's create some methods in an Arena class that  will allow for code reuse. Use your favorite loops with the `input()` function to build teams based on user input.
 
-**In your project directory, create a new file named 'arena.py' to contain the arena class**
+> [action]
+>
+>In your project directory, create a new file named 'arena.py' to contain the arena class
 
 > [action]
 >
@@ -27,7 +29,7 @@ from weapon import Weapon
 from armor import Armor
 from hero import Hero
 from team import Team
-
+>
 class Arena:
     def __init__(self):
         '''Instantiate properties
@@ -131,7 +133,7 @@ Create this method that will allow users to create heroes for their arena. One o
 
 # Create Teams for your Arena
 
-You will build these methods on your own (though they are almost identical). Create these methods that will allow users to add heroes to Team One and Team Two for their arena:
+You will build these methods on your own (though they are almost identical). build_team_one has been provided for you, implement build_team_two to complete the same task:
 
 > [action]
 >
@@ -148,6 +150,10 @@ You will build these methods on your own (though they are almost identical). Cre
         # 4) use a loop to call self.create_hero() for the number
         # of heroes the user specified the team should have,
         # and then add the heroes to the team.
+        numOfTeamMembers = int(input("How many members would you like on Team One?\n"))
+        for i in range(numOfTeamMembers):
+            hero = self.create_hero()
+            self.team_one.add_hero(hero)
         pass
 >
     def build_team_two(self):

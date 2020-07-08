@@ -123,17 +123,16 @@ class Frog(Animal):
 Let's use what we learned here to give our superheroes more options for attacking.
 
 # Weapon Class
-**In your project directory, make a file named 'weapon.py' to contain the Weapon class**
-
 > [action]
 >
-> Re-open your `superheroes.py` file, we'll be using this for the remainder of this tutorial.
+>In your project directory, make a file named 'weapon.py' to contain the Weapon class
+
 
 One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
 
 Polymorphism basically allows us to use different implementations of the same method.
 
-For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons they can use by adding another class to our `superheroes.py` file.
+For example, we've already built an `Ability` class that will give our superheroes a way to fight, but many superheroes have more than just abilities. Let's give our superheroes weapons! They can do this by importing the Weapon class from our new Weapon file.
 
 We can reuse the functionality in `Ability` so that we can prevent code duplication. let's say that weapons aren't as effective as superhero abilities so we should rewrite our attack function to allow for greater variability in attack strength. let's make our weapons attack power range between half of the `max_damage` value, to the full `max_damage` value of the weapon.
 
@@ -158,7 +157,9 @@ class Weapon(Ability):
 
 Now that we have a weapon, we need to allow heroes to add a weapon for them to use. You will do this one on your own as well, refer to your other `add` methods for guidance.
 
-**Make sure to import the Weapon class into your Hero class**
+> [action]
+>
+>Make sure to import the Weapon class into your Hero class
 
 > [action]
 >
@@ -166,7 +167,7 @@ Now that we have a weapon, we need to allow heroes to add a weapon for them to u
 >
 ```python
 from weapon import Weapon
-
+>
 class Hero:
     # The code you have already written should be here.  
     # Add the following method to your hero class...
@@ -205,7 +206,9 @@ This is called **method overriding** and it is a form of **Polymorphism. It allo
 
 # Build A Team class
 
-**In your project directory, make a 'team.py' file to contain the Team class**
+> [action]
+>
+>In your project directory, make a 'team.py' file to contain the Team class
 
 Superheroes should be team players, so let's create a team class that can manage all of our superheroes.
 
@@ -344,7 +347,7 @@ This is pytest version 5.1.0, imported from /usr/local/lib/python3.7/site-packag
 # Pass Your First Test
 Tests have been provided to help you with this assignment.
 
-You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as `superheroes.py`
+You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as `hero.py`
 
 To run the provided tests `cd` into to the project directory in the terminal
 

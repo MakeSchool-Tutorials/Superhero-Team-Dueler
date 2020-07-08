@@ -97,7 +97,8 @@ def fight(self, opponent):
   '''
   # TODO: Fight each hero until a victor emerges.
   # Phases to implement:
-  #1) randomly choose winner
+  #1) randomly choose winner,
+  #Hint: Look into random library, more specifically the choice method
 ```
 
 ## Continue To Test it out
