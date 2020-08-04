@@ -40,8 +40,9 @@ Our hero will need an ability to be able to save the world. let's start by creat
 Let's give our `Ability` class two simple methods, `__init__`, and `attack`.
 
 > [action]
->First, in your project directory, make a file named 'ability.py' to contain all the code for the Ability class
 >
+> First, in your project directory, make a file named `ability.py` to contain all the code for the Ability class
+
 ## Set initial values with a constructor
 
 > [action]
@@ -137,7 +138,9 @@ But your values may be different since we're using a random number generator.
 # Add Armors
 > [action]
 >
->In your project directory make a file named 'armor.py' and placing the Armor class inside of it
+> In your project directory make a file named `armor.py` and place the Armor class inside of it
+>
+> **HINT:** You would write this in a similar way you  wrote the `Ability` class
 
 
 You can't go into battle unprepared. We need to give our heroes armor that they can use to defend themselves.
@@ -145,6 +148,8 @@ You can't go into battle unprepared. We need to give our heroes armor that they 
 > [action]
 >
 > Create a new class called `Armor` that contains two methods: `__init__` and `block`.
+>
+> **HINT:** You would write this in a similar way you  wrote the `__init__` and `attack` methods for the `Ability` class
 
 The block method should return an integer between 0 and the max_block strength.
 
@@ -153,6 +158,8 @@ For this class, we will _not_ give you the code. Take your learnings from making
 > [action]
 >
 > Build the Constructor
+>
+> **HINT:** Check your `Ability` class and model from that `__init__` method if you get stuck.
 >
 ```python
 class Armor:
@@ -170,6 +177,8 @@ Let's create a method that we can call that will calculate the amount we will bl
 > [action]
 >
 > Build the `block` method for the Armor class
+>
+> **HINT:** Check your `Ability` class and model from the `attack` method if you get stuck.
 >
 ```python
 def block(self):

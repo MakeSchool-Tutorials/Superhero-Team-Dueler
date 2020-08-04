@@ -125,7 +125,7 @@ Let's use what we learned here to give our superheroes more options for attackin
 # Weapon Class
 > [action]
 >
->In your project directory, make a file named 'weapon.py' to contain the Weapon class
+>In your project directory, make a file named `weapon.py` to contain the Weapon class
 
 
 One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
@@ -142,7 +142,9 @@ For example, if the Weapon has a `max_damage` value of 80, then the Weapon's att
 
 > [action]
 >
-> Write the `attack` method for our new `Weapon` class. Use what you learned for the `attack` method in the `Ability` class if you get stuck.
+> Write the `attack` method for our new `Weapon` class.
+>
+> **HINT:** Use what you learned for the `attack` method in the `Ability` class if you get stuck.
 >
 ```python
 class Weapon(Ability):
@@ -159,9 +161,7 @@ Now that we have a weapon, we need to allow heroes to add a weapon for them to u
 
 > [action]
 >
->Make sure to import the Weapon class into your Hero class
-
-> [action]
+> Make sure to import the Weapon class into your Hero class
 >
 > Add the following to the Hero class:
 >
@@ -345,18 +345,21 @@ This is pytest version 5.1.0, imported from /usr/local/lib/python3.7/site-packag
 ```
 
 # Pass Your First Test
+
 Tests have been provided to help you with this assignment.
 
-You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as `hero.py`
-
-To run the provided tests `cd` into to the project directory in the terminal
-
+> [action]
+>
+> You can download the test [here](https://github.com/MakeSchool-Tutorials/Superhero-Team-Dueler/blob/master/hero_test.py) and place it in the same folder as `hero.py`
+>
+>To run the provided tests `cd` into to the project directory in the terminal
+>
 ```
 cd name-of-project-dir
 ```
-
- then run
-
+>
+> then run
+>
 ```
 pytest
 ```

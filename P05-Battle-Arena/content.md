@@ -17,9 +17,7 @@ Let's create some methods in an Arena class that  will allow for code reuse. Use
 
 > [action]
 >
->In your project directory, create a new file named 'arena.py' to contain the arena class
-
-> [action]
+>In your project directory, create a new file named `arena.py` to contain the arena class
 >
 > Start by making an `init` method for your Arena class. Follow the TODO comment, you shouldn't be adding more than 2 lines of code here:
 >
@@ -132,8 +130,6 @@ Create this method that will allow users to create heroes for their arena. One o
 ```
 
 # Create Teams for your Arena
-
-You will build these methods on your own (though they are almost identical). build_team_one has been provided for you, implement build_team_two to complete the same task:
 
 > [action]
 >

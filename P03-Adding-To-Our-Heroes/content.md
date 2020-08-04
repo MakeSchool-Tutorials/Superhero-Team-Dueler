@@ -37,15 +37,14 @@ Let's walk through each method and smoke test them as we go.
 
 > [action]
 > First, in your project directory, return to the file that holds your Hero class
-
-> [action]
+>
 >
 > Build out the Hero class constructor:
 >
 ```python
 from ability import Ability
 from armor import Armor
-
+>
 class Hero:
 >
     # We want our hero to have a default "starting_health",
@@ -111,9 +110,7 @@ We have abilities and Heroes, but our Heroes can't yet use abilities. Let's give
 def add_ability(self, ability):
     ''' Add ability to abilities list '''
 >
-    # We used the append method to add strings to a list
-    # in the Rainbow Checklist tutorial. This time,
-    # we're not adding strings, instead we'll add ability objects.
+    # We use the append method to add ability objects to our list.
     self.abilities.append(ability)
 ```
 
@@ -151,7 +148,7 @@ Build an `attack` method in the Hero class that will use your hero's abilities.
 
 This method should iterate over our `abilities` list and call the `attack()` method on every ability. Remember that our abilities return a random value so we have to total all those values up to get the total attack strength of all abilities. This is the total amount of damage done by the attack.
 
-It's easiest to use a Python `for` loop to iterate over the list of abilities. You've already seen a `for` loop return string values from a list of strings. Here you will be returning ability objects from the abilities list.
+It's easiest to use a Python `for` loop to iterate over the list of abilities.
 
 The `for` loop will return each object in the list, and you can call methods on those objects just like you would expect.  
 
@@ -230,6 +227,8 @@ This time, you'll need to write the code!
 >
 > Create the `add_armor` method in the Hero class:
 >
+> **HINT:** Use `add_ability` as a model for building this method
+>
 ```python
 def add_armor(self, armor):
   '''Add armor to self.armors
@@ -246,7 +245,9 @@ Make sure to take into account that there may not be any armor objects in the li
 
 > [action]
 >
-> Build the `defend` method in the Hero class. How is it similar/different to the `attack` method?:
+> Build the `defend` method in the Hero class.
+>
+> **HINT:** How is it similar/different to the `attack` method?:
 >
 ```python
 def defend(self, damage_amt):
@@ -264,19 +265,21 @@ In our case we want to call the defend method and change our hero's health based
 
 >[info]
 >
-> Methods that handle changes in properties are called setters. Methods that return the value of a property are called **getters.**
+> Methods that handle changes in properties are called **setters**. Methods that return the value of a property are called **getters.**
 
 Before we update `self.current_health` we need to call `self.defend` with the amount of damage that is being passed in. We can then subtract the defense from the amount coming in and subtract that number from the hero's health.
 
 Let's walk through an example to make it clear:
 
-  - If `take_damage` receives 50 damage units coming in.
-  - If calling `self.defend(50)` returns 10.
+  - `take_damage` receives 50 damage units coming in.
+  - Calling `self.defend(50)` returns 10.
   - 40 points should be subtracted from `self.current_health`.
 
 > [action]
 >
 > Build the `take_damage` method for the Hero class:
+>
+> **HINT:** Reference the bullets above: calculate the `defense` amount, subtract it from the `damage` amount, and then subtract that result from `self.current_health`
 >
 ```python
 def take_damage(self, damage):
@@ -284,7 +287,6 @@ def take_damage(self, damage):
   '''
   # TODO: Create a method that updates self.current_health to the current
   # minus the the amount returned from calling self.defend(damage).
-
 ```
 
 Now time to test again!
@@ -297,7 +299,7 @@ Now time to test again!
 if __name__ == "__main__":
     # If you run this file from the terminal
     # this block of code is executed.
-
+>
     hero = Hero("Grace Hopper", 200)
     shield = Armor("Shield", 50)
     hero.add_armor(shield)
@@ -305,7 +307,7 @@ if __name__ == "__main__":
     print(hero.current_health)
 ```
 
-When calling your code with these values you should a range between 150 and 200 depending on how much was blocked by Grace.
+When calling your code with these values you should have a `current_health` between 150 and 200 depending on how much was blocked by Grace.
 
 # Are You still conscious?
 
@@ -318,6 +320,8 @@ Finish the `is_alive` method. This methods should check to see if the hero is st
 > [action]
 >
 > Write the `is_alive` method for the Hero Class on your own:
+>
+> **HINT:** Follow the `TODO` instructions for guidance.
 >
 ```python
 def is_alive(self):  
@@ -363,7 +367,7 @@ Keep the following in mind when building this method:
 - Because we don't know how many times our hero will need to attack -- it's best to use a `while` loop to continue the attack until someone dies.
 - You'll need to use the methods that we just built to complete this.
 - _This function will need to take into account the possibility that both heroes may not have abilities and therefore will do no damage._
-- Use an `if` statement and check if to see that at least one hero has an ability. If no abilities exist print out "Draw"
+    - Use an `if` statement and check to see that at least one hero has an ability. If no abilities exist print out "Draw"
 - When a hero wins, print the following, replacing "HeroName" with the actual name of the hero who won the fight:
 
 ```
@@ -374,7 +378,7 @@ The core functionality for this method will come from calling methods that exist
 
 > [action]
 >
-> Build the `fight` method for the Hero class! Take everything you've learned so far in this chapter and apply it to creating this method!
+> Build the `fight` method for the Hero class! Remove the current implemenation and take everything you've learned so far in this chapter and apply it to re-writing this method!
 >
 ```python
 def fight(self, opponent):  
