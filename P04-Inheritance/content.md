@@ -125,7 +125,7 @@ Let's use what we learned here to give our superheroes more options for attackin
 # Weapon Class
 > [action]
 >
->In your project directory, make a file named `weapon.py` to contain the Weapon class
+> In your project directory, make a file named `weapon.py` to contain the Weapon class
 
 
 One of the powerful features of Object Oriented Programming has a large scary name but refers to a pretty simple concept: **Polymorphism**.
@@ -178,6 +178,7 @@ class Hero:
         # argument to self.abilities.
         # This means that self.abilities will be a list of
         # abilities and weapons.
+>       **HINT:** Remember, self.abilities is just a list!
         pass
     ....
 ```
@@ -289,9 +290,10 @@ You'll build this one on your own. This method should print a list of all the te
 >
 ```python
 def view_all_heroes(self):
-        '''Prints out all heroes to the console.'''
-        # TODO: Loop over the list of heroes and print their names to the terminal one by one.
-        pass
+    '''Prints out all heroes to the console.'''
+    # TODO: Loop over the list of heroes and print their names to the terminal one by one.
+>   **HINT:** Remember self.heroes is a list!
+    pass
 ```
 
 # Add Hero to Team
@@ -307,6 +309,7 @@ def add_hero(self, hero)
   '''Add Hero object to self.heroes.'''
   # TODO: Add the Hero object that is passed in to the list of heroes in
   # self.heroes
+> **HINT:** Remember self.heroes is a list!
   pass
 ```
 
