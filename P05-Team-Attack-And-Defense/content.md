@@ -71,6 +71,7 @@ You will do this one on your own. Create this method that will act as a setter f
 def add_death(self, num_deaths):
     ''' Update deaths with num_deaths'''
     # TODO: This method should add the number of deaths to self.deaths
+>   **HINT:** Remember self.deaths is a Int!
     pass
 ```
 
@@ -91,6 +92,7 @@ We want our fight method to update our statistics when things happen. Let's upda
         # 2) then number of kills the opponent has when the hero (self) dies
         # 3) the number of deaths of the opponent if they die    in the fight
         # 4) the number of deaths of the hero (self) if they die in the fight
+>       **HINT:** Remember to use your helper methods(i.e. add_kill and add_deaths) when you can!
         pass
 ```
 
@@ -119,10 +121,11 @@ This one you'll do on your own. Pay close attention to the `TODO` comment, as th
 > Build the `revive_heroes` method for your `Team` class:
 >
 ```python
-def revive_heroes(self):
+def revive_heroes(self, health=100):
     ''' Reset all heroes health to starting_health'''
     # TODO: for each hero in self.heroes,
     # set the hero's current_health to their starting_health
+>   **HINT:** Remember to update the health for all heroes!
     pass
 ```
 
@@ -153,6 +156,7 @@ Alright, we got one more method to write! This one is a bit more challenging, so
             # 2) have the heroes fight each other (Hint: Use the fight method in the Hero class.)
             # 3) update the list of living_heroes and living_opponents
             # to reflect the result of the fight
+>           **HINT:** To use your helper methods whenever possible!
 >
 ```
 
