@@ -165,6 +165,8 @@ Now that we have a weapon, we need to allow heroes to add a weapon for them to u
 >
 > Add the following to the Hero class:
 >
+> **HINT:** Remember, self.abilities is just a list!
+>
 ```python
 from weapon import Weapon
 >
@@ -178,7 +180,6 @@ class Hero:
         # argument to self.abilities.
         # This means that self.abilities will be a list of
         # abilities and weapons.
->       **HINT:** Remember, self.abilities is just a list!
         pass
     ....
 ```
@@ -288,11 +289,12 @@ You'll build this one on your own. This method should print a list of all the te
 >
 > Build the `view_all_heroes` function for the Team class:
 >
+> **HINT:** Remember self.heroes is a list!
+>
 ```python
 def view_all_heroes(self):
     '''Prints out all heroes to the console.'''
     # TODO: Loop over the list of heroes and print their names to the terminal one by one.
->   **HINT:** Remember self.heroes is a list!
     pass
 ```
 
@@ -304,12 +306,13 @@ You will build this one on your own as well. We need to add heroes to our team. 
 >
 > Build the `add_hero` method for the the Team Class:
 >
+> **HINT:** Remember self.heroes is a list!
+>
 ```python
 def add_hero(self, hero)
   '''Add Hero object to self.heroes.'''
   # TODO: Add the Hero object that is passed in to the list of heroes in
   # self.heroes
-> **HINT:** Remember self.heroes is a list!
   pass
 ```
 

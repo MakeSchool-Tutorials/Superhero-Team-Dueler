@@ -21,6 +21,8 @@ Let's create some methods in an Arena class that  will allow for code reuse. Use
 >
 > Start by making an `init` method for your Arena class. Follow the TODO comment, you shouldn't be adding more than 2 lines of code here:
 >
+> **HINT:** Remember how you create other objects(like ability).
+>
 ```python
 from ability import Ability
 from weapon import Weapon
@@ -36,7 +38,6 @@ class Arena:
         '''
         # TODO: create instance variables named team_one and team_two that
         # will hold our teams.
->       **HINT:** Remember how you create other objects(like ability).
 ```
 
 <!-- -->
@@ -73,6 +74,8 @@ You will do this one on your own. Create this method that will allow users to cr
 >
 > Build the `create_weapon` function for your Arena class
 >
+> **HINT:** If you get stuck, look back at how `create_ability` is implemented.
+>
 ```python
     def create_weapon(self):
         '''Prompt user for Weapon information
@@ -81,7 +84,6 @@ You will do this one on your own. Create this method that will allow users to cr
         # TODO: This method will allow a user to create a weapon.
         # Prompt the user for the necessary information to create a new weapon object.
         # return the new weapon object.
->       **HINT:** If you get stuck, look back at how create_ability is implemented.
         pass
 ```
 
@@ -93,6 +95,8 @@ You will do this one on your own. Create this method that will allow users to cr
 >
 > Build the `create_armor` function for your Arena class
 >
+> **HINT:** If you get stuck, look back at how `create_ability` is implemented.
+>
 ```python
     def create_armor(self):
         '''Prompt user for Armor information
@@ -101,7 +105,6 @@ You will do this one on your own. Create this method that will allow users to cr
         # TODO:This method will allow a user to create a piece of armor.
         #  Prompt the user for the necessary information to create a new armor object.
         #  return the new armor object with values set by user.
->       **HINT:** If you get stuck, look back at how create_ability is implemented.
         pass
 ```
 
@@ -125,13 +128,13 @@ Create this method that will allow users to create heroes for their arena. One o
            add_item = input("[1] Add ability\n[2] Add weapon\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
            if add_item == "1":
                #TODO add an ability to the hero
->              **HINT:** First create the ability, then add it to the hero
+               #HINT: First create the ability, then add it to the hero
            elif add_item == "2":
                #TODO add a weapon to the hero
->              **HINT:** First create the weapon, then add it to the hero
+               #HINT: First create the weapon, then add it to the hero
            elif add_item == "3":
                #TODO add an armor to the hero
->              **HINT:** First create the armor, then add it to the hero
+               #HINT: First create the armor, then add it to the hero
         return hero
 ```
 
@@ -159,6 +162,7 @@ Create this method that will allow users to create heroes for their arena. One o
             self.team_one.add_hero(hero)
 >
     # Now implement build_team_two
+    #HINT: If you get stuck, look at how build_team_one is implemented
     def build_team_two(self):
         '''Prompt the user to build team_two'''
         # TODO: This method should allow a user to create team two.
@@ -169,7 +173,6 @@ Create this method that will allow users to create heroes for their arena. One o
         # 4) use a loop to call self.create_hero() for the number
         # of heroes the user specified the team should have,
         # and then add the heroes to the team.
->       **HINT:** If you get stuck, look at how build_team_one is implemented
         pass
 ```
 
@@ -181,13 +184,14 @@ Create this method that will allow teams to battle it out in your arena! Don't o
 >
 > Build the `team_battle` function for your Arena class
 >
+> **HINT:** Attack is a method of the Team class
+>
 ```py
     def team_battle(self):
         '''Battle team_one and team_two together.'''
         # TODO: This method should battle the teams together.
         # Call the attack method that exists in your team objects
         # for that battle functionality.
->       **HINT:** Attack is a method of the Team class
         pass
 ```
 
