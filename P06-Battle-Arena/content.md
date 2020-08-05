@@ -150,7 +150,6 @@ Create this method that will allow users to create heroes for their arena. One o
         for i in range(numOfTeamMembers):
             hero = self.create_hero()
             self.team_one.add_hero(hero)
-        pass
 >
     def build_team_two(self):
         '''Prompt the user to build team_two'''
@@ -210,7 +209,36 @@ You may want to get statistics on how your battle went. Let's build that out now
         # TODO for each team, calculate the total kills and deaths for each hero,
         # find the average kills and deaths by dividing the totals by the number of heroes.
         # finally, divide the average number of kills by the average number of deaths for each team
-        pass
+
+        print("\n")
+        print(self.team_one.name + " statistics: ")
+        self.team_one.stats()
+        print("\n")
+        print(self.team_two.name + " statistics: ")
+        self.team_two.stats()
+        print("\n")
+
+        # This is how to calculate the average K/D for Team One
+        team_kills = 0
+        team_deaths = 0
+        for hero in self.team_one.heroes:
+            team_kills += hero.kills
+            team_deaths += hero.deaths
+        if team_deaths == 0:
+            team_deaths = 1
+        print(self.team_one.name + " average K/D was: " + str(team_kills/team_deaths))
+
+        # TODO: Now display the average K/D for Team Two
+
+
+        # Here is a way to list the heroes from Team One that survived
+        for hero in self.team_one.heroes:
+            if hero.deaths == 0:
+                print("survived from " + self.team_one.name + ": " + hero.name)
+
+        #TODO: Now list the heroes from Team Two that survived
+
+
 ```
 
 <!-- -->
