@@ -200,7 +200,7 @@ You may want to get statistics on how your battle went. Let's build that out now
 
 > [action]
 >
-> Build the `show_stats` function for your Arena class
+> Build the `show_stats` function for your Arena class. We've built it out for Team One, you'll need to build it for Team Two!
 >
 ```py
     def show_stats(self):
