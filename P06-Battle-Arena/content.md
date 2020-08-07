@@ -162,13 +162,10 @@ Create this method that will allow users to create heroes for their arena. One o
     def build_team_two(self):
         '''Prompt the user to build team_two'''
         # TODO: This method should allow a user to create team two.
-        # 1) Prompt the user for the name of the team
-        # 2) Prompt the user for the number of Heroes on the team
-        # 3) Instantiate a new Team object,
-        # using the team name obtained from user input
-        # 4) use a loop to call self.create_hero() for the number
-        # of heroes the user specified the team should have,
-        # and then add the heroes to the team.
+        # This method should allow a user to create team two.
+        # Prompt the user for the number of Heroes on team two
+        # call self.create_hero() for every hero that the user wants to add to team two.
+        # Add the created hero to team two.
         pass
 ```
 
