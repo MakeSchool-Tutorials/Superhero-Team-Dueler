@@ -196,10 +196,9 @@ def test_hero_default_starting_health():
 
 def test_hero_defense():
     jodie = Hero("Jodie Foster")
-    defense_amount = 30
     gauntlets = Armor("Gauntlets", 30)
     jodie.add_armor(gauntlets)
-    defense = jodie.defend(defense_amount)
+    defense = jodie.defend()
     assert defense >= 0 and defense <= 30
 
 
@@ -208,7 +207,7 @@ def test_dead_hero_defense():
     defense_amount = 30000
     garlic = Armor("Garlic", defense_amount)
     hero.add_ability(garlic)
-    assert hero.defend(defense_amount) == 0
+    assert hero.defend() == 0
 
 
 def test_hero_equip_armor():
@@ -227,7 +226,7 @@ def test_hero_defend_multi_armor():
     science = Armor("Science", science_defense)
     jodie.add_armor(gauntlets)
     jodie.add_armor(science)
-    defend = jodie.defend(science_defense+science_defense)
+    defend = jodie.defend()
     assert defend <= 13000 and defend >= 0
 
 
@@ -237,7 +236,7 @@ def test_hero_attack():
     pesto = Ability("Pesto Sauce", 8000)
     flash.add_ability(pesto)
     attack = flash.attack()
-    assert attack <= 8000 and attack >= 4000
+    assert attack <= 8000 and attack >= 0
 
 
 # Test Team
@@ -254,11 +253,11 @@ def test_team_attack():
     socks = Armor("Socks", 10)
     athena.add_armor(socks)
     team_two.add_hero(athena)
-    assert team_two.heroes[0].health == 100
+    assert team_two.heroes[0].current_health == 100
 
     team_one.attack(team_two)
 
-    assert team_two.heroes[0].health <= 0
+    assert team_two.heroes[0].current_health <= 0
 
 
 def test_team_attack_kills():
@@ -293,23 +292,6 @@ def test_team_attack_deaths():
     assert team_two.heroes[0].deaths == 1
 
 
-def test_team_defend():
-    heroes = []
-    for _ in range(0, 20):
-        heroes.append(create_hero(health=20))
-    team_one = Team("One")
-    for hero in heroes:
-        team_one.add_hero(hero)
-
-    deaths = team_one.defend(100)
-    for hero in team_one.heroes:
-        assert hero.health == 15
-
-    assert deaths == 0
-
-    assert team_one.defend(400) == 20
-
-
 def test_revive_heroes():
     heroes = []
     for _ in range(0, 20):
@@ -318,10 +300,12 @@ def test_revive_heroes():
     team_one = Team("One")
     for hero in heroes:
         team_one.add_hero(hero)
+    
+    for hero in heroes:
+        hero.take_damage(15)
 
-    team_one.defend(300)
     for hero in team_one.heroes:
-        assert hero.health == 45
+        assert hero.current_health == 45
     team_one.revive_heroes()
     for hero in team_one.heroes:
-        assert hero.health == 60
+        assert hero.current_health == 60

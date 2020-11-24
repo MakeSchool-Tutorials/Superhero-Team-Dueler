@@ -241,16 +241,16 @@ def add_armor(self, armor):
 
 Our hero needs to be able to block. This function will use our armors to defend against any attacks.
 
-Make sure to take into account that there may not be any armor objects in the list.
+Make sure to take into account that there may not be any armor objects in the list. Or that if a hero is dead (has no health) they should have 0 defense.
 
 > [action]
 >
 > Build the `defend` method in the Hero class.
 >
-> **HINT:** How is it similar/different to the `attack` method? Remember a dead hero cannot defend themselves, so how do we handle that case?
+> **HINT:** How is it similar/different to the `attack` method?
 >
 ```python
-def defend(self, damage_amt):
+def defend(self):
   '''Calculate the total block amount from all armor blocks.
      return: total_block:Int
   '''
