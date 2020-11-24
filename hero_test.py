@@ -6,7 +6,6 @@ from weapon import Weapon
 from armor import Armor
 from hero import Hero
 from team import Team
-from arena import Arena
 import math
 import random
 
