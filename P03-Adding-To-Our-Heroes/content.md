@@ -247,7 +247,7 @@ Make sure to take into account that there may not be any armor objects in the li
 >
 > Build the `defend` method in the Hero class.
 >
-> **HINT:** How is it similar/different to the `attack` method?:
+> **HINT:** How is it similar/different to the `attack` method? Remember a dead hero cannot defend themselves, so how do we handle that case?
 >
 ```python
 def defend(self, damage_amt):
